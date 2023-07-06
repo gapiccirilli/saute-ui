@@ -5,6 +5,7 @@ import ShoppingListPage from "./pages/ShoppingListPage";
 import AppLayout from './pages/AppLayout';
 import RecipeBookPage from './pages/RecipeBookPage';
 import Settings from "./pages/Settings";
+import PageNotFound from "./pages/PageNotFound";
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="lists" element={<ShoppingListPage />} />
         </Route>
         <Route path="settings" element={<Settings />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );

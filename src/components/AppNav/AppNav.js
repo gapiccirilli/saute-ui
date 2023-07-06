@@ -5,13 +5,13 @@ function AppNav() {
         <nav>
             <ul>
                 <li>
-                    <Link to="/books">Recipe Books</Link>
+                    <Link to="books">Recipe Books</Link>
                 </li>
                 <li>
-                    <Link to="/ingredients">Ingredients</Link>
+                    <Link to="ingredients">Ingredients</Link>
                 </li>
                 <li>
-                    <Link to="/lists">Shopping Lists</Link>
+                    <Link to="lists">Shopping Lists</Link>
                 </li>
             </ul>
         </nav>

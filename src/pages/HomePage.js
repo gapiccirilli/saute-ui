@@ -1,14 +1,10 @@
-import { Outlet } from "react-router-dom";
-import AppNav from "../components/AppNav/AppNav";
-
+import { Link } from "react-router-dom";
 
 function HomePage() {
     return (
         <div>
             <h1>Home</h1>
-            <AppNav />
-            {/* outlet is specifically for child routes and acts just like children in props */}
-            <Outlet />
+            <Link to="saute">GO TO APP</Link>
         </div>
     );
 }

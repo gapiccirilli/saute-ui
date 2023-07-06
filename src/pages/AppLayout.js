@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import AppNav from "../components/AppNav/AppNav";
+import AppNav from "../components/HomePageComps/AppNav/AppNav";
 
 
 function AppLayout() {

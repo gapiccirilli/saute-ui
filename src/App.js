@@ -2,9 +2,10 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import HomePage from "./pages/HomePage";
 import IngredientPage from "./pages/IngredientPage";
 import ShoppingListPage from "./pages/ShoppingListPage";
-import './App.css';
 import AppLayout from './pages/AppLayout';
 import RecipeBookPage from './pages/RecipeBookPage';
+import Settings from "./pages/Settings";
+import './App.css';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="ingredients" element={<IngredientPage />} />
           <Route path="lists" element={<ShoppingListPage />} />
         </Route>
+        <Route path="settings" element={<Settings />} />
       </Routes>
     </BrowserRouter>
   );

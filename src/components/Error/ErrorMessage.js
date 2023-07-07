@@ -1,8 +1,7 @@
 
 
-function ErrorMessage({ exception }) {
-    const {message} = exception;
-    console.log(message);
+function ErrorMessage({ message }) {
+    
     return (
         <h1>
             {message}

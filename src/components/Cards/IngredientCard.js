@@ -1,6 +1,8 @@
 import Card from "./Card";
 
-function IngredientCard({ ingredientName, numberOfRecipes }) {
+function IngredientCard({ ingredient }) {
+    const { ingredientName, numberOfRecipes } = ingredient;
+    
     return (
         <Card>
             <p>{ingredientName}</p>

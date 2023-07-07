@@ -27,7 +27,7 @@ function RecipeBookPage() {
 
     return (
         <div>
-            {recipeBooks.map((book) => <RecipeBookCard recipeBookName={book.recipeBookName} />)}
+            {recipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} />)}
         </div>
     );
 }

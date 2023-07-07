@@ -23,7 +23,7 @@ function IngredientPage() {
 
     return (
         <div>
-            {ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} />)}
+            {ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} />)}
         </div>
     );
 }

@@ -1,6 +1,8 @@
 import Card from "./Card";
 
-function RecipeBookCard({ recipeBookName }) {
+function RecipeBookCard({ recipeBook }) {
+    const {recipeBookName} = recipeBook;
+    
     return (
         <Card>
             <p>{recipeBookName}</p>

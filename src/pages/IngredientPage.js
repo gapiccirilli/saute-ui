@@ -1,5 +1,5 @@
 import IngredientCard from "../components/Cards/IngredientCard";
-
+import AddNewCard from "../components/Cards/AddNewCard";
 
 function IngredientPage() {
 
@@ -24,6 +24,7 @@ function IngredientPage() {
     return (
         <div>
             {ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} />)}
+            <AddNewCard>Ingredient</AddNewCard>
         </div>
     );
 }

@@ -1,4 +1,5 @@
 import RecipeBookCard from "../components/Cards/RecipeBookCard";
+import AddNewCard from "../components/Cards/AddNewCard";
 
 function RecipeBookPage() {
 
@@ -28,6 +29,7 @@ function RecipeBookPage() {
     return (
         <div>
             {recipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} />)}
+            <AddNewCard>Recipe Book</AddNewCard>
         </div>
     );
 }

@@ -1,10 +1,39 @@
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import RecipeCard from "../components/Cards/RecipeCard";
+import AddNewCard from "../components/Cards/AddNewCard";
 
 function RecipePage() {
     const { id } = useParams();
+    const [recipes, setRecipes] = useState([]);
+    const [exception, setException] = useState({});
+    const [error, setError] = useState("");
 
-    const recipes = [
+    useEffect(() => {
+        async function getRecipes() {
+            try {
+                const response = await fetch(`http://localhost:8080/api/recipe-books/${id}/recipes`);
+
+                if (!response.ok) {
+                    throw new Error()
+                }
+
+                const data = await response.json();
+                if (data.id === undefined) {
+                    setRecipes(data);
+                }
+                else {
+                    setException(data);
+                }
+            } catch(err) {
+                console.error(err);
+                setError(err.message);
+            }
+        }
+        getRecipes();
+    }, []);
+
+    const dummyRecipes = [
         {
             id: 1,
             recipeName: "Brownies",
@@ -38,14 +67,16 @@ function RecipePage() {
     ];
 
     {/* for testing only below. Delete when implementing fetching */}
-    const filteredRecipes = recipes.filter((recipe) => recipe.recipeBookId == id);
+    // const filteredRecipes = dummyRecipes.filter((recipe) => recipe.recipeBookId == id);
 
     return (
         <div>
-            {/* use in production {recipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} />)} */}
+            {/* use in production */}
+            {recipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} />)}
 
             {/* for testing only below. Delete when implementing fetching */}
-            {filteredRecipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} />)}
+            {/* {filteredRecipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} />)} */}
+            <AddNewCard>Recipe</AddNewCard>
         </div>
     );
 }

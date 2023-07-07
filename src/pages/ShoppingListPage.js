@@ -1,5 +1,5 @@
 import ShoppingListCard from "../components/Cards/ShoppingListCard";
-
+import AddNewCard from "../components/Cards/AddNewCard";
 
 function ShoppingListPage() {
 
@@ -21,6 +21,7 @@ function ShoppingListPage() {
     return (
         <div>
             {shoppingLists.map((list) => <ShoppingListCard list={list} key={list.id} />)}
+            <AddNewCard>List</AddNewCard>
         </div>
     );
 }

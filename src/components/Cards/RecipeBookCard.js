@@ -1,12 +1,15 @@
 import Card from "./Card";
+import { Link } from "react-router-dom";
 
 function RecipeBookCard({ recipeBook }) {
-    const {recipeBookName} = recipeBook;
+    const {id, recipeBookName} = recipeBook;
     
     return (
-        <Card>
-            <p>{recipeBookName}</p>
-        </Card>
+        <Link to={`${id}`}>
+            <Card>
+                <p>{recipeBookName}</p>
+            </Card>
+        </Link>
     );
 }
 

@@ -1,11 +1,11 @@
-
+import styles from "./AccountButton.module.css";
 
 function AccountButton() {
     return (
-        <span>
+        <div className={styles.actBtn}>
             <p>Name</p>
-        </span>
-    );
+        </div>
+        );
 }
 
 export default AccountButton;

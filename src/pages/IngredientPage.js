@@ -31,7 +31,6 @@ function IngredientPage() {
     return (
         <div>
             {!error && ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} />)}
-            {/* {dummyIngredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} />)} */}
             {!error && <AddNewCard>Ingredient</AddNewCard>}
             {error && <ErrorMessage message={error}/>}
         </div>

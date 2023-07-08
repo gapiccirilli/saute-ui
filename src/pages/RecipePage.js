@@ -34,7 +34,6 @@ function RecipePage() {
     
     return (
         <div>
-            {/* use in production */}
             {!error && recipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} />)}
             {!error && <AddNewCard>Recipe</AddNewCard>}
             {error && <ErrorMessage message={error}/>}

@@ -28,21 +28,6 @@ function ShoppingListPage() {
         getShoppingLists();
     }, [])
 
-    // const dummyShoppingLists = [
-    //     {
-    //         id: 1,
-    //         listName: "Wegmens List"
-    //     },
-    //     {
-    //         id: 2,
-    //         listName: "Giant Eagle List"
-    //     },
-    //     {
-    //         id: 3,
-    //         listName: "Whole Foods List"
-    //     }
-    // ];
-
     return (
         <div>
             {!error && shoppingLists.map((list) => <ShoppingListCard list={list} key={list.id} />)}

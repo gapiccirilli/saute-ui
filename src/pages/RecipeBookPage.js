@@ -30,7 +30,6 @@ function RecipeBookPage() {
 
     return (
         <div>
-            {/* {dummyRecipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} />)} */}
             {!error && recipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} />)}
             {!error && <AddNewCard>Recipe Book</AddNewCard>}
             {error && <ErrorMessage message={error}/>}

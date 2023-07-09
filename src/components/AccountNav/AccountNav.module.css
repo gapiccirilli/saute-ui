@@ -4,29 +4,33 @@
     border-radius: 1em;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
 }
 
-.acctList {
-    list-style: none;
+.nav div {
+    width: 45%;
+}
+
+.navRight {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
 }
 
-.acctNav {
-    width: 50%;
-    height: 100%;
+.acctList {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    column-gap: 4em;
 }
 
-.logoNav {
-    width: 50%;
-    height: 100%;
-    margin-left: 6em;
-}
-
-.logOut {
-    margin-right: 1.5em;
+.acctList li {
+    margin: 0;
 }

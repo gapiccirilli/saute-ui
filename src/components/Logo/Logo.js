@@ -2,7 +2,7 @@ import styles from "./Logo.module.css";
 
 function Logo() {
     return (
-        <img src="saute-logo.png" alt="saute-logo" width="50" height="50"/>
+        <img className={styles.logo} src="saute-logo.png" alt="saute-logo" width="50" height="50"/>
     );
 }
 

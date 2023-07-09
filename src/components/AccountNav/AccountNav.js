@@ -6,10 +6,10 @@ import Logo from "../Logo/Logo";
 function AccountNav() {
     return (
         <nav className={styles.nav}>
-            <div className={styles.logoNav}>
+            <div className={styles.navLeft}>
                 <Logo />
             </div>
-            <div className={styles.acctNav}>
+            <div className={styles.navRight}>
                 <ul className={styles.acctList}>
                     <li className={styles.actBtn}>
                         <AccountButton />

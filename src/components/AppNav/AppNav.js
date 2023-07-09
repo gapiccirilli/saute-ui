@@ -1,9 +1,10 @@
+import styles from "./AppNav.module.css";
 import { Link } from "react-router-dom";
 
 function AppNav() {
     return (
         <nav>
-            <ul>
+            <ul className={styles.appList}>
                 <li>
                     <Link to="books">Recipe Books</Link>
                 </li>

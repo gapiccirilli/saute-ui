@@ -14,7 +14,7 @@ function AccountNav() {
                     <li className={styles.actBtn}>
                         <AccountButton />
                     </li>
-                    <li className={styles.logOut}>
+                    <li>
                         <button>Logout</button>
                     </li>
                 </ul>

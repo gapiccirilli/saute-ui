@@ -1,0 +1,10 @@
+.banner {
+    width: 40rem;
+    height: 15rem;
+    border-radius: 2rem;
+    background-color: rgb(237, 237, 237, .47);
+    margin: 1rem auto 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

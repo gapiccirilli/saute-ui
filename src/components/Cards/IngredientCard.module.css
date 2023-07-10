@@ -12,9 +12,15 @@
     text-align: center;
 }
 
-.cardDesc p {
-    padding: .3em;
+.name {
+    padding: .1em 0 0;
     font-weight: bold;
     color: rgb(125, 37, 125);
     text-decoration: underline;
+}
+
+.recipeNums {
+    padding: 0;
+    font-size: .8em;
+    color: rgb(125, 37, 125);
 }

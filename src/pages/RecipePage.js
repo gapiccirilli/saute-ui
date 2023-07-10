@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import RecipeCard from "../components/Cards/RecipeCard";
 import AddNewCard from "../components/Cards/AddNewCard";
 import ErrorMessage from "../components/Error/ErrorMessage";
+import BackButton from "../components/Buttons/BackButton";
 
 function RecipePage() {
     const { bookId } = useParams();
@@ -34,6 +35,7 @@ function RecipePage() {
     
     return (
         <div>
+            <BackButton />
             {!error && recipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} />)}
             {!error && <AddNewCard>Recipe</AddNewCard>}
             {error && <ErrorMessage message={error}/>}

@@ -6,16 +6,16 @@ function RecipeBookCard({ recipeBook }) {
     const {id, recipeBookName} = recipeBook;
     
     return (
-        <Link to={`${id}`}>
-            <Card>
+        <Card>
+            <Link to={`${id}`}>
                 <div className={styles.cardImg}>
 
                 </div>
                 <div className={styles.cardDesc}>
                     <p>{recipeBookName}</p>
                 </div>
-            </Card>
-        </Link>
+            </Link>
+        </Card>
     );
 }
 

@@ -41,7 +41,7 @@ function SingleRecipePage() {
                 <h1>{recipeName}</h1>
                 <p>{description}</p>
                 <ul>
-                    {items.map((item) => <li><Item item={item} /></li>)}
+                    {items.map((item) => <li><Item item={item} key={item.id} /></li>)}
                 </ul>
             </header>
             {error && <ErrorMessage message={error}/>}

@@ -5,3 +5,10 @@
     background-color: beige;
     border-radius: 1rem;
 }
+
+.cardBtns {
+    width: 100%;
+    height: 10%;
+    padding: 0;
+    margin: 0;
+}

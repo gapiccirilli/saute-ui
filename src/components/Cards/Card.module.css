@@ -11,4 +11,12 @@
     height: 10%;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5em;
+}
+
+.cardBtns span {
+    margin-top: .5em;
 }

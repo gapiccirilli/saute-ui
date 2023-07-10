@@ -4,8 +4,8 @@ function Card({ children }) {
     return (
         <div className={styles.card}>
             <div className={styles.cardBtns}>
-                <span>Edit</span>
-                <span>X</span>
+                <span className={styles.edit}>Edit</span>
+                <span className={styles.delete}>X</span>
             </div>
             {children}
         </div>

@@ -5,6 +5,7 @@ import ShoppingListPage from "./pages/ShoppingListPage";
 import AppLayout from './pages/AppLayout';
 import RecipeBookPage from './pages/RecipeBookPage';
 import RecipePage from './pages/RecipePage';
+import SingleRecipePage from './pages/SingleRecipePage';
 import Settings from "./pages/Settings";
 import PageNotFound from "./pages/PageNotFound";
 import './App.css';
@@ -17,7 +18,8 @@ function App() {
         <Route path="saute" element={<AppLayout />}>
           <Route index element={<Navigate replace to="books" />} />
           <Route path="books" element={<RecipeBookPage />} />
-          <Route path="books/:id" element={<RecipePage />} />
+          <Route path="books/:bookId" element={<RecipePage />} />
+          <Route path="books/:bookId/recipes/:recipeId" element={<SingleRecipePage />} />
           <Route path="ingredients" element={<IngredientPage />} />
           <Route path="lists" element={<ShoppingListPage />} />
         </Route>

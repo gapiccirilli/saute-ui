@@ -5,14 +5,14 @@ import AddNewCard from "../components/Cards/AddNewCard";
 import ErrorMessage from "../components/Error/ErrorMessage";
 
 function RecipePage() {
-    const { id } = useParams();
+    const { bookId } = useParams();
     const [recipes, setRecipes] = useState([]);
     const [error, setError] = useState("");
 
     useEffect(() => {
         async function getRecipes() {
             try {
-                const response = await fetch(`http://localhost:8080/api/recipe-books/${id}/recipes`);
+                const response = await fetch(`http://localhost:8080/api/recipe-books/${bookId}/recipes`);
 
                 if (!response.ok) {
                     const errorMessage = await response.json();
@@ -28,7 +28,7 @@ function RecipePage() {
             }
         }
         getRecipes();
-    }, [id]);
+    }, [bookId]);
 
     
     

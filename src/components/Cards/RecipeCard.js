@@ -1,13 +1,17 @@
+import { Link } from "react-router-dom";
 import Card from "./Card";
 
 function RecipeCard({ recipe }) {
-    const {recipeName, description} = recipe;
+    const {id, recipeName, description} = recipe;
+    const url = `recipes/${id}`;
     
     return (
-        <Card>
-            <p>{recipeName}</p>
-            <p>{description}</p>
-        </Card>
+        <Link to={url}>
+            <Card>
+                <p>{recipeName}</p>
+                <p>{description}</p>
+            </Card>
+        </Link>
     );
 }
 

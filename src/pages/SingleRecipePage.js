@@ -1,12 +1,17 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ErrorMessage from "../components/Error/ErrorMessage";
+import BackButton from "../components/Buttons/BackButton";
+import Item from "../components/Item/Item";
 
 function SingleRecipePage() {
     const { recipeId } = useParams();
-    const [{recipeName, description}, setRecipe] = useState({});
+    const [recipeParams, setRecipeParams] = useSearchParams();
     const [items, setItems] = useState([]);
     const [error, setError] = useState("");
+
+    const recipeName = recipeParams.get("name");
+    const description = recipeParams.get("desc");
 
     useEffect(() => {
         async function getItems() {
@@ -31,11 +36,16 @@ function SingleRecipePage() {
     
     return (
         <div>
-            <div>
+            <header>
+                <BackButton />
                 <h1>{recipeName}</h1>
-                <h6>{description}</h6>
-            </div>
+                <p>{description}</p>
+                <ul>
+                    {items.map((item) => <Item item={item} />)}
+                </ul>
+            </header>
             {error && <ErrorMessage message={error}/>}
+
         </div>
     );
 }

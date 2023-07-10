@@ -3,8 +3,8 @@ import Card from "./Card";
 
 function RecipeCard({ recipe }) {
     const {id, recipeName, description} = recipe;
-    const url = `recipes/${id}`;
-    
+    const url = `recipes/${id}?name=${recipeName}&desc=${description}`;
+
     return (
         <Link to={url}>
             <Card>

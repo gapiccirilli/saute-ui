@@ -28,9 +28,15 @@ function RecipeBookPage() {
         getRecipeBooks();
     }, [])
 
+    const handleBookDelete = (bookId) => {
+        setRecipeBooks((prev) => {
+            return prev.filter((book) => book.id !== bookId);
+        });
+    };
+
     return (
         <div>
-            {!error && recipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} />)}
+            {!error && recipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} onDeleteBook={handleBookDelete}/>)}
             {!error && <AddNewCard>Recipe Book</AddNewCard>}
             {error && <ErrorMessage message={error}/>}
         </div>

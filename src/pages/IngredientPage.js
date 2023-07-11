@@ -28,9 +28,16 @@ function IngredientPage() {
         getIngredients();
     }, [])
 
+    const handleIngredientDelete = (ingredientId) => {
+        setIngredients((prev) => {
+            return prev.filter((ingredient) => ingredient.id !== ingredientId);
+        });
+    };
+
     return (
         <div>
-            {!error && ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} />)}
+            {!error && ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} 
+            onDeleteIngredient={handleIngredientDelete} />)}
             {!error && <AddNewCard>Ingredient</AddNewCard>}
             {error && <ErrorMessage message={error}/>}
         </div>

@@ -28,9 +28,15 @@ function ShoppingListPage() {
         getShoppingLists();
     }, [])
 
+    const handleListDelete = (listId) => {
+        setShoppingLists((prev) => {
+            return prev.filter((list) => list.id !== listId);
+        });
+    };
+
     return (
         <div>
-            {!error && shoppingLists.map((list) => <ShoppingListCard list={list} key={list.id} />)}
+            {!error && shoppingLists.map((list) => <ShoppingListCard list={list} key={list.id} onDeleteList={handleListDelete} />)}
             {!error && <AddNewCard>List</AddNewCard>}
             {error && <ErrorMessage message={error}/>}
         </div>

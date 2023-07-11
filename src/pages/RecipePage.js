@@ -31,12 +31,17 @@ function RecipePage() {
         getRecipes();
     }, [bookId]);
 
+    const handleRecipeDelete = (recipeId) => {
+        setRecipes((prev) => {
+            return prev.filter((recipe) => recipe.id !== recipeId);
+        });
+    };
     
     
     return (
         <div>
             <BackButton />
-            {!error && recipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} />)}
+            {!error && recipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} onDeleteRecipe={handleRecipeDelete}/>)}
             {!error && <AddNewCard>Recipe</AddNewCard>}
             {error && <ErrorMessage message={error}/>}
         </div>

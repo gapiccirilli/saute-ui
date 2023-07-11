@@ -6,7 +6,7 @@ function RecipeBookCard({ recipeBook }) {
     const {id, recipeBookName} = recipeBook;
     
     return (
-        <Card>
+        <Card showButtons={true}>
             <Link to={`${id}`}>
                 <div className={styles.cardImg}>
 

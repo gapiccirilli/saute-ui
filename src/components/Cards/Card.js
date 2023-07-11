@@ -1,12 +1,12 @@
 import styles from "./Card.module.css";
 
-function Card({ children }) {
+function Card({ children, showButtons }) {
     return (
         <div className={styles.card}>
-            <div className={styles.cardBtns}>
-                <span className={styles.edit}>Edit</span>
+            {showButtons && <div className={styles.cardBtns}>
+                <span className={styles.edit}>&#9998;</span>
                 <span className={styles.delete}>X</span>
-            </div>
+            </div>}
             {children}
         </div>
     );

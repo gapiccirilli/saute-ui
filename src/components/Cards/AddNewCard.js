@@ -4,7 +4,7 @@ import Card from "./Card";
 function AddNewCard({ children }) {
     
     return (
-        <Card>
+        <Card showButtons={false}>
             <div className={styles.container}>
                 <p className={styles.plus}>+</p>
                 <p className={styles.txt}>Add New {children}</p>

@@ -5,7 +5,7 @@ function ShoppingListCard({ list }) {
     const { listName } = list;
     
     return (
-        <Card>
+        <Card showButtons={true}>
             <div className={styles.cardImg}>
 
             </div>

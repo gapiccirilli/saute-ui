@@ -7,7 +7,7 @@ function RecipeCard({ recipe }) {
     const url = `recipes/${id}?name=${recipeName}&desc=${description}`;
 
     return (
-        <Card>
+        <Card showButtons={true}>
             <Link to={url}>
             <div className={styles.cardImg}>
 

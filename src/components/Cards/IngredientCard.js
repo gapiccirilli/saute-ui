@@ -5,7 +5,7 @@ function IngredientCard({ ingredient }) {
     const { ingredientName, numberOfRecipes } = ingredient;
     
     return (
-        <Card>
+        <Card showButtons={true}>
             <div className={styles.cardImg}>
 
             </div>

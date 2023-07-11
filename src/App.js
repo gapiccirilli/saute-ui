@@ -10,6 +10,7 @@ import SingleRecipePage from './pages/SingleRecipePage';
 import Settings from "./pages/Settings";
 import PageNotFound from "./pages/PageNotFound";
 import './App.css';
+import SingleShoppingListPage from './pages/SingleShoppingListPage';
 
 const RecipeContext = createContext();
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="books/:bookId/recipes/:recipeId" element={<SingleRecipePage />} />
           <Route path="ingredients" element={<IngredientPage />} />
           <Route path="lists" element={<ShoppingListPage />} />
+          <Route path="lists/:listId" element={<SingleShoppingListPage />} />
         </Route>
         {/* <Route path="settings" element={<Settings />} /> */}
         <Route path="*" element={<PageNotFound />} />

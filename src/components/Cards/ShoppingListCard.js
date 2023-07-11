@@ -1,11 +1,14 @@
 import Card from "./Card";
 import { useState } from "react";
 import styles from "./ShoppingListCard.module.css";
+import { Link } from "react-router-dom";
 
 function ShoppingListCard({ list, onDeleteList }) {
     const { id, listName } = list;
     // eventually display delete/error message in temporary modal that fades in/out
     const [error, setError] = useState("");
+
+    const url = `lists/${id}?name=${listName}`;
 
     const onEdit = () => {
 
@@ -30,12 +33,14 @@ function ShoppingListCard({ list, onDeleteList }) {
     
     return (
         <Card showButtons={true} onDelete={onDelete}>
-            <div className={styles.cardImg}>
+            <Link to={url}>
+                <div className={styles.cardImg}>
 
-            </div>
-            <div className={styles.cardDesc}>
-                <p className={styles.title}>{listName}</p>
-            </div>
+                </div>
+                <div className={styles.cardDesc}>
+                    <p className={styles.title}>{listName}</p>
+                </div>
+            </Link>
         </Card>
     );
 }

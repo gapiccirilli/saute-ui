@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ErrorMessage from "../components/Error/ErrorMessage";
 import BackButton from "../components/Buttons/BackButton";
 import Item from "../components/Item/Item";
+import styles from "./PageStyles/SingleRecipePage.module.css";
 
 function SingleRecipePage() {
     const { recipeId } = useParams();
@@ -36,13 +37,13 @@ function SingleRecipePage() {
     
     return (
         <div>
-            <header>
+            <header className={styles.header}>
                 <BackButton />
-                <h1>{recipeName}</h1>
-                <p>{description}</p>
-                <ul>
-                    {items.map((item) => <li><Item item={item} key={item.id} /></li>)}
-                </ul>
+                <h1 className={styles.heading}>{recipeName}</h1>
+                <p className={styles.desc}>{description}</p>
+                <table className={styles.itemTable}>
+                    {items.map((item) => <tr className={styles.item}><Item item={item} key={item.id} /></tr>)}
+                </table>
             </header>
             {error && <ErrorMessage message={error}/>}
 

@@ -1,0 +1,9 @@
+.itemTable {
+    table-layout: fixed;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.item {
+    border: .1rem solid black;
+}

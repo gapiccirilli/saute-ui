@@ -1,0 +1,27 @@
+.amount {
+    width: 5%;
+}
+
+.type {
+    width: 10%;
+}
+
+.name {
+    width: 20%;
+}
+
+.desc {
+    width: 35%;
+}
+
+.time {
+    width: 20%;
+}
+
+.btns {
+    width: 10%;
+}
+
+td {
+    border: .1em solid black;
+}

@@ -4,7 +4,6 @@ import ErrorMessage from "../components/Error/ErrorMessage";
 import BackButton from "../components/Buttons/BackButton";
 import styles from "./PageStyles/SingleRecipePage.module.css";
 import ShoppingListTable from "../components/ShoppingListTable.js/ShoppingListTable";
-import { ShoppingListProvider } from "../contexts/ShoppingListTableProvider";
 
 
 function SingleShoppingListPage() {
@@ -15,9 +14,7 @@ function SingleShoppingListPage() {
     return (
         <div>
             <BackButton />
-            <ShoppingListProvider listId={listId} listName={listName}>
-                <ShoppingListTable />
-            </ShoppingListProvider>
+            <ShoppingListTable listId={listId} listName={listName} />
         </div>
     );
 }

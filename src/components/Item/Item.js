@@ -17,7 +17,7 @@ function Item({item, basic}) {
                 {minutes > 0 ? <span className={styles.minute}>{minutes} min</span> : null}
                 {seconds > 0 ? <span className={styles.second}>{seconds} sec</span> : null}
             </td>}
-            <td className={styles.btns}><EditButton /><DeleteButton /></td>
+            {!basic && <td className={styles.btns}><EditButton /><DeleteButton /></td>}
         </Fragment>
     );
 }

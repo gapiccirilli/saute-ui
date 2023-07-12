@@ -8,7 +8,6 @@ function RecipeRow({ recipeId, recipeName}) {
 
     useEffect(() => {
         async function getRecipeItems() {
-            console.log(recipeId);
             try {
                 const response = await fetch(`http://localhost:8080/api/recipes/${recipeId}/items/multiple`);
                 
@@ -28,7 +27,7 @@ function RecipeRow({ recipeId, recipeName}) {
     }, []);
 
     return (
-        items.map((item) => <tr><Item item={item} basic={true} /></tr>)
+        items.map((item) => <tr><Item item={item} basic={true} key={item.id} /></tr>)
     );
 }
 

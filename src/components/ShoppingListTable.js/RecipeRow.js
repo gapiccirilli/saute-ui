@@ -1,6 +1,6 @@
 import styles from "./ShoppingListTable.module.css";
 
-function RecipeRow({recipe, items}) {
+function RecipeRow() {
 
     return (
         <tr>

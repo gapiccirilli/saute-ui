@@ -8,7 +8,7 @@ function ShoppingListCard({ list, onDeleteList }) {
     // eventually display delete/error message in temporary modal that fades in/out
     const [error, setError] = useState("");
 
-    const url = `lists/${id}?name=${listName}`;
+    const url = `${id}?name=${listName}`;
 
     const onEdit = () => {
 

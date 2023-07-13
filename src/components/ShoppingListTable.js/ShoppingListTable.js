@@ -78,7 +78,9 @@ function ShoppingListTable({ listId, listName }) {
         <table className={styles.listTable}>
             {!errors.recErr && recipes.map((recipe) => <RecipeRow key={recipe.id} recipeId={recipe.id} 
             recipeName={recipe.recipeName}/>)}
-            {items.map((item) => <tr><Item item={item} basic={true} showButtons={true} /></tr>)}
+            <tbody className={styles.items}>
+                {items.map((item) => <tr><Item item={item} basic={true} showButtons={true} /></tr>)}
+            </tbody>
             {errors.recErr && errors.itemErr && <ErrorMessage message={error} />}
         </table>
     );

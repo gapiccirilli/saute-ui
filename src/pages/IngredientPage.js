@@ -3,6 +3,7 @@ import AddNewCard from "../components/Cards/AddNewCard";
 import ErrorMessage from "../components/Error/ErrorMessage";
 import { useEffect, useState } from "react";
 import Modal from "../components/Modals/Modal";
+import {ModalEventProvider} from "../contexts/ModalEventProvider";
 
 function IngredientPage() {
     const [ingredients, setIngredients] = useState([]);
@@ -40,9 +41,18 @@ function IngredientPage() {
         });
     };
 
+    const handleCloseModal = () => {
+        setIsOpen(false);
+    };
+
+    const modalEvents = {
+        onClose: handleCloseModal,
+        data: {}
+    };
+
     return (
         <div>
-            {isOpen && <Modal type="add-ingr" />}
+            {isOpen && <ModalEventProvider events={modalEvents}><Modal type="add-ingr" /></ModalEventProvider>}
             {!error && ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} 
             onDeleteIngredient={handleIngredientDelete} />)}
             {!error && <AddNewCard onAdd={handleAddIngredient}>Ingredient</AddNewCard>}

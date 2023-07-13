@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import styles from "./ShoppingListTable.module.css";
+import styles from "./RecipeRow.module.css";
 import Item from "../Item/Item";
 import ErrorMessage from "../Error/ErrorMessage";
 
@@ -28,10 +28,10 @@ function RecipeRow({ recipeId, recipeName}) {
     }, []);
 
     return (
-         <Fragment>
-            {!error && <tr><td className={styles.recName} colSpan="2">{recipeName}</td></tr>}
-            {!error && items.map((item) => <tr><Item item={item} basic={true} key={item.id} /></tr>)}
-         </Fragment>
+         <tbody className={styles.recipe}>
+            {!error && <tr><td className={styles.recTitle} colSpan="2">{recipeName}</td></tr>}
+            {!error && items.map((item) => <tr><Item item={item} basic={true} showButtons={false} key={item.id} /></tr>)}
+         </tbody>
     );
 }
 

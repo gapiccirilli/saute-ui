@@ -42,7 +42,8 @@ function SingleRecipePage() {
                 <h1 className={styles.heading}>{recipeName}</h1>
                 <p className={styles.desc}>{description}</p>
                 <table className={styles.itemTable}>
-                    {items.map((item) => <tr className={styles.item}><Item item={item} key={item.id} basic={false}/></tr>)}
+                    {items.map((item) => <tr className={styles.item}><Item item={item} key={item.id} basic={false} 
+                    showButtons={true}/></tr>)}
                 </table>
             </header>
             {error && <ErrorMessage message={error}/>}

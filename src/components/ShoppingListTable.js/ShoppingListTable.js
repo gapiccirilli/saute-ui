@@ -1,4 +1,5 @@
 import RecipeRow from "./RecipeRow";
+import Item from "../Item/Item";
 import { useEffect, useReducer, useState } from "react";
 import styles from "./ShoppingListTable.module.css";
 import ErrorMessage from "../Error/ErrorMessage";
@@ -74,11 +75,11 @@ function ShoppingListTable({ listId, listName }) {
     }, [listId]);
 
     return (
-        <table>
-            <tbody>
-                {!errors.recErr && recipes.map((recipe) => <RecipeRow key={recipe.id} recipeId={recipe.id} recipeName={recipe.recipeName}/>)}
-                {errors.recErr && errors.itemErr && <ErrorMessage message={error} />}
-            </tbody>
+        <table className={styles.listTable}>
+            {!errors.recErr && recipes.map((recipe) => <RecipeRow key={recipe.id} recipeId={recipe.id} 
+            recipeName={recipe.recipeName}/>)}
+            {items.map((item) => <tr><Item item={item} basic={true} showButtons={true} /></tr>)}
+            {errors.recErr && errors.itemErr && <ErrorMessage message={error} />}
         </table>
     );
 }

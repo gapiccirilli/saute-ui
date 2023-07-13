@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import styles from "./ShoppingListTable.module.css";
 import Item from "../Item/Item";
+import ErrorMessage from "../Error/ErrorMessage";
 
 function RecipeRow({ recipeId, recipeName}) {
     const [items, setItems] = useState([]);
@@ -27,7 +28,10 @@ function RecipeRow({ recipeId, recipeName}) {
     }, []);
 
     return (
-        items.map((item) => <tr><Item item={item} basic={true} key={item.id} /></tr>)
+         <Fragment>
+            {!error && <tr><td className={styles.recName} colSpan="2">{recipeName}</td></tr>}
+            {!error && items.map((item) => <tr><Item item={item} basic={true} key={item.id} /></tr>)}
+         </Fragment>
     );
 }
 

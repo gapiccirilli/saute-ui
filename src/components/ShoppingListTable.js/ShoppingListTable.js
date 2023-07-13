@@ -1,6 +1,7 @@
 import RecipeRow from "./RecipeRow";
 import { useEffect, useReducer, useState } from "react";
 import styles from "./ShoppingListTable.module.css";
+import ErrorMessage from "../Error/ErrorMessage";
 
 function shoppingListReducer(state, action) {
 
@@ -14,15 +15,25 @@ function shoppingListReducer(state, action) {
     }
 }
 
+function errorReducer(state, action) {
+    switch (action.type) {
+        case "setRecErr":
+            return {...state, recErr: action.payload};
+        case "setItemErr":
+            return {...state, itemErr: action.payload};
+        default:
+            return {recErr: "State Error", itemErr: "State Error"};
+    }
+}
+
 function ShoppingListTable({ listId, listName }) {
     const [listItems, dispatch] = useReducer(shoppingListReducer, { recipes: [], items: [] });
-    const [hasError, setHasError] = useState(false);
+    const [errors, errDispatch] = useReducer(errorReducer, { recErr: false, itemErr: false });
+
     const {recipes, items} = listItems;
     const error = "No List Items";
 
     useEffect(() => {
-        let hasNoRecipes = false; let hasNoItems = false;
-
         async function getRecipes() {
             try {
                 const response = await fetch(`http://localhost:8080/api/shopping-lists/${listId}/recipes`);
@@ -36,7 +47,7 @@ function ShoppingListTable({ listId, listName }) {
                 dispatch({ type: "setRecipes", payload: recipeData });
             } catch(err) {
                 console.log(err.message);
-                hasNoRecipes = true;
+                errDispatch({ type: "setRecErr", payload: true});
             }
         }
         getRecipes();
@@ -54,20 +65,19 @@ function ShoppingListTable({ listId, listName }) {
                 dispatch({ type: "setItems", payload: itemData });
             } catch(err) {
                 console.log(err.message);
-                hasNoItems = true;
+                errDispatch({ type: "setItemErr", payload: true});
             }
         }
         getItems();
 
-        if (hasNoRecipes && hasNoItems) {
-            setHasError(true);
-        }
+        
     }, [listId]);
 
     return (
         <table>
             <tbody>
-                {recipes.map((recipe) => <RecipeRow key={recipe.id} recipeId={recipe.id} recipeName={recipe.recipeName}/>)}
+                {!errors.recErr && recipes.map((recipe) => <RecipeRow key={recipe.id} recipeId={recipe.id} recipeName={recipe.recipeName}/>)}
+                {errors.recErr && errors.itemErr && <ErrorMessage message={error} />}
             </tbody>
         </table>
     );

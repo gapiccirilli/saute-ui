@@ -1,0 +1,12 @@
+.modal {
+    position: fixed;
+    bottom: 40%;
+    left: 30%;
+    border-radius: 2rem;
+    background-color: rgb(184, 180, 180);
+}
+
+.addIngr {
+    width: 40%;
+    height: 40%;
+}

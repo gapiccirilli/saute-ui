@@ -16,3 +16,7 @@
 .txt {
     text-align: center;
 }
+
+.container:hover {
+    cursor: pointer;
+}

@@ -3,13 +3,13 @@ import Card from "./Card";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function RecipeBookCard({ recipeBook, onDeleteBook }) {
+function RecipeBookCard({ recipeBook, onDeleteBook, onEditIngredient }) {
     const {id, recipeBookName} = recipeBook;
     // eventually display delete/error message in temporary modal that fades in/out
     const [error, setError] = useState("");
 
     const onEdit = () => {
-
+        onEditIngredient(recipeBook);
     };
 
     const onDelete = async () => {
@@ -30,7 +30,7 @@ function RecipeBookCard({ recipeBook, onDeleteBook }) {
     };
     
     return (
-        <Card showButtons={true} onDelete={onDelete}>
+        <Card showButtons={true} onDelete={onDelete} onEdit={onEdit}>
             <Link to={`${id}`}>
                 <div className={styles.cardImg}>
 

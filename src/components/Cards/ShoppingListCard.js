@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "./ShoppingListCard.module.css";
 import { Link } from "react-router-dom";
 
-function ShoppingListCard({ list, onDeleteList }) {
+function ShoppingListCard({ list, onDeleteList, onEditList }) {
     const { id, listName } = list;
     // eventually display delete/error message in temporary modal that fades in/out
     const [error, setError] = useState("");
@@ -11,7 +11,7 @@ function ShoppingListCard({ list, onDeleteList }) {
     const url = `${id}?name=${listName}`;
 
     const onEdit = () => {
-
+        onEditList(list);
     };
 
     const onDelete = async () => {
@@ -32,7 +32,7 @@ function ShoppingListCard({ list, onDeleteList }) {
     };
     
     return (
-        <Card showButtons={true} onDelete={onDelete}>
+        <Card showButtons={true} onDelete={onDelete} onEdit={onEdit}>
             <Link to={url}>
                 <div className={styles.cardImg}>
 

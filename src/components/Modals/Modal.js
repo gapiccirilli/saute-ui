@@ -24,6 +24,26 @@ function EditBookModal({onClose}) {
     );
 }
 
+function AddRecipeModal({onClose}) {
+
+    return (
+        <div className={`${styles.addRecipe} ${styles.modal}`}>
+            Add Recipe
+            <CloseButton onClose={onClose} />
+        </div>
+    );
+}
+
+function EditRecipeModal({onClose}) {
+
+    return (
+        <div className={`${styles.editRecipe} ${styles.modal}`}>
+            Edit Recipe
+            <CloseButton onClose={onClose} />
+        </div>
+    );
+}
+
 function AddIngredientModal({onClose}) {
 
     return (
@@ -83,6 +103,8 @@ function Modal({modalState, onClose}) {
         <ModalOverlay> 
             {modalType === "add-book" && <AddBookModal onClose={onClose} />}
             {modalType === "edit-book" && <EditBookModal onClose={onClose} />}
+            {modalType === "add-rec" && <AddRecipeModal onClose={onClose} />}
+            {modalType === "edit-rec" && <EditRecipeModal onClose={onClose} />}
             {modalType === "add-ingr" && <AddIngredientModal onClose={onClose} />}
             {modalType === "edit-ingr" && <EditIngredientModal onClose={onClose} />}
             {modalType === "add-list" && <AddListModal onClose={onClose} />}

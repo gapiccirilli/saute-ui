@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer } from "react";
 
 function modalReducer(state, action) {
     const reducedState = { modalType: action.type, isOpen: true};
@@ -7,6 +7,10 @@ function modalReducer(state, action) {
             return { modalType: action.type, data: {...state.data, recipeBook: action.payload}, isOpen: true};
         case "edit-book":
             return { modalType: action.type, data: {...state.data, recipeBook: action.payload}, isOpen: true};
+        case "add-rec":
+            return { modalType: action.type, data: {...state.data, recipe: action.payload}, isOpen: true};
+        case "edit-rec":
+            return { modalType: action.type, data: {...state.data, recipe: action.payload}, isOpen: true};
         case "add-ingr":
             return { modalType: action.type, data: {...state.data, ingredient: action.payload}, isOpen: true};
         case "edit-ingr":
@@ -18,7 +22,7 @@ function modalReducer(state, action) {
         case "delete":
             return reducedState;
         case "close":
-            return { modalType: action.type, isOpen: false};
+            return {...state, modalType: action.type, isOpen: false};
         default:
             return {...state};
     }
@@ -26,7 +30,7 @@ function modalReducer(state, action) {
 
 export function useModal() {
     const [modalState, dispatch] = useReducer(modalReducer, {
-        modalType: "",
+        modalType: "close",
         data: {
             ingredient: {},
             recipe: {},
@@ -35,15 +39,23 @@ export function useModal() {
             item: {}
     } , isOpen: false});
 
-    const handleAddIngredient = () => {
-        dispatch({ type: "add-ingr" });
+    function handleAddModal(type) {
+        dispatch({ type: type });
     };
-
-    const handleEditIngredient = () => {
-        dispatch({ type: "edit-ingr", payload: ingredient });
+    
+    function handleEditModal(type, payload) {
+        dispatch({ type: type, payload: payload });
     };
-
-    const handleCloseModal = () => {
+    
+    function handleCloseModal() {
         dispatch({ type: "close" });
     };
+
+    const events = {
+        add: handleAddModal,
+        edit: handleEditModal,
+        close: handleCloseModal
+    }
+
+    return [modalState, events];
 }

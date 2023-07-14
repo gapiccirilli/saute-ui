@@ -3,14 +3,14 @@ import styles from "./RecipeCard.module.css";
 import Card from "./Card";
 import { useState } from "react";
 
-function RecipeCard({ recipe, onDeleteRecipe }) {
+function RecipeCard({ recipe, onDeleteRecipe, onEditRecipe }) {
     const {id, recipeName, description} = recipe;
     const url = `recipes/${id}?name=${recipeName}&desc=${description}`;
     // eventually display delete/error message in temporary modal that fades in/out
     const [error, setError] = useState("");
 
     const onEdit = () => {
-
+        onEditRecipe(recipe);
     };
 
     const onDelete = async () => {

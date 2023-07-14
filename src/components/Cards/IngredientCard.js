@@ -2,13 +2,13 @@ import Card from "./Card";
 import styles from "./IngredientCard.module.css";
 import { useState } from "react";
 
-function IngredientCard({ ingredient, onDeleteIngredient }) {
+function IngredientCard({ ingredient, onDeleteIngredient, onEditIngredient }) {
     const { id, ingredientName, numberOfRecipes } = ingredient;
     // eventually display delete/error message in temporary modal that fades in/out
     const [error, setError] = useState("");
 
     const onEdit = () => {
-
+        onEditIngredient(ingredient);
     };
 
     const onDelete = async () => {
@@ -29,7 +29,7 @@ function IngredientCard({ ingredient, onDeleteIngredient }) {
     };
     
     return (
-        <Card showButtons={true} onDelete={onDelete}>
+        <Card showButtons={true} onDelete={onDelete} onEdit={onEdit} >
             <div className={styles.cardImg}>
 
             </div>

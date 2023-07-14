@@ -2,29 +2,29 @@ import IngredientCard from "../components/Cards/IngredientCard";
 import AddNewCard from "../components/Cards/AddNewCard";
 import ErrorMessage from "../components/Error/ErrorMessage";
 import { useEffect, useReducer, useState } from "react";
-import Modal from "../components/Modals/Modal";
 import {ModalEventProvider} from "../contexts/ModalEventProvider";
-import ModalOverlay from "../components/Modals/Modal";
+import Modal from "../components/Modals/Modal";
 
 function modalReducer(state, action) {
     const reducedState = { modalType: action.type, isOpen: true};
+
     switch (action.type) {
         case "add-book":
             return reducedState;
         case "edit-book":
-            return reducedState;
+            return { modalType: action.type, data: {...state.data, recipeBook: action.payload}, isOpen: true};
         case "add-ingr":
-            return reducedState;
+            return { modalType: action.type, data: {...state.data}, isOpen: true};
         case "edit-ingr":
-            return reducedState;
+            return { modalType: action.type, data: {...state.data, ingredient: action.payload}, isOpen: true};
         case "add-list":
             return reducedState;
         case "edit-list":
-            return reducedState;
+            return { modalType: action.type, data: {...state.data, list: action.payload}, isOpen: true};
         case "delete":
             return reducedState;
         case "close":
-            return { modalType: action.type, isOpen: false};
+            return {...state, modalType: action.type, isOpen: false};
         default:
             return {...state};
     }
@@ -32,8 +32,16 @@ function modalReducer(state, action) {
 
 function IngredientPage() {
     const [ingredients, setIngredients] = useState([]);
-    const [modalState, dispatch] = useReducer(modalReducer, { modalType: "", isOpen: false});
-    const {modalType, isOpen} = modalState;
+    const [modalState, dispatch] = useReducer(modalReducer, {
+        modalType: "close",
+        data: {
+            ingredient: {},
+            recipe: {},
+            recipeBook: {},
+            list: {},
+            item: {}
+    } , isOpen: false});
+    
     const [error, setError] = useState("");
 
     useEffect(() => {
@@ -61,8 +69,8 @@ function IngredientPage() {
         dispatch({ type: "add-ingr" });
     };
 
-    const handleEditIngredient = () => {
-        dispatch({ type: "edit-ingr" });
+    const handleEditIngredient = (ingredient) => {
+        dispatch({ type: "edit-ingr", payload: ingredient });
     };
 
     const handleIngredientDelete = (ingredientId) => {
@@ -75,19 +83,12 @@ function IngredientPage() {
         dispatch({ type: "close" });
     };
 
-    const values = {
-        onClose: handleCloseModal,
-        data: {
-            type: modalType
-        }
-    };
-
     return (
         <div>
-            {isOpen && <ModalEventProvider values={values}><ModalOverlay /></ModalEventProvider>}
+            {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} />}
             {!error && ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} 
             onDeleteIngredient={handleIngredientDelete} onEditIngredient={handleEditIngredient} />)}
-            {!error && <AddNewCard onAdd={handleAddIngredient}>Ingredient</AddNewCard>}
+            {!error && <AddNewCard onAdd={handleAddIngredient} >Ingredient</AddNewCard>}
             {error && <ErrorMessage message={error}/>}
         </div>
     );

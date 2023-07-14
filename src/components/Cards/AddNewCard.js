@@ -6,7 +6,7 @@ function AddNewCard({ children, onAdd}) {
     
     const handleOpenModal = () => {
         onAdd();
-    }
+    };
 
     return (
         <Card showButtons={false}>

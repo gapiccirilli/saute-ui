@@ -6,6 +6,15 @@
     background-color: rgb(184, 180, 180);
 }
 
+.overlay {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(128, 128, 128, 0.7);
+}
+
 .addIngr {
     width: 40%;
     height: 40%;

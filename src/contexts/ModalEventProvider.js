@@ -2,9 +2,9 @@ import { createContext } from "react";
 
 const ModalEventContext = createContext();
 
-function ModalEventProvider({children, events}) {
+function ModalEventProvider({children, values}) {
     return (
-        <ModalEventContext.Provider value={events}>
+        <ModalEventContext.Provider value={values}>
             {children}
         </ModalEventContext.Provider>
     );

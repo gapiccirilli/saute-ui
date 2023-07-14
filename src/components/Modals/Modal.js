@@ -8,7 +8,8 @@ function AddBookModal() {
     const {onClose} = useContext(ModalEventContext);
     return (
         <div className={`${styles.addBook} ${styles.modal}`}>
-
+            Add Recipe Book
+            <CloseButton onClose={onClose} />
         </div>
     );
 }
@@ -17,7 +18,8 @@ function EditBookModal() {
     const {onClose} = useContext(ModalEventContext);
     return (
         <div className={`${styles.editBook} ${styles.modal}`}>
-
+            Edit RecipeBook
+            <CloseButton onClose={onClose} />
         </div>
     );
 }
@@ -36,7 +38,8 @@ function EditIngredientModal() {
     const {onClose} = useContext(ModalEventContext);
     return (
         <div className={`${styles.editIngr} ${styles.modal}`}>
-
+            Edit Ingredient
+            <CloseButton onClose={onClose} />
         </div>
     );
 }
@@ -45,7 +48,8 @@ function AddListModal() {
     const {onClose} = useContext(ModalEventContext);
     return (
         <div className={`${styles.addList} ${styles.modal}`}>
-
+            Add ShoppingList
+            <CloseButton onClose={onClose} />
         </div>
     );
 }
@@ -54,7 +58,8 @@ function EditListModal() {
     const {data, onClose} = useContext(ModalEventContext);
     return (
         <div className={`${styles.editList} ${styles.modal}`}>
-
+            Edit ShoppingList
+            <CloseButton onClose={onClose} />
         </div>
     );
 }
@@ -63,7 +68,8 @@ function DeleteModal() {
     const {data, onClose} = useContext(ModalEventContext);
     return (
         <div className={`${styles.delete} ${styles.modal}`}>
-            
+            Delete
+            <CloseButton onClose={onClose} />
         </div>
     );
 }
@@ -72,7 +78,7 @@ function DeleteModal() {
 
 function Modal({type}) {
 
-    return createPortal(
+    return (
         <Fragment> 
             {type === "add-book" && <AddBookModal />}
             {type === "edit-book" && <EditBookModal />}
@@ -82,9 +88,19 @@ function Modal({type}) {
             {type === "edit-list" && <EditListModal />}
             {type === "delete" && <DeleteModal />}
             
-        </Fragment>,
+        </Fragment>
+    );
+}
+
+function ModalOverlay() {
+    const {data} = useContext(ModalEventContext);
+
+    return createPortal(
+        <div className={styles.overlay}>
+            <Modal type={data.type} />
+        </div>,
         document.getElementById('root')
     );
 }
 
-export default Modal;
+export default ModalOverlay;

@@ -1,8 +1,8 @@
-import { Fragment, useContext } from "react";
+import { useFetchOnDemand } from "../../hooks/fetch";
 import CloseButton from "../Buttons/CloseButton";
+import SubmitButton from "../Buttons/SubmitButton";
 import styles from "./Modal.module.css";
 import { createPortal } from "react-dom";
-import { ModalEventContext, ModalEventProvider } from "../../contexts/ModalEventProvider";
 
 function AddBookModal({onClose}) {
 
@@ -48,17 +48,28 @@ function AddIngredientModal({onClose}) {
 
     return (
         <div className={`${styles.addIngr} ${styles.modal}`}>
-            Add Ingredient
+            
             <CloseButton onClose={onClose}  />
         </div>
     );
 }
 
-function EditIngredientModal({onClose}) {
+function EditIngredientModal({onClose, ingredient}) {
+    const {id, ingredientName} = ingredient;
+    const [data, error, fireRequest] = useFetchOnDemand("PUT", `http://localhost:8080/api/ingredients/${id}`);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        ingredient.ingredientName = e.target.value;
+        fireRequest(ingredient); 
+    };
+    console.log(data);
     return (
         <div className={`${styles.editIngr} ${styles.modal}`}>
-            Edit Ingredient
+            <form>
+                <input type="text" placeholder="Ingredient" value={ingredientName}/>
+                <SubmitButton onSubmit={handleSubmit} />
+            </form>
             <CloseButton onClose={onClose} />
         </div>
     );
@@ -97,7 +108,7 @@ function DeleteModal({onClose}) {
 
 
 function Modal({modalState, onClose}) {
-    const {modalType} = modalState;
+    const {modalType, ingredient} = modalState;
 
     return createPortal(
         <ModalOverlay> 
@@ -106,7 +117,7 @@ function Modal({modalState, onClose}) {
             {modalType === "add-rec" && <AddRecipeModal onClose={onClose} />}
             {modalType === "edit-rec" && <EditRecipeModal onClose={onClose} />}
             {modalType === "add-ingr" && <AddIngredientModal onClose={onClose} />}
-            {modalType === "edit-ingr" && <EditIngredientModal onClose={onClose} />}
+            {modalType === "edit-ingr" && <EditIngredientModal onClose={onClose} ingredient={ingredient} />}
             {modalType === "add-list" && <AddListModal onClose={onClose} />}
             {modalType === "edit-list" && <EditListModal onClose={onClose} />}
             {modalType === "delete" && <DeleteModal onClose={onClose} />}

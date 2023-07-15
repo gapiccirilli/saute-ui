@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-export function useFetchOnDemand(fetchType, url) {
+export function useFetchOnDemand() {
     const [error, setError] = useState("");
     const [data, setData] = useState({});
 
-    if (fetchType !== "POST" || fetchType !== "PUT") {
-        console.err("Only 'POST' and 'PUT' may be used in 'useFetchOnDemand' hook");
-    }
-        async function fetch(payload) {
+    async function fetchData(fetchType, url, payload) {
+        // if (fetchType != "POST" || fetchType != "PUT") {
+        //         console.error("Only 'POST' and 'PUT' may be used in 'useFetchOnDemand' hook");
+        //     }
         try {
             const response = await fetch(url, {method: fetchType, headers: {"Content-Type": "application/json"}, 
             body: JSON.stringify(payload)});
@@ -17,12 +17,15 @@ export function useFetchOnDemand(fetchType, url) {
                 throw new Error(errorMessage);
             }
 
-            const data = await response.json();
-            setData(data);
+            const responseData = await response.json();
+            setData(responseData);
+            return responseData;
         } catch (err) {
             const {message} = err;
             setError(message);
+            return message;
         }
+
     }
-    return [data, error, fetch];
+    return fetchData;
 }

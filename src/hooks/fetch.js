@@ -23,9 +23,6 @@ export function useFetchOnDemand(fetchType, url) {
             const {message} = err;
             setError(message);
         }
-        return [data, error, fireRequest];
     }
-    function fireRequest(payload) {
-        fetch(payload);
-    }
+    return [data, error, fetch];
 }

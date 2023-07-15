@@ -56,14 +56,15 @@ function AddIngredientModal({onClose}) {
 
 function EditIngredientModal({onClose, ingredient}) {
     const {id, ingredientName} = ingredient;
-    const [data, error, fireRequest] = useFetchOnDemand("PUT", `http://localhost:8080/api/ingredients/${id}`);
+    const [data, error, fetch] = useFetchOnDemand("PUT", `http://localhost:8080/api/ingredients/${id}`);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         ingredient.ingredientName = e.target.value;
-        fireRequest(ingredient); 
+        fetch(ingredient);
+        console.log(data); 
     };
-    console.log(data);
+
     return (
         <div className={`${styles.editIngr} ${styles.modal}`}>
             <form>

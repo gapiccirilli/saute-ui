@@ -4,11 +4,17 @@ import ErrorMessage from "../components/Error/ErrorMessage";
 import { useEffect, useState } from "react";
 import Modal from "../components/Modals/Modal";
 import { useModal } from "../hooks/useModal";
+import { IngredientModalProvider } from "../contexts/IngredientModalProvider";
 
 function IngredientPage() {
     const [ingredients, setIngredients] = useState([]);
     const [error, setError] = useState("");
     const [modalState, events] = useModal();
+    const ingredientState = {
+        ingredients: ingredients,
+        setIngredients: setIngredients,
+        currentIngredient: {}
+    };
 
     useEffect(() => {
         async function getIngredients() {
@@ -36,7 +42,8 @@ function IngredientPage() {
     };
 
     const handleEditIngredient = (ingredient) => {
-        events.edit("edit-ingr", ingredient);
+        ingredientState.currentIngredient = ingredient;
+        events.edit("edit-ingr");
     };
 
     const handleIngredientDelete = (ingredientId) => {
@@ -50,7 +57,9 @@ function IngredientPage() {
     };
     return (
         <div>
-            {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} />}
+            <IngredientModalProvider ingredientState={ingredientState}>
+                {modalState.isOpen && <Modal modalType={modalState.modalType} onClose={handleCloseModal} />}
+            </IngredientModalProvider>
             {!error && ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} 
             onDeleteIngredient={handleIngredientDelete} onEditIngredient={handleEditIngredient} />)}
             {!error && <AddNewCard onAdd={handleAddIngredient} >Ingredient</AddNewCard>}

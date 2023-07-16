@@ -1,28 +1,28 @@
 import { useReducer } from "react";
 
 function modalReducer(state, action) {
-    const reducedState = { modalType: action.type, isOpen: true};
+
     switch (action.type) {
         case "add-book":
-            return { modalType: action.type, data: {...state.data, recipeBook: action.payload}, isOpen: true};
+            return { modalType: action.type, isOpen: true};
         case "edit-book":
-            return { modalType: action.type, data: {...state.data, recipeBook: action.payload}, isOpen: true};
+            return { modalType: action.type, isOpen: true};
         case "add-rec":
-            return { modalType: action.type, data: {...state.data, recipe: action.payload}, isOpen: true};
+            return { modalType: action.type, isOpen: true};
         case "edit-rec":
-            return { modalType: action.type, data: {...state.data, recipe: action.payload}, isOpen: true};
+            return { modalType: action.type, isOpen: true};
         case "add-ingr":
-            return { modalType: action.type, data: {...state.data, ingredient: action.payload}, isOpen: true};
+            return { modalType: action.type, isOpen: true};
         case "edit-ingr":
-            return { modalType: action.type, data: {...state.data, ingredient: action.payload}, isOpen: true};
+            return { modalType: action.type, isOpen: true};
         case "add-list":
-            return { modalType: action.type, data: {...state.data, list: action.payload}, isOpen: true};
+            return { modalType: action.type, isOpen: true};
         case "edit-list":
-            return { modalType: action.type, data: {...state.data, list: action.payload}, isOpen: true};
+            return { modalType: action.type, isOpen: true};
         case "delete":
-            return reducedState;
+            return {};
         case "close":
-            return {...state, modalType: action.type, isOpen: false};
+            return {modalType: action.type, isOpen: false};
         default:
             return {...state};
     }
@@ -31,20 +31,14 @@ function modalReducer(state, action) {
 export function useModal() {
     const [modalState, dispatch] = useReducer(modalReducer, {
         modalType: "close",
-        data: {
-            ingredient: {},
-            recipe: {},
-            recipeBook: {},
-            list: {},
-            item: {}
-    } , isOpen: false});
+        isOpen: false});
 
     function handleAddModal(type) {
         dispatch({ type: type });
     };
     
-    function handleEditModal(type, payload) {
-        dispatch({ type: type, payload: payload });
+    function handleEditModal(type) {
+        dispatch({ type: type});
     };
     
     function handleCloseModal() {

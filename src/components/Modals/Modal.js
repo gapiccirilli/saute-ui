@@ -1,9 +1,10 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useFetchOnDemand } from "../../hooks/fetch";
 import CloseButton from "../Buttons/CloseButton";
 import SubmitButton from "../Buttons/SubmitButton";
 import styles from "./Modal.module.css";
 import { createPortal } from "react-dom";
+import { IngredientModalContext } from "../../contexts/IngredientModalProvider";
 
 function AddBookModal({onClose}) {
 
@@ -55,15 +56,15 @@ function AddIngredientModal({onClose}) {
     );
 }
 
-function EditIngredientModal({onClose, ingredient}) {
-    const [updatedIngredient, setUpdatedIngredient] = useState(ingredient);
+function EditIngredientModal({onClose}) {
+    const ctx = useContext(IngredientModalContext);
+    const {ingredients, setIngredients, currentIngredient} = ctx;
     const fetchData = useFetchOnDemand();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const newIngredient = {...ingredient, ingredientName: e.target.elements[0].value}
-        const response = fetchData("PUT", `http://localhost:8080/api/ingredients/${ingredient.id}`, newIngredient);
-        setUpdatedIngredient(response);
+        const newIngredient = {...currentIngredient, ingredientName: e.target.elements[0].value}
+        const response = fetchData("PUT", `http://localhost:8080/api/ingredients/${currentIngredient.id}`, newIngredient);
         onClose();
     };
 
@@ -71,7 +72,7 @@ function EditIngredientModal({onClose, ingredient}) {
         <div className={`${styles.editIngr} ${styles.modal}`}>
             <form className={styles.ingrForm} onSubmit={handleSubmit}>
                 <label htmlFor="ingr-name">Ingredient Name: </label>
-                <input type="text" id="ingr-name" placeholder="Ingredient" defaultValue={ingredient.ingredientName} />
+                <input type="text" id="ingr-name" placeholder="Ingredient" defaultValue={currentIngredient.ingredientName} />
                 <button type="submit">Submit</button>
                 {/* <SubmitButton onSubmit={handleSubmit} /> */}
             </form>
@@ -112,8 +113,7 @@ function DeleteModal({onClose}) {
 
 
 
-function Modal({modalState, onClose}) {
-    const {modalType, data} = modalState;
+function Modal({modalType, onClose}) {
 
     return createPortal(
         <ModalOverlay> 
@@ -122,7 +122,7 @@ function Modal({modalState, onClose}) {
             {modalType === "add-rec" && <AddRecipeModal onClose={onClose} />}
             {modalType === "edit-rec" && <EditRecipeModal onClose={onClose} />}
             {modalType === "add-ingr" && <AddIngredientModal onClose={onClose} />}
-            {modalType === "edit-ingr" && <EditIngredientModal onClose={onClose} ingredient={data.ingredient} />}
+            {modalType === "edit-ingr" && <EditIngredientModal onClose={onClose} />}
             {modalType === "add-list" && <AddListModal onClose={onClose} />}
             {modalType === "edit-list" && <EditListModal onClose={onClose} />}
             {modalType === "delete" && <DeleteModal onClose={onClose} />}

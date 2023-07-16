@@ -64,6 +64,7 @@ function EditIngredientModal({onClose, ingredient}) {
         const newIngredient = {...ingredient, ingredientName: e.target.elements[0].value}
         const response = fetchData("PUT", `http://localhost:8080/api/ingredients/${ingredient.id}`, newIngredient);
         setUpdatedIngredient(response);
+        onClose();
     };
 
     return (

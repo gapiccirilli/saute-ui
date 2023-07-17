@@ -1,3 +1,4 @@
+import styles from "./Page.module.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import RecipeCard from "../components/Cards/RecipeCard";
@@ -6,12 +7,14 @@ import ErrorMessage from "../components/Error/ErrorMessage";
 import BackButton from "../components/Buttons/BackButton";
 import { useModal } from "../hooks/useModal";
 import Modal from "../components/Modals/Modal";
+import Load from "../loaders/Load";
 
 function RecipePage() {
     const { bookId } = useParams();
     const [recipes, setRecipes] = useState([]);
     const [error, setError] = useState("");
-    const [modalState, events] = useModal();
+    const [isLoading, setIsLoading] = useState(false);
+    const [modalState, dispatch] = useModal();
 
     useEffect(() => {
         async function getRecipes() {
@@ -34,12 +37,12 @@ function RecipePage() {
         getRecipes();
     }, [bookId]);
 
-    const handleAddRecipe = () => {
-        events.add("add-rec");
+    const handleAddRecipe = (bookId) => {
+        dispatch({type: "add-rec", payload: {recipes: recipes, bookId: bookId}});
     };
 
     const handleEditRecipe = (recipe) => {
-        events.edit("edit-rec", recipe);
+        dispatch({type: "edit-rec", payload: {recipe: recipe, recipes: recipes}});
     };
 
     const handleRecipeDelete = (recipeId) => {
@@ -49,17 +52,23 @@ function RecipePage() {
     };
 
     const handleCloseModal = () => {
-        events.close();
+        dispatch({ type: "close" });
     };
     
+    const setters = {
+        setRecs: setRecipes,
+        setLoad: setIsLoading,
+        setErr: setError
+    };
     
     return (
-        <div>
+        <div className={styles.page}>
             <BackButton />
-            {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} />}
+            {isLoading && <Load />}
+            {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
             {!error && recipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} onDeleteRecipe={handleRecipeDelete}
             onEditRecipe={handleEditRecipe}/>)}
-            {!error && <AddNewCard onAdd={handleAddRecipe}>Recipe</AddNewCard>}
+            {!error && <AddNewCard onAdd={handleAddRecipe} id={bookId}>Recipe</AddNewCard>}
             {error && <ErrorMessage message={error}/>}
         </div>
     );

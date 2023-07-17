@@ -1,14 +1,17 @@
+import styles from "./Page.module.css";
 import RecipeBookCard from "../components/Cards/RecipeBookCard";
 import AddNewCard from "../components/Cards/AddNewCard";
 import ErrorMessage from "../components/Error/ErrorMessage";
 import { useEffect, useState } from "react";
 import { useModal } from "../hooks/useModal";
 import Modal from "../components/Modals/Modal";
+import Load from "../loaders/Load";
 
 function RecipeBookPage() {
     const [recipeBooks, setRecipeBooks] = useState([]);
     const [error, setError] = useState("");
-    const [modalState, events] = useModal();
+    const [modalState, dispatch] = useModal();
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         async function getRecipeBooks() {
@@ -32,11 +35,11 @@ function RecipeBookPage() {
     }, [])
 
     const handleAddBook = () => {
-        events.add("add-book");
+        dispatch({type: "add-book", payload: {recipeBooks: recipeBooks}});
     };
 
     const handleEditBook = (book) => {
-        events.edit("edit-book", book);
+        dispatch({type: "edit-book", payload: {recipeBook: book, recipeBooks: recipeBooks}});
     };
 
     const handleBookDelete = (bookId) => {
@@ -46,12 +49,19 @@ function RecipeBookPage() {
     };
 
     const handleCloseModal = () => {
-        events.close();
+        dispatch({ type: "close" });
+    };
+
+    const setters = {
+        setBooks: setRecipeBooks,
+        setLoad: setIsLoading,
+        setErr: setError
     };
 
     return (
-        <div>
-            {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} />}
+        <div className={styles.page}>
+            {isLoading && <Load />}
+            {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
             {!error && recipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} onDeleteBook={handleBookDelete}
             onEditIngredient={handleEditBook}/>)}
             {!error && <AddNewCard onAdd={handleAddBook}>Recipe Book</AddNewCard>}

@@ -1,15 +1,13 @@
-import { useState } from "react";
 
-export function useFetchOnDemand() {
-    const [error, setError] = useState("");
-    const [data, setData] = useState({});
 
-    async function fetchData(fetchType, url, payload) {
+    export async function fetchData(fetchData) {
         // if (fetchType != "POST" || fetchType != "PUT") {
         //         console.error("Only 'POST' and 'PUT' may be used in 'useFetchOnDemand' hook");
         //     }
+        const {type, url, payload, setIsLoading} = fetchData;
         try {
-            const response = await fetch(url, {method: fetchType, headers: {"Content-Type": "application/json"}, 
+            setIsLoading(true);
+            const response = await fetch(url, {method: type, headers: {"Content-Type": "application/json"}, 
             body: JSON.stringify(payload)});
         
             if (!response.ok) {
@@ -18,14 +16,13 @@ export function useFetchOnDemand() {
             }
 
             const responseData = await response.json();
-            setData(responseData);
+
+            setIsLoading(false);
             return responseData;
         } catch (err) {
             const {message} = err;
-            setError(message);
+            setIsLoading(false);
             return message;
         }
 
     }
-    return fetchData;
-}

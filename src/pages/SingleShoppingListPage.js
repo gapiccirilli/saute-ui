@@ -4,7 +4,7 @@ import ErrorMessage from "../components/Error/ErrorMessage";
 import BackButton from "../components/Buttons/BackButton";
 import styles from "./PageStyles/SingleRecipePage.module.css";
 import ShoppingListTable from "../components/ShoppingListTable.js/ShoppingListTable";
-
+import Load from "../loaders/Load";
 
 function SingleShoppingListPage() {
     const { listId } = useParams();

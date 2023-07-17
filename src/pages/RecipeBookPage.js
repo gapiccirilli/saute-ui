@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useModal } from "../hooks/useModal";
 import Modal from "../components/Modals/Modal";
 import Load from "../loaders/Load";
+import { useFetch } from "../hooks/useFetch";
 
 function RecipeBookPage() {
     const [recipeBooks, setRecipeBooks] = useState([]);
@@ -13,26 +14,7 @@ function RecipeBookPage() {
     const [modalState, dispatch] = useModal();
     const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        async function getRecipeBooks() {
-            try {
-                const response = await fetch("http://localhost:8080/api/recipe-books");
-
-            if (!response.ok) {
-                const errorMessage = await response.json();
-                throw new Error(errorMessage.message);
-            }
-
-            const data = await response.json();
-
-            setRecipeBooks(data);
-            } catch(err) {
-                const {message} = err;
-                setError(message);
-            }
-        }
-        getRecipeBooks();
-    }, [])
+    useFetch("http://localhost:8080/api/recipe-books", {setData: setRecipeBooks, setErr: setError, setLoad: setIsLoading});
 
     const handleAddBook = () => {
         dispatch({type: "add-book", payload: {recipeBooks: recipeBooks}});

@@ -1,9 +1,12 @@
+import styles from "./Page.module.css";
 import ShoppingListCard from "../components/Cards/ShoppingListCard";
 import AddNewCard from "../components/Cards/AddNewCard";
 import ErrorMessage from "../components/Error/ErrorMessage";
 import { useEffect, useState } from "react";
 import { useModal } from "../hooks/useModal";
 import Modal from "../components/Modals/Modal";
+import { useFetch } from "../hooks/useFetch";
+import Load from "../loaders/Load";
 
 function ShoppingListPage() {
     const [shoppingLists, setShoppingLists] = useState([]);
@@ -11,26 +14,7 @@ function ShoppingListPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [modalState, dispatch] = useModal();
 
-    useEffect(() => {
-        async function getShoppingLists() {
-            try {
-                const response = await fetch("http://localhost:8080/api/shopping-lists");
-
-            if (!response.ok) {
-                const errorMessage = await response.json();
-                throw new Error(errorMessage.message);
-            }
-
-            const data = await response.json();
-
-            setShoppingLists(data);
-            } catch(err) {
-                const {message} = err;
-                setError(message);
-            }
-        }
-        getShoppingLists();
-    }, [])
+    useFetch("http://localhost:8080/api/shopping-lists", {setData: setShoppingLists, setErr: setError, setLoad: setIsLoading});
 
     const handleAddList = () => {
         dispatch({type: "add-list", payload: {lists: shoppingLists}});
@@ -57,7 +41,8 @@ function ShoppingListPage() {
     };
 
     return (
-        <div>
+        <div className={styles.page}>
+            {isLoading && <Load />}
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
             {!error && shoppingLists.map((list) => <ShoppingListCard list={list} key={list.id} onDeleteList={handleListDelete}
             onEditList={handleEditList} />)}

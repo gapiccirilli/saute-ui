@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Modal from "../components/Modals/Modal";
 import { useModal } from "../hooks/useModal";
 import Load from "../loaders/Load";
+import { useFetch } from "../hooks/useFetch";
 
 function IngredientPage() {
     const [ingredients, setIngredients] = useState([]);
@@ -13,26 +14,7 @@ function IngredientPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [modalState, dispatch] = useModal();
 
-    useEffect(() => {
-        async function getIngredients() {
-            try {
-                const response = await fetch("http://localhost:8080/api/ingredients");
-
-            if (!response.ok) {
-                const errorMessage = await response.json();
-                throw new Error(errorMessage.message);
-            }
-
-            const data = await response.json();
-
-            setIngredients(data);
-            } catch(err) {
-                const {message} = err;
-                setError(message);
-            }
-        }
-        getIngredients();
-    }, [])
+    useFetch("http://localhost:8080/api/ingredients", {setData: setIngredients, setErr: setError, setLoad: setIsLoading});
 
     const handleAddIngredient = () => {
         dispatch({type: "add-ingr", payload: {ingredients: ingredients}});
@@ -64,6 +46,7 @@ function IngredientPage() {
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
             {!error && ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} 
             onDeleteIngredient={handleIngredientDelete} onEditIngredient={handleEditIngredient} />)}
+
             {!error && <AddNewCard onAdd={handleAddIngredient}>Ingredient</AddNewCard>}
             {error && <ErrorMessage message={error}/>}
         </div>

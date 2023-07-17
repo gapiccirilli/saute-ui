@@ -4,39 +4,25 @@ import ErrorMessage from "../components/Error/ErrorMessage";
 import BackButton from "../components/Buttons/BackButton";
 import Item from "../components/Item/Item";
 import styles from "./PageStyles/SingleRecipePage.module.css";
+import { useFetch } from "../hooks/useFetch";
+import Load from "../loaders/Load";
 
 function SingleRecipePage() {
     const { recipeId } = useParams();
     const [recipeParams, setRecipeParams] = useSearchParams();
     const [items, setItems] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
 
     const recipeName = recipeParams.get("name");
     const description = recipeParams.get("desc");
 
-    useEffect(() => {
-        async function getItems() {
-            try {
-                const response = await fetch(`http://localhost:8080/api/recipes/${recipeId}/items/multiple`);
-                
-                if (!response.ok) {
-                    const errorMessage = await response.json();
-                    throw new Error(errorMessage.message);
-                }
-                
-                const data = await response.json();
-                setItems(data);
-            } catch(err) {
-                const {message} = err;
-                setError(message);
-            }
-        }
-        getItems();
-    }, [recipeId]);
-    
-    
+    useFetch(`http://localhost:8080/api/recipes/${recipeId}/items/multiple`, 
+    {setData: setItems, setErr: setError, setLoad: setIsLoading});
+        
     return (
         <div>
+            {isLoading && <Load />}
             <header className={styles.header}>
                 <BackButton />
                 <h1 className={styles.heading}>{recipeName}</h1>

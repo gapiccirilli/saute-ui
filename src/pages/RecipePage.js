@@ -8,6 +8,7 @@ import BackButton from "../components/Buttons/BackButton";
 import { useModal } from "../hooks/useModal";
 import Modal from "../components/Modals/Modal";
 import Load from "../loaders/Load";
+import { useFetch } from "../hooks/useFetch";
 
 function RecipePage() {
     const { bookId } = useParams();
@@ -16,26 +17,8 @@ function RecipePage() {
     const [isLoading, setIsLoading] = useState(false);
     const [modalState, dispatch] = useModal();
 
-    useEffect(() => {
-        async function getRecipes() {
-            try {
-                const response = await fetch(`http://localhost:8080/api/recipe-books/${bookId}/recipes`);
-
-                if (!response.ok) {
-                    const errorMessage = await response.json();
-                    throw new Error(errorMessage.message);
-                }
-
-                const data = await response.json();
-
-                setRecipes(data);
-            } catch(err) {
-                const {message} = err;
-                setError(message);
-            }
-        }
-        getRecipes();
-    }, [bookId]);
+    useFetch(`http://localhost:8080/api/recipe-books/${bookId}/recipes`, 
+    {setData: setRecipes, setErr: setError, setLoad: setIsLoading});
 
     const handleAddRecipe = (bookId) => {
         dispatch({type: "add-rec", payload: {recipes: recipes, bookId: bookId}});

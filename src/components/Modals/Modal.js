@@ -324,7 +324,6 @@ function Modal({modalState, onClose, setData}) {
             {modalType === "add-list" && <AddListModal onClose={onClose} data={data} setData={setData} />}
             {modalType === "edit-list" && <EditListModal onClose={onClose} data={data} setData={setData} />}
             {modalType === "delete" && <DeleteModal onClose={onClose} />}
-            
         </ModalOverlay>,
         document.getElementById('root')
     );

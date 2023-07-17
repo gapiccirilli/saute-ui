@@ -8,7 +8,7 @@ import { useModal } from "../hooks/useModal";
 function IngredientPage() {
     const [ingredients, setIngredients] = useState([]);
     const [error, setError] = useState("");
-    const [modalState, events] = useModal();
+    const [modalState, dispatch] = useModal();
 
     useEffect(() => {
         async function getIngredients() {
@@ -32,11 +32,11 @@ function IngredientPage() {
     }, [])
 
     const handleAddIngredient = () => {
-        events.add("add-ingr");
+        dispatch({type: "add-ingr", payload: {ingredients: ingredients}});
     };
 
     const handleEditIngredient = (ingredient) => {
-        events.edit("edit-ingr", {ingredient: ingredient, ingredients: ingredients});
+        dispatch({type: "edit-ingr", payload: {ingredient: ingredient, ingredients: ingredients}});
     };
 
     const handleIngredientDelete = (ingredientId) => {
@@ -46,7 +46,7 @@ function IngredientPage() {
     };
 
     const handleCloseModal = () => {
-        events.close();
+        dispatch({ type: "close" });
     };
 
     return (
@@ -54,7 +54,7 @@ function IngredientPage() {
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setIngredients} />}
             {!error && ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} 
             onDeleteIngredient={handleIngredientDelete} onEditIngredient={handleEditIngredient} />)}
-            {!error && <AddNewCard onAdd={handleAddIngredient} >Ingredient</AddNewCard>}
+            {!error && <AddNewCard onAdd={handleAddIngredient}>Ingredient</AddNewCard>}
             {error && <ErrorMessage message={error}/>}
         </div>
     );

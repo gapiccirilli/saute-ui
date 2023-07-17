@@ -61,11 +61,14 @@ function EditIngredientModal({onClose, data, setIngredients}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         const newIngredient = {...ingredient, ingredientName: e.target.elements[0].value}
         const response = fetchData("PUT", `http://localhost:8080/api/ingredients/${ingredient.id}`, newIngredient);
+
         // switch out newIngredient for response later when implementing load indicator
         const ingredientList = ingredients.map((item) => item.id === newIngredient.id ? newIngredient : item);
         setIngredients(ingredientList);
+        
         onClose();
     };
 
@@ -75,7 +78,7 @@ function EditIngredientModal({onClose, data, setIngredients}) {
                 <label htmlFor="ingr-name">Ingredient Name: </label>
                 <input type="text" id="ingr-name" placeholder="Ingredient" defaultValue={ingredient.ingredientName} />
                 <button type="submit">Submit</button>
-                {/* <SubmitButton onSubmit={handleSubmit} /> */}
+
             </form>
             <CloseButton onClose={onClose} />
         </div>

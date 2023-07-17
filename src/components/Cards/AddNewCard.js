@@ -4,13 +4,10 @@ import Card from "./Card";
 
 function AddNewCard({ children, onAdd}) {
     
-    const handleOpenModal = () => {
-        onAdd();
-    };
 
     return (
         <Card showButtons={false}>
-            <div className={styles.container} onClick={handleOpenModal}>
+            <div className={styles.container} onClick={onAdd}>
                 <p className={styles.plus}>+</p>
                 <p className={styles.txt}>Add New {children}</p>
             </div>

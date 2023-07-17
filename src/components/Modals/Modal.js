@@ -55,15 +55,17 @@ function AddIngredientModal({onClose}) {
     );
 }
 
-function EditIngredientModal({onClose, ingredient}) {
-    const [updatedIngredient, setUpdatedIngredient] = useState(ingredient);
+function EditIngredientModal({onClose, data, setIngredients}) {
+    const {ingredient, ingredients} = data;
     const fetchData = useFetchOnDemand();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const newIngredient = {...ingredient, ingredientName: e.target.elements[0].value}
         const response = fetchData("PUT", `http://localhost:8080/api/ingredients/${ingredient.id}`, newIngredient);
-        setUpdatedIngredient(response);
+        // switch out newIngredient for response later when implementing load indicator
+        const ingredientList = ingredients.map((item) => item.id === newIngredient.id ? newIngredient : item);
+        setIngredients(ingredientList);
         onClose();
     };
 
@@ -112,7 +114,7 @@ function DeleteModal({onClose}) {
 
 
 
-function Modal({modalState, onClose}) {
+function Modal({modalState, onClose, setData}) {
     const {modalType, data} = modalState;
 
     return createPortal(
@@ -122,7 +124,7 @@ function Modal({modalState, onClose}) {
             {modalType === "add-rec" && <AddRecipeModal onClose={onClose} />}
             {modalType === "edit-rec" && <EditRecipeModal onClose={onClose} />}
             {modalType === "add-ingr" && <AddIngredientModal onClose={onClose} />}
-            {modalType === "edit-ingr" && <EditIngredientModal onClose={onClose} ingredient={data.ingredient} />}
+            {modalType === "edit-ingr" && <EditIngredientModal onClose={onClose} data={data} setIngredients={setData} />}
             {modalType === "add-list" && <AddListModal onClose={onClose} />}
             {modalType === "edit-list" && <EditListModal onClose={onClose} />}
             {modalType === "delete" && <DeleteModal onClose={onClose} />}

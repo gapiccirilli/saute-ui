@@ -14,7 +14,8 @@ function modalReducer(state, action) {
         case "add-ingr":
             return { modalType: action.type, data: {...state.data, ingredient: action.payload}, isOpen: true};
         case "edit-ingr":
-            return { modalType: action.type, data: {...state.data, ingredient: action.payload}, isOpen: true};
+            return { modalType: action.type, data: {...state.data, ingredient: action.payload.ingredient, 
+                ingredients: action.payload.ingredients}, isOpen: true};
         case "add-list":
             return { modalType: action.type, data: {...state.data, list: action.payload}, isOpen: true};
         case "edit-list":
@@ -32,6 +33,7 @@ export function useModal() {
     const [modalState, dispatch] = useReducer(modalReducer, {
         modalType: "close",
         data: {
+            ingredients: [],
             ingredient: {},
             recipe: {},
             recipeBook: {},

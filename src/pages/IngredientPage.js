@@ -36,7 +36,7 @@ function IngredientPage() {
     };
 
     const handleEditIngredient = (ingredient) => {
-        events.edit("edit-ingr", ingredient);
+        events.edit("edit-ingr", {ingredient: ingredient, ingredients: ingredients});
     };
 
     const handleIngredientDelete = (ingredientId) => {
@@ -48,9 +48,10 @@ function IngredientPage() {
     const handleCloseModal = () => {
         events.close();
     };
+
     return (
         <div>
-            {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} />}
+            {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setIngredients} />}
             {!error && ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} 
             onDeleteIngredient={handleIngredientDelete} onEditIngredient={handleEditIngredient} />)}
             {!error && <AddNewCard onAdd={handleAddIngredient} >Ingredient</AddNewCard>}

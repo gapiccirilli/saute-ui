@@ -41,8 +41,7 @@ function IngredientPage() {
         events.add("add-ingr");
     };
 
-    const handleEditIngredient = (ingredient) => {
-        ingredientState.currentIngredient = ingredient;
+    const handleEditIngredient = () => {
         events.edit("edit-ingr");
     };
 

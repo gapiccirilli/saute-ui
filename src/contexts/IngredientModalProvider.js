@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 
 const IngredientModalContext = createContext();
 
@@ -19,7 +19,8 @@ const IngredientModalContext = createContext();
 // }
 
 function IngredientModalProvider({children, ingredientState}) {
-
+    const [currentIngredient, setCurrentIngredient] = useState({});
+    console.log(ingredientState);
     // const initialState = {
     //     ingredients: [],
     //     ingredient: {},
@@ -27,7 +28,11 @@ function IngredientModalProvider({children, ingredientState}) {
     // };
     // const [ingredientState, dispatch] = useReducer(reducer, initialState);
     return (
-        <IngredientModalContext.Provider value={ingredientState}>
+        <IngredientModalContext.Provider value={{ 
+            ...ingredientState,
+            currentIngredient: currentIngredient,
+            setCurrentIngredien: setCurrentIngredient
+            }}>
             {children}
         </IngredientModalContext.Provider>
     );

@@ -1,14 +1,17 @@
+import { IngredientModalContext } from "../../contexts/IngredientModalProvider";
 import Card from "./Card";
 import styles from "./IngredientCard.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 function IngredientCard({ ingredient, onDeleteIngredient, onEditIngredient }) {
     const { id, ingredientName, numberOfRecipes } = ingredient;
     // eventually display delete/error message in temporary modal that fades in/out
     const [error, setError] = useState("");
+    // const value = useContext(IngredientModalContext);
 
     const onEdit = () => {
-        onEditIngredient(ingredient);
+        // setCurrentIngredient(ingredient);
+        onEditIngredient();
     };
 
     const onDelete = async () => {

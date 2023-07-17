@@ -57,8 +57,7 @@ function AddIngredientModal({onClose}) {
 }
 
 function EditIngredientModal({onClose}) {
-    const ctx = useContext(IngredientModalContext);
-    const {ingredients, setIngredients, currentIngredient} = ctx;
+    const {ingredients, setIngredients, currentIngredient} = useContext(IngredientModalContext);
     const fetchData = useFetchOnDemand();
 
     const handleSubmit = (e) => {

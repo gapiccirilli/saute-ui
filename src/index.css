@@ -2,3 +2,20 @@ body {
     width: 95%;
     margin: 0 auto;
 }
+
+.act-nav-logo {
+    width: 4em;
+    height: 2em;
+}
+
+.banner-logo {
+    width: 23em;
+    height: 11em;
+    border-top: 0.2em solid black;
+    border-left: 0.5em solid black;
+    border-right: 0.5em solid black;
+    border-bottom: 0.7em solid black;
+    border-radius: 0.3em;
+    /* background-color: white;
+    /* background-color: rgba(232, 232, 205, 0.862); */
+}

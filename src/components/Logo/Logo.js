@@ -1,9 +1,9 @@
 import styles from "./Logo.module.css";
 import logo from "../../assets/saute-logo.png";
 
-function Logo() {
+function Logo({className}) {
     return (
-        <img className={styles.logo} src={logo} alt="saute-logo" width="50" height="50"/>
+        <img className={className} src={logo} alt="saute-logo" />
     );
 }
 

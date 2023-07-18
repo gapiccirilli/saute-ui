@@ -5,7 +5,7 @@ import Logo from "../Logo/Logo";
 function MainBanner() {
     return (
         <div className={styles.banner}>
-            <Logo />
+            <Logo className="banner-logo" />
         </div>
     );
 }

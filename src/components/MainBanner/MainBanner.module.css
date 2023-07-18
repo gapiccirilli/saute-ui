@@ -1,9 +1,11 @@
 .banner {
+    position: absolute;
     width: 45%;
     height: 15rem;
+    top: calc(50% - 15rem/2);
+    left: calc(50% - 45%/2);
     border-radius: 2rem;
-    background-color: rgb(237, 237, 237, .47);
-    margin: 1rem auto 2rem;
+    background-color: rgba(255, 255, 255, 0.903);
     display: flex;
     justify-content: center;
     align-items: center;

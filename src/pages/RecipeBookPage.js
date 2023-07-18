@@ -46,7 +46,7 @@ function RecipeBookPage() {
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
             {!error && recipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} onDeleteBook={handleBookDelete}
             onEditIngredient={handleEditBook}/>)}
-            {!error && <AddNewCard onAdd={handleAddBook}>Recipe Book</AddNewCard>}
+            {!error && !isLoading && <AddNewCard onAdd={handleAddBook}>Recipe Book</AddNewCard>}
             {error && <ErrorMessage message={error}/>}
         </div>
     );

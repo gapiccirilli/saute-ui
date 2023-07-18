@@ -46,8 +46,7 @@ function IngredientPage() {
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
             {!error && ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} 
             onDeleteIngredient={handleIngredientDelete} onEditIngredient={handleEditIngredient} />)}
-
-            {!error && <AddNewCard onAdd={handleAddIngredient}>Ingredient</AddNewCard>}
+            {!error && !isLoading && <AddNewCard onAdd={handleAddIngredient}>Ingredient</AddNewCard>}
             {error && <ErrorMessage message={error}/>}
         </div>
     );

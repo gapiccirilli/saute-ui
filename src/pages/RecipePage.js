@@ -51,7 +51,7 @@ function RecipePage() {
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
             {!error && recipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} onDeleteRecipe={handleRecipeDelete}
             onEditRecipe={handleEditRecipe}/>)}
-            {!error && <AddNewCard onAdd={handleAddRecipe} id={bookId}>Recipe</AddNewCard>}
+            {!error && !isLoading && <AddNewCard onAdd={handleAddRecipe} id={bookId}>Recipe</AddNewCard>}
             {error && <ErrorMessage message={error}/>}
         </div>
     );

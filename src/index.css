@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
 body {
     width: 95%;
     margin: 0 auto;
@@ -16,6 +18,6 @@ body {
     border-right: 0.5em solid black;
     border-bottom: 0.7em solid black;
     border-radius: 0.3em;
-    /* background-color: white;
+    /* background-color: white; */
     /* background-color: rgba(232, 232, 205, 0.862); */
 }

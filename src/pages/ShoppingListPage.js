@@ -46,7 +46,7 @@ function ShoppingListPage() {
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
             {!error && shoppingLists.map((list) => <ShoppingListCard list={list} key={list.id} onDeleteList={handleListDelete}
             onEditList={handleEditList} />)}
-            {!error && <AddNewCard onAdd={handleAddList}>List</AddNewCard>}
+            {!error && !isLoading && <AddNewCard onAdd={handleAddList}>List</AddNewCard>}
             {error && <ErrorMessage message={error}/>}
         </div>
     );

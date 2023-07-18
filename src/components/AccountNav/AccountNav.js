@@ -7,7 +7,7 @@ function AccountNav() {
     return (
         <nav className={styles.nav}>
             <div className={styles.navLeft}>
-                <Logo className="act-nav-logo" />
+                <Logo className="act-nav-logo" color="white"/>
             </div>
             <div className={styles.navRight}>
                 <ul className={styles.acctList}>

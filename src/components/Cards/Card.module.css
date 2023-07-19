@@ -1,5 +1,6 @@
 .card {
     display: block;
+    /* commented out to use with grid. If Card is needed elsewhere, use conditional rendering to specify grid */
     /* width: 10%; */
     /* height: 12rem; */
     background-color: beige;

@@ -12,7 +12,6 @@ import PageNotFound from "./pages/PageNotFound";
 import './App.css';
 import SingleShoppingListPage from './pages/SingleShoppingListPage';
 
-const RecipeContext = createContext();
 
 function App() {
   return (

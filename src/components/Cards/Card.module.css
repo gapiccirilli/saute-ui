@@ -1,7 +1,7 @@
 .card {
-    display: inline-block;
-    width: 10%;
-    height: 12rem;
+    display: block;
+    /* width: 10%; */
+    /* height: 12rem; */
     background-color: beige;
     border-radius: 1rem;
 }

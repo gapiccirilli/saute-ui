@@ -1,16 +1,15 @@
 .page {
     /* "position" is strictly used here for rendering load screen in an absolute positioning within page context */
     position: relative;
-    background-color: rgb(255, 251, 235);
+    /* background-color: rgb(255, 251, 235); */
     width: 100%;
     height: 100%;
     padding-top: 3rem;
     /* padding-bottom: 3rem; */
     display: grid;
     grid-template-columns: repeat(5, minmax(10%, 10%));
-    grid-auto-rows: minmax(12rem, 12rem);
+    grid-auto-rows: minmax(0, 12rem);
     column-gap: 10%;
     row-gap: 15%;
     justify-content: center;
-
 }

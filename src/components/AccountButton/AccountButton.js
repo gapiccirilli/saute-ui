@@ -1,10 +1,12 @@
 import styles from "./AccountButton.module.css";
 
-function AccountButton() {
+function AccountButton({children, className}) {
+    const classes = `${styles.button} ${className}`;
+    
     return (
-        <div className={styles.actBtn}>
-            <p>Name</p>
-        </div>
+        <button className={classes}>
+            {children}
+        </button>
         );
 }
 

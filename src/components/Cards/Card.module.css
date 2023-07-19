@@ -8,6 +8,10 @@
     transition: transform 0.2s ease-in-out;
 }
 
+.card a {
+    text-decoration: none;
+}
+
 .card:hover {
     transform: translate(0.1rem, -0.3rem);
 }

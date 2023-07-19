@@ -5,6 +5,11 @@
     /* height: 12rem; */
     background-color: beige;
     border-radius: 1rem;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translate(0.1rem, -0.3rem);
 }
 
 .cardBtns {
@@ -28,6 +33,7 @@
     'Open Sans', 'Helvetica Neue', sans-serif;
     color: rgba(128, 128, 128, 0.8);
     padding: .1em;
+    transition: background-color 0.3s;
 }
 
 .delete {
@@ -35,6 +41,7 @@
     'Open Sans', 'Helvetica Neue', sans-serif;
     color: rgba(128, 128, 128, 0.8);
     padding: .1em;
+    transition: background-color 0.3s;
 }
 
 .edit:hover {

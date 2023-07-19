@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 
 function AppLayout() {
     return (
-        <div>
+        <div className="content">
             <Header />
             <Outlet />
         </div>

@@ -14,13 +14,14 @@
 
 .title {
     padding: .1em 0 0;
-    font-weight: bold;
-    color: rgb(125, 37, 125);
+    font-family: "Libre Baskerville", sans-serif;
+    font-weight: 600;
+    color: rgb(61, 131, 97);
     text-decoration: underline;
 }
 
 .desc {
     padding: 0;
     font-size: .8em;
-    color: rgb(125, 37, 125);
+    color: rgb(61, 131, 97);
 }

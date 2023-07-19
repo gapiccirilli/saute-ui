@@ -1,9 +1,13 @@
 .container {
-    height: 90%;
+    height: 100%;
+    background-color: rgb(234, 234, 234);
+    border-radius: inherit;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: "Libre Baskerville", sans-serif;
+    font-size: 0.9em;
 }
 
 .plus {

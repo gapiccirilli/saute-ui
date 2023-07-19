@@ -8,13 +8,15 @@ import Modal from "../components/Modals/Modal";
 import Load from "../loaders/Load";
 import { useFetch } from "../hooks/useFetch";
 
+import { testRecipeBooks } from "../test-data/Data";
+
 function RecipeBookPage() {
     const [recipeBooks, setRecipeBooks] = useState([]);
     const [error, setError] = useState("");
     const [modalState, dispatch] = useModal();
     const [isLoading, setIsLoading] = useState(false);
 
-    useFetch("http://localhost:8080/api/recipe-books", {setData: setRecipeBooks, setErr: setError, setLoad: setIsLoading});
+    // useFetch("http://localhost:8080/api/recipe-books", {setData: setRecipeBooks, setErr: setError, setLoad: setIsLoading});
 
     const handleAddBook = () => {
         dispatch({type: "add-book", payload: {recipeBooks: recipeBooks}});
@@ -44,7 +46,7 @@ function RecipeBookPage() {
         <div className={styles.page}>
             {isLoading && <Load />}
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
-            {!error && recipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} onDeleteBook={handleBookDelete}
+            {!error && testRecipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} onDeleteBook={handleBookDelete}
             onEditIngredient={handleEditBook}/>)}
             {!error && !isLoading && <AddNewCard onAdd={handleAddBook}>Recipe Book</AddNewCard>}
             {error && <ErrorMessage message={error}/>}

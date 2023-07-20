@@ -2,7 +2,7 @@
     position: fixed;
     top: calc(50% - var(--modal-height) / 1.2);
     left: calc(50% - var(--modal-width) / 2);
-    border-radius: 2rem;
+    border-radius: 1rem;
     background-color: rgb(241, 241, 241);
     display: flex;
     flex-direction: column;
@@ -94,12 +94,13 @@
 
 .modal h1 {
     font-family: "Open Sans", sans-serif;
-    font-size: 1.5em;
+    font-size: 1.2em;
     /* color: rgb(156, 156, 156); */
 }
 
 .modal form input {
     width: 12em;
+    border: none;
     border-radius: 0.5em;
     padding: .5em 0.5em .5em;
     font-family: "Open Sans", sans-serif;

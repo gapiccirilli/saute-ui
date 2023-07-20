@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Open+Sans:wght@400&display=swap');
 
 body {
     width: 100%;
@@ -12,7 +12,7 @@ body {
 }
 
 .button-site-theme {
-    border: .1rem solid rgb(15, 85, 51);
+    border: .1em solid rgb(15, 85, 51);
     background-color: rgb(61, 131, 97);
     color: rgb(237, 235, 235);
     border-radius: .3rem;

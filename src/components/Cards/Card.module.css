@@ -1,8 +1,7 @@
 .card {
     display: block;
-    /* commented out to use with grid. If Card is needed elsewhere, use conditional rendering to specify grid */
-    /* width: 10%;
-    height: 12rem; */
+    width: 10%;
+    height: 12rem;
     background-color: beige;
     border-radius: 1rem;
     transition: transform 0.2s ease-in-out;
@@ -27,10 +26,6 @@
     justify-content: center;
     gap: 5em;
 }
-
-/* .cardBtns span{
-    box-sizing: border-box;
-} */
 
 .edit {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 

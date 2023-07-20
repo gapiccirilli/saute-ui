@@ -2,16 +2,14 @@
     /* "position" is strictly used here for rendering load screen in an absolute positioning within page context */
     position: relative;
     width: 100%;
-    display: grid;
-    grid-template-columns: 80%;
-    row-gap: 5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
     justify-content: center;
 }
 
 .gridNav {
     margin-top: 1rem;
-    grid-column: 1 / 6;
-    height: min-content;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -20,11 +18,10 @@
 
 .gridContent {
     width: 100%;
-    height: min-content;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(12%, 12%));
-    grid-auto-rows: minmax(0, 12rem);
-    column-gap: 7%;
-    row-gap: 12%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    gap: 2rem;
 }

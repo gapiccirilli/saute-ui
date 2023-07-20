@@ -9,7 +9,7 @@
 }
 
 .gridNav {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -17,11 +17,13 @@
 }
 
 .gridContent {
-    width: 100%;
+    width: 75%;
     height: 100%;
+    margin: 0 auto 5rem;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     align-items: center;
-    gap: 2rem;
+    gap: 5.9rem;
 }

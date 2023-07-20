@@ -1,6 +1,6 @@
 import styles from "./Page.module.css";
 import ShoppingListCard from "../components/Cards/ShoppingListCard";
-import AddNewCard from "../components/Cards/AddNewCard";
+import AddButton from "../components/Buttons/AddButton";
 import ErrorMessage from "../components/Error/ErrorMessage";
 import { useEffect, useState } from "react";
 import { useModal } from "../hooks/useModal";
@@ -44,9 +44,12 @@ function ShoppingListPage() {
         <div className={styles.page}>
             {isLoading && <Load />}
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
-            {!error && shoppingLists.map((list) => <ShoppingListCard list={list} key={list.id} onDeleteList={handleListDelete}
-            onEditList={handleEditList} />)}
-            {!error && !isLoading && <AddNewCard onAdd={handleAddList}>List</AddNewCard>}
+            {!error && !isLoading && <nav className={styles.gridNav}>
+                <AddButton className="button-site-theme flex-add" onAdd={handleAddList}>Add List</AddButton>
+                </nav>}
+            {!error && !isLoading && <div className={styles.gridContent}>
+                {shoppingLists.map((list) => <ShoppingListCard list={list} key={list.id} onDeleteList={handleListDelete}
+            onEditList={handleEditList} />)}</div>}
             {error && <ErrorMessage message={error}/>}
         </div>
     );

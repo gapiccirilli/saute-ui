@@ -2,7 +2,7 @@ import styles from "./Page.module.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import RecipeCard from "../components/Cards/RecipeCard";
-import AddNewCard from "../components/Cards/AddNewCard";
+import AddButton from "../components/Buttons/AddButton";
 import ErrorMessage from "../components/Error/ErrorMessage";
 import BackButton from "../components/Buttons/BackButton";
 import { useModal } from "../hooks/useModal";
@@ -46,12 +46,15 @@ function RecipePage() {
     
     return (
         <div className={styles.page}>
-            <BackButton />
             {isLoading && <Load />}
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
-            {!error && recipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} onDeleteRecipe={handleRecipeDelete}
-            onEditRecipe={handleEditRecipe}/>)}
-            {!error && !isLoading && <AddNewCard onAdd={handleAddRecipe} id={bookId}>Recipe</AddNewCard>}
+            {!isLoading && <BackButton />}
+            {!error && !isLoading && <nav className={styles.gridNav}>
+                <AddButton className="button-site-theme flex-add" onAdd={handleAddRecipe}>Add Recipe</AddButton>
+                </nav>}
+            {!error && !isLoading && <div className={styles.gridContent}>
+                {recipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} onDeleteRecipe={handleRecipeDelete}
+            onEditRecipe={handleEditRecipe}/>)}</div>}
             {error && <ErrorMessage message={error}/>}
         </div>
     );

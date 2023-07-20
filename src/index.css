@@ -7,13 +7,9 @@ body {
     overflow-y: scroll;
 }
 
-/* #root {
-    height: 100%;
-} */
-
-/* .content {
-    height: 100%;
-} */
+#content {
+    height: 100vh;
+}
 
 .button-site-theme {
     border: .1rem solid rgb(15, 85, 51);

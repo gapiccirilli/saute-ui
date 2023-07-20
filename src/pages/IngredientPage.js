@@ -1,6 +1,6 @@
 import styles from "./Page.module.css";
 import IngredientCard from "../components/Cards/IngredientCard";
-import AddNewCard from "../components/Cards/AddNewCard";
+import AddButton from "../components/Buttons/AddButton";
 import ErrorMessage from "../components/Error/ErrorMessage";
 import { useEffect, useState } from "react";
 import Modal from "../components/Modals/Modal";
@@ -44,9 +44,12 @@ function IngredientPage() {
         <div className={styles.page}>
             {isLoading && <Load />}
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
-            {!error && ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} 
-            onDeleteIngredient={handleIngredientDelete} onEditIngredient={handleEditIngredient} />)}
-            {!error && !isLoading && <AddNewCard onAdd={handleAddIngredient}>Ingredient</AddNewCard>}
+            {!error && !isLoading && <nav className={styles.gridNav}>
+                <AddButton className="button-site-theme flex-add" onAdd={handleAddIngredient}>Add Ingredient</AddButton>
+                </nav>}
+            {!error && <div className={styles.gridContent}>
+                {ingredients.map((ingredient) => <IngredientCard ingredient={ingredient} key={ingredient.id} 
+            onDeleteIngredient={handleIngredientDelete} onEditIngredient={handleEditIngredient} />)}</div>}
             {error && <ErrorMessage message={error}/>}
         </div>
     );

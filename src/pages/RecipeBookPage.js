@@ -1,5 +1,6 @@
 import styles from "./Page.module.css";
 import RecipeBookCard from "../components/Cards/RecipeBookCard";
+import AddButton from "../components/Buttons/AddButton";
 import AddNewCard from "../components/Cards/AddNewCard";
 import ErrorMessage from "../components/Error/ErrorMessage";
 import { useEffect, useState } from "react";
@@ -46,9 +47,13 @@ function RecipeBookPage() {
         <div className={styles.page}>
             {isLoading && <Load />}
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
-            {!error && testRecipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} onDeleteBook={handleBookDelete}
+            {!error && !isLoading && <nav className={styles.gridNav}>
+                <AddButton className="button-site-theme flex-add" onAdd={handleAddBook}>Add Recipe Book</AddButton>
+                </nav>}
+            {!error && <div className={styles.gridContent}>
+                {testRecipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} onDeleteBook={handleBookDelete}
             onEditIngredient={handleEditBook}/>)}
-            {/* {!error && !isLoading && <AddNewCard onAdd={handleAddBook}>Recipe Book</AddNewCard>} */}
+                    </div>}
             {error && <ErrorMessage message={error}/>}
         </div>
     );

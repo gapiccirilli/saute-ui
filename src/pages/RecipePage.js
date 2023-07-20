@@ -20,8 +20,8 @@ function RecipePage() {
     useFetch(`http://localhost:8080/api/recipe-books/${bookId}/recipes`, 
     {setData: setRecipes, setErr: setError, setLoad: setIsLoading});
 
-    const handleAddRecipe = (bookId) => {
-        dispatch({type: "add-rec", payload: {recipes: recipes, bookId: bookId}});
+    const handleAddRecipe = () => {
+        dispatch({type: "add-rec", payload: {recipes: recipes}});
     };
 
     const handleEditRecipe = (recipe) => {
@@ -48,8 +48,8 @@ function RecipePage() {
         <div className={styles.page}>
             {isLoading && <Load />}
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
-            {!isLoading && <BackButton />}
             {!error && !isLoading && <nav className={styles.gridNav}>
+                <BackButton />
                 <AddButton className="button-site-theme flex-add" onAdd={handleAddRecipe}>Add Recipe</AddButton>
                 </nav>}
             {!error && !isLoading && <div className={styles.gridContent}>

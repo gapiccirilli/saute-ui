@@ -17,7 +17,7 @@ function RecipeBookPage() {
     const [modalState, dispatch] = useModal();
     const [isLoading, setIsLoading] = useState(false);
 
-    // useFetch("http://localhost:8080/api/recipe-books", {setData: setRecipeBooks, setErr: setError, setLoad: setIsLoading});
+    useFetch("http://localhost:8080/api/recipe-books", {setData: setRecipeBooks, setErr: setError, setLoad: setIsLoading});
 
     const handleAddBook = () => {
         dispatch({type: "add-book", payload: {recipeBooks: recipeBooks}});
@@ -51,7 +51,7 @@ function RecipeBookPage() {
                 <AddButton className="button-site-theme flex-add" onAdd={handleAddBook}>Add Recipe Book</AddButton>
                 </nav>}
             {!error && <div className={styles.gridContent}>
-                {testRecipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} onDeleteBook={handleBookDelete}
+                {recipeBooks.map((book) => <RecipeBookCard recipeBook={book} key={book.id} onDeleteBook={handleBookDelete}
             onEditIngredient={handleEditBook}/>)}
                     </div>}
             {error && <ErrorMessage message={error}/>}

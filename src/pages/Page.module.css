@@ -14,7 +14,8 @@
     height: min-content;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
+    gap: 2rem;
 }
 
 .gridContent {

@@ -1,9 +1,9 @@
+// ${styles.button}
 
-
-function CloseButton({onClose}) {
-
+function CloseButton({onClose, className}) {
+    const classes = `${className}`;
     return (
-        <button onClick={onClose}>
+        <button className={classes} onClick={onClose}>
            Close
         </button>
     );

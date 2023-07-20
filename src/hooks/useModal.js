@@ -10,8 +10,7 @@ function modalReducer(state, action) {
             return { modalType: action.type, data: {...state.data, recipeBook: action.payload.recipeBook,
             recipeBooks: action.payload.recipeBooks}, isOpen: true};
         case "add-rec":
-            return { modalType: action.type, data: {...state.data, recipes: action.payload.recipes,
-                bookId: action.payload.bookId}, isOpen: true};
+            return { modalType: action.type, data: {...state.data, recipes: action.payload.recipes}, isOpen: true};
         case "edit-rec":
             return { modalType: action.type, data: {...state.data, recipe: action.payload.recipe,
             recipes: action.payload.recipes}, isOpen: true};
@@ -44,7 +43,6 @@ export function useModal() {
             recipe: {},
             recipeBooks: [],
             recipeBook: {},
-            bookId: 0,
             lists: [],
             list: {},
             item: {}

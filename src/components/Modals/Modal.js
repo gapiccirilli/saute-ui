@@ -4,6 +4,7 @@ import CloseButton from "../Buttons/CloseButton";
 import SubmitButton from "../Buttons/SubmitButton";
 import styles from "./Modal.module.css";
 import { createPortal } from "react-dom";
+import { useParams } from "react-router-dom";
 
 function AddBookModal({onClose, data, setData}) {
     const {recipeBooks} = data;
@@ -30,12 +31,16 @@ function AddBookModal({onClose, data, setData}) {
 
     return (
         <div className={`${styles.addBook} ${styles.modal}`}>
+            <h1>Add RecipeBook</h1>
             <form className={styles.bookForm} onSubmit={handleSubmit}>
-                <label htmlFor="book-name">Recipe Book Name: </label>
-                <input type="text" id="book-name" placeholder="New Recipe Book" />
-                <button type="submit">Submit</button>
+                <div>
+                    <input type="text" id="book-name" placeholder="New Recipe Book" />
+                </div>
+                <div>
+                    <button className="button-site-theme" type="submit">Submit</button>
+                    <CloseButton className="button-close-theme" onClose={onClose} />
+                </div>
             </form>
-            <CloseButton onClose={onClose} />
         </div>
     );
 }
@@ -68,18 +73,23 @@ function EditBookModal({onClose, data, setData}) {
     
     return (
         <div className={`${styles.editBook} ${styles.modal}`}>
+            <h1>Edit RecipeBook</h1>
             <form className={styles.bookForm} onSubmit={handleSubmit}>
-                <label htmlFor="book-name">Recipe Book Name: </label>
-                <input type="text" id="book-name" placeholder="Recipe Book" defaultValue={recipeBook.recipeBookName} />
-                <button type="submit">Submit</button>
+                <div>
+                    <input type="text" id="book-name" placeholder="Recipe Book" defaultValue={recipeBook.recipeBookName} />
+                </div>
+                <div>
+                    <button className="button-site-theme" type="submit">Submit</button> 
+                    <CloseButton className="button-close-theme" onClose={onClose} />
+                </div>
             </form>
-            <CloseButton onClose={onClose} />
         </div>
     );
 }
 
 function AddRecipeModal({onClose, data, setData}) {
-    const {recipes, bookId} = data;
+    const { bookId } = useParams();
+    const {recipes} = data;
     const {setRecs, setLoad, setErr} = setData;
 
     const handleSubmit = async (e) => {
@@ -102,14 +112,17 @@ function AddRecipeModal({onClose, data, setData}) {
     };
     return (
         <div className={`${styles.addRecipe} ${styles.modal}`}>
+            <h1>Add Recipe</h1>
             <form className={styles.recipeForm} onSubmit={handleSubmit}>
-                <label htmlFor="recipe-name">Recipe Name: </label>
-                <input type="text" id="recipe-name" placeholder="Recipe Name" />
-                <label htmlFor="recipe-desc">Description: </label>
-                <input type="text" id="recipe-desc" placeholder="Description" />
-                <button type="submit">Submit</button>
+                <div>
+                    <input type="text" id="recipe-name" placeholder="Recipe Name" />
+                    <input type="text" id="recipe-desc" placeholder="Description" />
+                </div>
+                <div>
+                    <button className="button-site-theme" type="submit">Submit</button>
+                    <CloseButton className="button-close-theme" onClose={onClose} />
+                </div>
             </form>
-            <CloseButton onClose={onClose} />
         </div>
     );
 }
@@ -142,12 +155,17 @@ function EditRecipeModal({onClose, data, setData}) {
 
     return (
         <div className={`${styles.editRecipe} ${styles.modal}`}>
+            <h1>Edit Recipe</h1>
             <form className={styles.bookForm} onSubmit={handleSubmit}>
-                <label htmlFor="recipe-name">Recipe Name: </label>
-                <input type="text" id="recipe-name" placeholder="Recipe Name" defaultValue={recipe.recipeName} />
-                <button type="submit">Submit</button>
+                <div>
+                    <input type="text" id="recipe-name" placeholder="Recipe Name" defaultValue={recipe.recipeName} />
+                    <input type="text" id="recipe-desc" placeholder="Description" defaultValue={recipe.description} />
+                </div>
+                <div>
+                    <button className="button-site-theme" type="submit">Submit</button>
+                    <CloseButton className="button-close-theme" onClose={onClose} />
+                </div>
             </form>
-            <CloseButton onClose={onClose} />
         </div>
     );
 }
@@ -158,6 +176,7 @@ function AddIngredientModal({onClose, data, setData}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(e.target.elements[0].value);
 
         const newIngredient = {ingredientName: e.target.elements[0].value}
         const response = await fetchData({
@@ -178,12 +197,16 @@ function AddIngredientModal({onClose, data, setData}) {
 
     return (
         <div className={`${styles.addIngr} ${styles.modal}`}>
+            <h1>Add Ingredient</h1>
             <form className={styles.ingrForm} onSubmit={handleSubmit}>
-                <label htmlFor="ingr-name">Ingredient Name: </label>
-                <input type="text" id="ingr-name" placeholder="New Ingredient" />
-                <button type="submit">Submit</button>
+                <div>
+                    <input type="text" id="ingr-name" placeholder="New Ingredient" />
+                </div>
+                <div>
+                    <button className="button-site-theme" type="submit">Submit</button>
+                    <CloseButton className="button-close-theme" onClose={onClose} />
+                </div>
             </form>
-            <CloseButton onClose={onClose}  />
         </div>
     );
 }
@@ -216,12 +239,16 @@ function EditIngredientModal({onClose, data, setData}) {
 
     return (
         <div className={`${styles.editIngr} ${styles.modal}`}>
+            <h1>Edit Ingredient</h1>
             <form className={styles.ingrForm} onSubmit={handleSubmit}>
-                <label htmlFor="ingr-name">Ingredient Name: </label>
-                <input type="text" id="ingr-name" placeholder="Ingredient" defaultValue={ingredient.ingredientName} />
-                <button type="submit">Submit</button>
+                <div>
+                    <input type="text" id="ingr-name" placeholder="Ingredient" defaultValue={ingredient.ingredientName} />
+                </div>
+                <div>
+                    <button className="button-site-theme" type="submit">Submit</button>
+                    <CloseButton className="button-close-theme" onClose={onClose} />
+                </div>
             </form>
-            <CloseButton onClose={onClose} />
         </div>
     );
 }
@@ -251,12 +278,16 @@ function AddListModal({onClose, data, setData}) {
     };
     return (
         <div className={`${styles.addList} ${styles.modal}`}>
+            Add Shopping List
             <form className={styles.listForm} onSubmit={handleSubmit}>
-                <label htmlFor="list-name">List Name: </label>
-                <input type="text" id="list-name" placeholder="List Name" />
-                <button type="submit">Submit</button>
+                <div>
+                    <input type="text" id="list-name" placeholder="List Name" />
+                </div>
+                <div>
+                    <button className="button-site-theme" type="submit">Submit</button>
+                    <CloseButton className="button-close-theme" onClose={onClose} />
+                </div>
             </form>
-            <CloseButton onClose={onClose} />
         </div>
     );
 }
@@ -288,12 +319,16 @@ function EditListModal({onClose, data, setData}) {
     };
     return (
         <div className={`${styles.editList} ${styles.modal}`}>
+            <h1>Edit Shopping List</h1>
             <form className={styles.listForm} onSubmit={handleSubmit}>
-                <label htmlFor="list-name">List Name: </label>
-                <input type="text" id="list-name" placeholder="List Name" defaultValue={list.listName} />
-                <button type="submit">Submit</button>
+                <div>
+                    <input type="text" id="list-name" placeholder="List Name" defaultValue={list.listName} />
+                </div>
+                <div>
+                    <button className="button-site-theme" type="submit">Submit</button>
+                    <CloseButton className="button-close-theme" onClose={onClose} />
+                </div>
             </form>
-            <CloseButton onClose={onClose} />
         </div>
     );
 }
@@ -303,7 +338,7 @@ function DeleteModal({onClose}) {
     return (
         <div className={`${styles.delete} ${styles.modal}`}>
             Delete
-            <CloseButton onClose={onClose} />
+            <CloseButton className="button-close-theme" onClose={onClose} />
         </div>
     );
 }

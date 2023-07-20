@@ -19,6 +19,7 @@ export function useFetch(url, stateFunctions) {
             } catch(err) {
                 const {message} = err;
                 setErr(message);
+                setLoad(false);
             }
         }
         get();

@@ -1,13 +1,15 @@
 .modal {
     position: fixed;
-    bottom: 40%;
-    left: 30%;
+    top: calc(50% - var(--modal-height) / 1.2);
+    left: calc(50% - var(--modal-width) / 2);
     border-radius: 2rem;
-    background-color: rgb(184, 180, 180);
+    background-color: rgb(241, 241, 241);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
+    
 }
 
 .overlay {
@@ -19,16 +21,113 @@
     background-color: rgb(128, 128, 128, 0.7);
 }
 
+.addBook {
+    --modal-width: 20%;
+    --modal-height: 40%;
+
+    width: var(--modal-width);
+    height: var(--modal-height);
+}
+
+.editBook {
+    --modal-width: 20%;
+    --modal-height: 40%;
+
+    width: var(--modal-width);
+    height: var(--modal-height);
+}
+
+.addRecipe {
+    --modal-width: 20%;
+    --modal-height: 40%;
+
+    width: var(--modal-width);
+    height: var(--modal-height);
+}
+
+.editRecipe {
+    --modal-width: 20%;
+    --modal-height: 40%;
+
+    width: var(--modal-width);
+    height: var(--modal-height);
+}
+
 .addIngr {
-    width: 40%;
-    height: 40%;
+    --modal-width: 20%;
+    --modal-height: 40%;
+
+    width: var(--modal-width);
+    height: var(--modal-height);
 }
 .editIngr {
-    width: 40%;
-    height: 40%;
-    
+    --modal-width: 20%;
+    --modal-height: 40%;
+
+    width: var(--modal-width);
+    height: var(--modal-height);
 }
 
-.ingrForm {
+.addList {
+    --modal-width: 20%;
+    --modal-height: 40%;
 
+    width: var(--modal-width);
+    height: var(--modal-height);
+}
+
+.editList {
+    --modal-width: 20%;
+    --modal-height: 40%;
+
+    width: var(--modal-width);
+    height: var(--modal-height);
+}
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5em;
+}
+
+.modal h1 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.5em;
+    /* color: rgb(156, 156, 156); */
+}
+
+.modal form input {
+    width: 12em;
+    border-radius: 0.5em;
+    padding: .5em 0.5em .5em;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1em;
+}
+
+.modal form input::placeholder {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1em;
+}
+
+.modal form div {
+    border: none;
+    width: min-content;
+}
+
+.modal form div:nth-of-type(1) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.modal form div:nth-of-type(2) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
 }

@@ -1,4 +1,5 @@
 import Logo from "../components/Logo/Logo";
+import bgImg from "../assets/home-bg.jpg";
 import styles from "./PageStyles/HomePage.module.css";
 import { Link } from "react-router-dom";
 
@@ -14,6 +15,7 @@ function HomePage() {
             <header className={styles.header}>
             </header>
             <main className={styles.content}>
+                <img className={styles.bg} src={bgImg} alt="banner" />
                 <Logo className="home-logo" color="black" />
                 <section>
                     <h3 className={styles.contentTitle}>The perfect home for your recipes</h3>

@@ -77,4 +77,5 @@ body {
 .home-logo {
     width: 23em;
     height: 11em;
+    z-index: 2;
 }

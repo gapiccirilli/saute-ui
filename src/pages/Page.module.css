@@ -1,6 +1,7 @@
 .page {
     /* "position" is strictly used here for rendering load screen in an absolute positioning within page context */
     position: relative;
+    background-color: rgba(250, 250, 250, 0.479);
     width: 100%;
     display: flex;
     flex-direction: column;

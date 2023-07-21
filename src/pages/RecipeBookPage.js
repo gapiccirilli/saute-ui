@@ -10,12 +10,14 @@ import Load from "../loaders/Load";
 import { useFetch } from "../hooks/useFetch";
 
 import { testRecipeBooks } from "../test-data/Data";
+import { useScrollIntoView } from "../hooks/useScrollIntoView";
 
 function RecipeBookPage() {
     const [recipeBooks, setRecipeBooks] = useState([]);
     const [error, setError] = useState("");
     const [modalState, dispatch] = useModal();
     const [isLoading, setIsLoading] = useState(false);
+    useScrollIntoView("#app-nav", "start", "smooth");
 
     // useFetch("http://localhost:8080/api/recipe-books", {setData: setRecipeBooks, setErr: setError, setLoad: setIsLoading});
 
@@ -44,7 +46,7 @@ function RecipeBookPage() {
     };
 
     return (
-        <div className={styles.page}>
+        <div id="recipe-books" className={styles.page}>
             {isLoading && <Load />}
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
             {!error && !isLoading && <nav className={styles.gridNav}>

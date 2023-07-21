@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Open+Sans:wght@400&display=swap');
 
+:root {
+    --main-bg-color: rgb(61, 131, 97);
+    --secondary-bg-color: rgba(214, 205, 164, 0.103);
+    --main-font: "Libre Baskerville";
+    --secondary-font: "Open Sans";
+}
+
 body {
     width: 100%;
     height: 100vh;
@@ -7,7 +14,7 @@ body {
     overflow-y: scroll;
 }
 
-#content {
+#root {
     height: 100vh;
 }
 
@@ -65,4 +72,9 @@ body {
     border-radius: 0.3em;
     /* background-color: white; */
     /* background-color: rgba(232, 232, 205, 0.862); */
+}
+
+.home-logo {
+    width: 23em;
+    height: 11em;
 }

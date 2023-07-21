@@ -1,9 +1,8 @@
 import styles from "./Page.module.css";
 import RecipeBookCard from "../components/Cards/RecipeBookCard";
 import AddButton from "../components/Buttons/AddButton";
-import AddNewCard from "../components/Cards/AddNewCard";
 import ErrorMessage from "../components/Error/ErrorMessage";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useModal } from "../hooks/useModal";
 import Modal from "../components/Modals/Modal";
 import Load from "../loaders/Load";

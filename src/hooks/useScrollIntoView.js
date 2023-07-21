@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 export function useScrollIntoView(elementStr, position, behave) {
-    
+
     useEffect(() => {
         function scroll() {
             const element = document.querySelector(elementStr);

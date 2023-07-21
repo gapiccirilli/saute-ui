@@ -1,11 +1,12 @@
 import { useParams, useSearchParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ErrorMessage from "../components/Error/ErrorMessage";
 import BackButton from "../components/Buttons/BackButton";
 import Item from "../components/Item/Item";
 import styles from "./PageStyles/SingleRecipePage.module.css";
 import { useFetch } from "../hooks/useFetch";
 import Load from "../loaders/Load";
+import { useScrollIntoView } from "../hooks/useScrollIntoView";
 
 function SingleRecipePage() {
     const { recipeId } = useParams();
@@ -17,6 +18,7 @@ function SingleRecipePage() {
     const recipeName = recipeParams.get("name");
     const description = recipeParams.get("desc");
 
+    // useScrollIntoView("#app-nav", "start", "smooth");
     useFetch(`http://localhost:8080/api/recipes/${recipeId}/items/multiple`, 
     {setData: setItems, setErr: setError, setLoad: setIsLoading});
         

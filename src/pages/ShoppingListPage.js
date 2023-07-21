@@ -2,10 +2,11 @@ import styles from "./Page.module.css";
 import ShoppingListCard from "../components/Cards/ShoppingListCard";
 import AddButton from "../components/Buttons/AddButton";
 import ErrorMessage from "../components/Error/ErrorMessage";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useModal } from "../hooks/useModal";
 import Modal from "../components/Modals/Modal";
 import { useFetch } from "../hooks/useFetch";
+import { useScrollIntoView } from "../hooks/useScrollIntoView";
 import Load from "../loaders/Load";
 
 function ShoppingListPage() {
@@ -14,6 +15,7 @@ function ShoppingListPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [modalState, dispatch] = useModal();
 
+    useScrollIntoView("#app-nav", "start", "smooth");
     useFetch("http://localhost:8080/api/shopping-lists", {setData: setShoppingLists, setErr: setError, setLoad: setIsLoading});
 
     const handleAddList = () => {

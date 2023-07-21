@@ -1,6 +1,6 @@
 import styles from "./Page.module.css";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import RecipeCard from "../components/Cards/RecipeCard";
 import AddButton from "../components/Buttons/AddButton";
 import ErrorMessage from "../components/Error/ErrorMessage";
@@ -9,6 +9,7 @@ import { useModal } from "../hooks/useModal";
 import Modal from "../components/Modals/Modal";
 import Load from "../loaders/Load";
 import { useFetch } from "../hooks/useFetch";
+import { useScrollIntoView } from "../hooks/useScrollIntoView";
 
 function RecipePage() {
     const { bookId } = useParams();
@@ -17,6 +18,7 @@ function RecipePage() {
     const [isLoading, setIsLoading] = useState(false);
     const [modalState, dispatch] = useModal();
 
+    // useScrollIntoView("#app-nav", "start", "smooth");
     useFetch(`http://localhost:8080/api/recipe-books/${bookId}/recipes`, 
     {setData: setRecipes, setErr: setError, setLoad: setIsLoading});
 

@@ -1,6 +1,7 @@
 .home {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .nav {
@@ -88,18 +89,21 @@
     background-color: var(--main-bg-color);
 }
 
-/* .create {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin-right: 100%;
-    display: none;
+.create {
+    position: absolute;
+    bottom: calc(50% - 70%/2);
+    left: 75%;
+    background-color: white;
+    border-radius: 1rem;
+    width: 20%;
+    height: 70%;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 2;
-    transition: display 1s ease-in 1s forwards;
-} */
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
 
 .logIn {
     position: absolute;
@@ -114,15 +118,42 @@
     justify-content: center;
     align-items: center;
     z-index: 2;
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in forwards;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em
+}
+
+.loginForm h2 {
+    margin: 0;
+    font-family: var(--secondary-font);
+}
+
+.loginForm div:nth-of-type(1) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.user, .pass {
+    padding: 1em 1em;
+    border-radius: 0.5em;
+    border: none;
+    box-shadow: 0.03em -0.03em 0.3em 0 rgba(0, 0, 0, 0.5);
 }
 
 @keyframes fadeIn {
     0% {
-        opacity: 0;
+        left: 100%;
     }
     100% {
-        opacity: 1;
+        left: 75%;
      }
 }

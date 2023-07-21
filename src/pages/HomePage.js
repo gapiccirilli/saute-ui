@@ -9,15 +9,15 @@ function HomePage() {
     const createClasses = `${styles.createBtn} button-site-theme`;
     const logInClasses = `${styles.logInBtn} button-site-theme`;
     const [style, setStyle] = useState({
-        defaultStyle: {display:"flex", opacity: "visible"},
-        createStyle: {display:"none", opacity: "hidden"},
-        logInStyle: {display:"none", opacity: "hidden"}
+        defaultStyle: {display:"flex"},
+        createStyle: {display:"none"},
+        logInStyle: {display:"none"}
     });
     const {defaultStyle, createStyle, logInStyle} = style;
 
     const handleOpenLogin = () => {
         setStyle({...style,
-        logInStyle: {display: "flex", opacity: "1"}});
+        logInStyle: {display: "flex"}});
     };
 
     return (

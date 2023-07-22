@@ -4,7 +4,10 @@
     --main-bg-color: rgb(61, 131, 97);
     --secondary-bg-color: rgba(214, 205, 164, 0.103);
     --button-delete-color: rgb(226, 53, 53);
-    --button-edit-color: rgb(151, 151, 151);
+    --button-edit-color: rgb(200, 200, 200);
+    --button-submit-color: rgb(43, 172, 43);
+    --button-back-color: rgb(200, 200, 200);
+
     
     --main-font: "Libre Baskerville";
     --secondary-font: "Open Sans";
@@ -37,8 +40,8 @@ body {
 
 .button-close-theme {
     border: .1rem solid rgb(15, 85, 51);
-    background-color: rgb(237, 235, 235);
-    color: var(--main-bg-color);
+    background-color: var(--button-back-color);
+    color: black;
     border-radius: .3rem;
     padding: .5rem 1rem .5rem;
     box-shadow: -0.1rem 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);

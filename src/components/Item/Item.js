@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import styles from "./Item.module.css";
 import DeleteButton from "../Buttons/DeleteButton";
 import EditButton from "../Buttons/EditButton";
+import CloseButton from "../Buttons/CloseButton";
 
 function Item({item, basic, showButtons}) {
     const {id, ingredientName, description, amount, measurementType, hours, minutes, seconds} = item;
@@ -9,6 +10,15 @@ function Item({item, basic, showButtons}) {
 
     const onEdit = () => {
         setEditMode(true);
+    };
+
+    const onSubmit = () => {
+        // -> logic goes here <-
+        setEditMode(false);
+    };
+
+    const onClose = () => {
+        setEditMode(false);
     };
 
     return (
@@ -45,8 +55,16 @@ function Item({item, basic, showButtons}) {
             </td>}
 
             {showButtons && <td className={`${styles.btns} ${styles.itemData}`}>
-                <button className={`${styles.edit} button-site-theme`} onClick={onEdit}>Edit</button>
-                <button className={`${styles.delete} button-site-theme`}>Delete</button>
+                {editMode ? <button className={`${styles.submit} button-site-theme`} onClick={onSubmit}>
+                    Submit
+                </button> : <button className={`${styles.edit} button-site-theme`} onClick={onEdit}>
+                    Edit
+                    </button>}
+
+                {editMode ? <CloseButton className="button-close-theme" onClose={onClose} />
+                 : <button className={`${styles.delete} button-site-theme`}>
+                    Delete
+                    </button>}
                 </td>}
         </Fragment>
     );

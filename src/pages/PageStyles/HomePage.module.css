@@ -105,6 +105,11 @@
     animation: fadeIn 0.5s ease-in-out forwards;
 }
 
+.logInSwitchBtn {
+    background-color: var(--secondary-bg-color);
+    color: var(--main-bg-color);
+}
+
 .logIn {
     position: absolute;
     bottom: calc(50% - 70%/2);

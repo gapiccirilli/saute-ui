@@ -10,11 +10,10 @@ function HomePage() {
     const createClasses = `${styles.createBtn} button-site-theme`;
     const logInClasses = `${styles.logInBtn} button-site-theme`;
     const [style, setStyle] = useState({
-        defaultStyle: {display:"flex"},
         createStyle: {display:"none"},
         logInStyle: {display:"none"}
     });
-    const {defaultStyle, createStyle, logInStyle} = style;
+    const {createStyle, logInStyle} = style;
 
     const handleOpenLogin = () => {
         setStyle({...style,
@@ -35,7 +34,7 @@ function HomePage() {
             <nav className={styles.nav}>
                 <ul className={styles.btns}>
                     <li><button onClick={handleOpenCreateUser} className={createClasses}>Create Account</button></li>
-                    <li><button onClick={handleOpenLogin} className={logInClasses}>Log in</button></li>
+                    <li><button onClick={handleOpenLogin} className={logInClasses}>Login</button></li>
                 </ul>
             </nav>
             <header className={styles.header}>

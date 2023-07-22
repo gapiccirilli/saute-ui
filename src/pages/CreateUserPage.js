@@ -12,7 +12,7 @@ function CreateUserPage({style}) {
                     <input className={styles.repeatPass} type="password"  placeholder="Repeat Password" />
                 </div>
                 <div>
-                    <button className="button-site-theme" type="submit">Login</button>
+                    <button className="button-site-theme" type="submit">Create Account</button>
                 </div>
             </form>
         </div>

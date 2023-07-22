@@ -3,6 +3,9 @@
 :root {
     --main-bg-color: rgb(61, 131, 97);
     --secondary-bg-color: rgba(214, 205, 164, 0.103);
+    --button-delete-color: rgb(226, 53, 53);
+    --button-edit-color: rgb(151, 151, 151);
+    
     --main-font: "Libre Baskerville";
     --secondary-font: "Open Sans";
 }

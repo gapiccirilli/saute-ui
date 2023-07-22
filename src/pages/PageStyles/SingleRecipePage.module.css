@@ -1,9 +1,52 @@
+.recipePage {
+    width: 100%;
+}
+
+.header {
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.headLeft {
+    width: 33%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.headCenter {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.headCenter h1 {
+    margin: 0;
+    font-family: var(--main-font);
+}
+
+.headCenter p {
+    font-family: var(--main-font);
+}
+
+.headRight {
+    width: 33%;
+}
+
 .itemTable {
     table-layout: fixed;
     width: 60%;
     margin: 0 auto;
 }
 
-.item {
-    border: .1rem solid black;
+.backBtn {
+    background-color: rgb(200, 200, 200);
+    color: black;
 }

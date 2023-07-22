@@ -15,7 +15,7 @@ function ShoppingListPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [modalState, dispatch] = useModal();
 
-    useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
+    // useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     useFetch("http://localhost:8080/api/shopping-lists", {setData: setShoppingLists, setErr: setError, setLoad: setIsLoading});
 
     const handleAddList = () => {

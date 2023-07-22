@@ -19,9 +19,61 @@
 }
 
 .btns {
-    width: 10%;
+    width: min-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0.5em;
+}
+
+.edit {
+    background-color: var(--button-edit-color);
+}
+
+.delete {
+    background-color: var(--button-delete-color);
 }
 
 .itemData {
+    font-family: var(--main-font);
+    text-align: center;
     border: .1em solid black;
+}
+
+.inAmt {
+    width: 75%;
+    padding-top: .2em;
+    padding-bottom: .2em;
+}
+
+.inType {
+
+}
+
+.inName {
+    width: 90%;
+}
+
+.inDesc {
+    width: 90%;
+    padding-top: .2em;
+    padding-bottom: .2em;
+}
+
+.inHour {
+    width: 20%;
+    padding-top: .3em;
+    padding-bottom: .3em;
+}
+
+.inMin {
+    width: 20%;
+    padding-top: .3em;
+    padding-bottom: .3em;
+}
+
+.inSec {
+    width: 20%;
+    padding-top: .3em;
+    padding-bottom: .3em;
 }

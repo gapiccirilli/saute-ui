@@ -18,24 +18,28 @@ function SingleRecipePage() {
     const recipeName = recipeParams.get("name");
     const description = recipeParams.get("desc");
 
-    useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
+    // useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     useFetch(`http://localhost:8080/api/recipes/${recipeId}/items/multiple`, 
     {setData: setItems, setErr: setError, setLoad: setIsLoading});
         
     return (
-        <div>
+        <div className={styles.recipePage}>
             {isLoading && <Load />}
             <header className={styles.header}>
-                <BackButton />
-                <h1 className={styles.heading}>{recipeName}</h1>
-                <p className={styles.desc}>{description}</p>
+                <div className={styles.headLeft}>
+                    <BackButton className={styles.backBtn} />
+                </div>
+                <div className={styles.headCenter}>
+                    <h1 className={styles.heading}>{recipeName}</h1>
+                    <p className={styles.desc}>{description}</p>
+                </div>
+                <div className={styles.headRight}></div>
+            </header>
                 <table className={styles.itemTable}>
                     {items.map((item) => <tr className={styles.item}><Item item={item} key={item.id} basic={false} 
                     showButtons={true}/></tr>)}
                 </table>
-            </header>
             {error && <ErrorMessage message={error}/>}
-
         </div>
     );
 }

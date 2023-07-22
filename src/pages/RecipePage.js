@@ -18,7 +18,7 @@ function RecipePage() {
     const [isLoading, setIsLoading] = useState(false);
     const [modalState, dispatch] = useModal();
 
-    useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
+    // useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     useFetch(`http://localhost:8080/api/recipe-books/${bookId}/recipes`, 
     {setData: setRecipes, setErr: setError, setLoad: setIsLoading});
 
@@ -51,7 +51,7 @@ function RecipePage() {
             {isLoading && <Load />}
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
             {!error && !isLoading && <nav className={styles.gridNav}>
-                <BackButton />
+                <BackButton className={styles.backBtn} />
                 <AddButton className="button-site-theme flex-add" onAdd={handleAddRecipe}>Add Recipe</AddButton>
                 </nav>}
             {!error && !isLoading && <div className={styles.gridContent}>

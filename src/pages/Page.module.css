@@ -28,3 +28,8 @@
     align-items: center;
     gap: 5.9rem;
 }
+
+.backBtn {
+    background-color: rgb(200, 200, 200);
+    color: black;
+}

@@ -27,9 +27,9 @@ function Item({item, basic, showButtons}) {
                 {editMode ? <input className={styles.inAmt} type="number" defaultValue={amount} /> : amount}
             </td>
 
-            {measurementType !== "N/A" ? <td className={`${styles.type} ${styles.itemData}`}>
+            <td className={`${styles.type} ${styles.itemData}`}>
                 {editMode ? <input className={styles.inType} type="text" defaultValue={measurementType} /> : measurementType}
-                </td> : null}
+                </td>
 
             <td className={`${styles.name} ${styles.itemData}`}>
                 {editMode ? <select className={styles.inName}>

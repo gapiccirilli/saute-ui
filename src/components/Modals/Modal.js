@@ -37,7 +37,7 @@ function AddBookModal({onClose, data, setData}) {
                     <input type="text" id="book-name" placeholder="New Recipe Book" />
                 </div>
                 <div>
-                    <button className="button-site-theme" type="submit">Submit</button>
+                    <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
             </form>
@@ -79,7 +79,7 @@ function EditBookModal({onClose, data, setData}) {
                     <input type="text" id="book-name" placeholder="Recipe Book" defaultValue={recipeBook.recipeBookName} />
                 </div>
                 <div>
-                    <button className="button-site-theme" type="submit">Submit</button> 
+                    <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
             </form>
@@ -119,7 +119,7 @@ function AddRecipeModal({onClose, data, setData}) {
                     <input type="text" id="recipe-desc" placeholder="Description" />
                 </div>
                 <div>
-                    <button className="button-site-theme" type="submit">Submit</button>
+                    <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
             </form>
@@ -162,7 +162,7 @@ function EditRecipeModal({onClose, data, setData}) {
                     <input type="text" id="recipe-desc" placeholder="Description" defaultValue={recipe.description} />
                 </div>
                 <div>
-                    <button className="button-site-theme" type="submit">Submit</button>
+                    <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
             </form>
@@ -203,7 +203,7 @@ function AddIngredientModal({onClose, data, setData}) {
                     <input type="text" id="ingr-name" placeholder="New Ingredient" />
                 </div>
                 <div>
-                    <button className="button-site-theme" type="submit">Submit</button>
+                    <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
             </form>
@@ -245,7 +245,7 @@ function EditIngredientModal({onClose, data, setData}) {
                     <input type="text" id="ingr-name" placeholder="Ingredient" defaultValue={ingredient.ingredientName} />
                 </div>
                 <div>
-                    <button className="button-site-theme" type="submit">Submit</button>
+                    <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
             </form>
@@ -284,7 +284,7 @@ function AddListModal({onClose, data, setData}) {
                     <input type="text" id="list-name" placeholder="List Name" />
                 </div>
                 <div>
-                    <button className="button-site-theme" type="submit">Submit</button>
+                    <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
             </form>
@@ -325,7 +325,7 @@ function EditListModal({onClose, data, setData}) {
                     <input type="text" id="list-name" placeholder="List Name" defaultValue={list.listName} />
                 </div>
                 <div>
-                    <button className="button-site-theme" type="submit">Submit</button>
+                    <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
             </form>

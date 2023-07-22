@@ -42,43 +42,54 @@
 .itemData {
     font-family: var(--main-font);
     text-align: center;
-    border: .1em solid black;
+    /* border: .1em solid black; */
 }
 
 .inAmt {
-    width: 75%;
+    width: 20%;
     padding-top: .2em;
     padding-bottom: .2em;
+    font-family: var(--main-font);
 }
 
 .inType {
-
+    width: 90%;
+    padding-top: .2em;
+    padding-bottom: .2em;
+    text-align: center;
+    font-family: var(--main-font);
 }
 
 .inName {
     width: 90%;
+    font-family: var(--main-font);
 }
 
 .inDesc {
     width: 90%;
     padding-top: .2em;
     padding-bottom: .2em;
+    text-align: center;
+    font-family: var(--main-font);
 }
 
 .inHour {
     width: 20%;
     padding-top: .3em;
     padding-bottom: .3em;
+    font-family: var(--main-font);
 }
 
 .inMin {
     width: 20%;
     padding-top: .3em;
     padding-bottom: .3em;
+    font-family: var(--main-font);
 }
 
 .inSec {
     width: 20%;
     padding-top: .3em;
     padding-bottom: .3em;
+    font-family: var(--main-font);
 }

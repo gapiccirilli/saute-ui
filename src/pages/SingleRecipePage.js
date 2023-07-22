@@ -36,9 +36,17 @@ function SingleRecipePage() {
                 <div className={styles.headRight}></div>
             </header>
                 <table className={styles.itemTable}>
+                    <tr className={styles.tableHeader}>
+                        <th>Amount</th>
+                        <th>Measurement Type</th>
+                        <th>Ingredient</th>
+                        <th>Description</th>
+                        <th>Time</th>
+                    </tr>
                     {items.map((item) => <tr className={styles.item}><Item item={item} key={item.id} basic={false} 
                     showButtons={true}/></tr>)}
                 </table>
+                <button className={`${styles.addItemBtn} button-site-theme`}>Add New Item</button>
             {error && <ErrorMessage message={error}/>}
         </div>
     );

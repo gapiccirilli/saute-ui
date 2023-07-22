@@ -125,3 +125,7 @@
     align-items: center;
     gap: 3em;
 }
+
+.submit {
+    background-color: var(--button-submit-color);
+}

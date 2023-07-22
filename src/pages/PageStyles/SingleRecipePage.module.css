@@ -1,5 +1,10 @@
 .recipePage {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
 }
 
 .header {
@@ -43,10 +48,18 @@
 .itemTable {
     table-layout: fixed;
     width: 60%;
-    margin: 0 auto;
+}
+
+.tableHeader th{
+    font-family: var(--main-font);
+    font-size: 1em;
+    border-bottom: 1px solid black;
 }
 
 .backBtn {
     background-color: rgb(200, 200, 200);
     color: black;
+}
+
+.addItemBtn {
 }

@@ -14,7 +14,7 @@ function SingleShoppingListPage() {
     // useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     return (
         <div>
-            <BackButton />
+            <BackButton className={styles.backBtn} />
             <ShoppingListTable listId={listId} listName={listName} />
         </div>
     );

@@ -16,8 +16,8 @@ function RecipeBookPage() {
     const [error, setError] = useState("");
     const [modalState, dispatch] = useModal();
     const [isLoading, setIsLoading] = useState(false);
-    useScrollIntoView("#app-nav", "start", "smooth");
 
+    useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     // useFetch("http://localhost:8080/api/recipe-books", {setData: setRecipeBooks, setErr: setError, setLoad: setIsLoading});
 
     const handleAddBook = () => {

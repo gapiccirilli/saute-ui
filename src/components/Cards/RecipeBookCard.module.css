@@ -6,7 +6,7 @@
 .cardDesc {
     width: 100%;
     height: 33%;
-    background-color: rgb(61, 131, 97);
+    background-color: var(--main-bg-color);
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
     text-align: center;
@@ -14,7 +14,7 @@
 
 .cardDesc p {
     padding: .3em;
-    font-family: "Libre Baskerville", sans-serif;
+    font-family: var(--main-font);
     font-weight: 600;
     color: rgb(245, 245, 245);
 }

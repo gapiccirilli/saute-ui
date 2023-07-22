@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
-export function useScrollIntoView(elementStr, position, behave) {
+export function useScrollIntoView(elementStr, options) {
 
     useEffect(() => {
         function scroll() {
             const element = document.querySelector(elementStr);
-            element.scrollIntoView({block: position, behavior: behave});
+            element.scrollIntoView({block: options.block, behavior: options.behavior});
         }
         scroll();
-    }, [elementStr, position]);
+    }, [elementStr, options]);
 }

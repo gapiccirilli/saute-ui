@@ -15,7 +15,7 @@ function IngredientPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [modalState, dispatch] = useModal();
 
-    useScrollIntoView("#app-nav", "start", "smooth");
+    useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     useFetch("http://localhost:8080/api/ingredients", {setData: setIngredients, setErr: setError, setLoad: setIsLoading});
 
     const handleAddIngredient = () => {

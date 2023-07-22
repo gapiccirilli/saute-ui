@@ -1,4 +1,4 @@
 .button {
-    font-family: "Libre Baskerville";
+    font-family: var(--main-font);
     font-size: 0.8rem;
 }

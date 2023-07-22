@@ -11,7 +11,7 @@ function SingleShoppingListPage() {
     const [listParams, setListParams] = useSearchParams();
     const listName = listParams.get("name");
 
-    // useScrollIntoView("#app-nav", "start", "smooth");
+    useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     return (
         <div>
             <BackButton />

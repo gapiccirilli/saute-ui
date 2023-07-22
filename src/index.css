@@ -20,7 +20,7 @@ body {
 
 .button-site-theme {
     border: .1em solid rgb(15, 85, 51);
-    background-color: rgb(61, 131, 97);
+    background-color: var(--main-bg-color);
     color: rgb(237, 235, 235);
     border-radius: .3rem;
     padding: .5rem 1rem .5rem;
@@ -35,7 +35,7 @@ body {
 .button-close-theme {
     border: .1rem solid rgb(15, 85, 51);
     background-color: rgb(237, 235, 235);
-    color: rgb(61, 131, 97);
+    color: var(--main-bg-color);
     border-radius: .3rem;
     padding: .5rem 1rem .5rem;
     box-shadow: -0.1rem 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);

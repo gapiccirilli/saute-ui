@@ -31,7 +31,7 @@ function AddBookModal({onClose, data, setData}) {
 
     return (
         <div className={`${styles.addBook} ${styles.modal}`}>
-            <h1>Add RecipeBook</h1>
+            <h2>Add RecipeBook</h2>
             <form className={styles.bookForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="book-name" placeholder="New Recipe Book" />
@@ -73,7 +73,7 @@ function EditBookModal({onClose, data, setData}) {
     
     return (
         <div className={`${styles.editBook} ${styles.modal}`}>
-            <h1>Edit RecipeBook</h1>
+            <h2>Edit RecipeBook</h2>
             <form className={styles.bookForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="book-name" placeholder="Recipe Book" defaultValue={recipeBook.recipeBookName} />
@@ -112,7 +112,7 @@ function AddRecipeModal({onClose, data, setData}) {
     };
     return (
         <div className={`${styles.addRecipe} ${styles.modal}`}>
-            <h1>Add Recipe</h1>
+            <h2>Add Recipe</h2>
             <form className={styles.recipeForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="recipe-name" placeholder="Recipe Name" />
@@ -155,7 +155,7 @@ function EditRecipeModal({onClose, data, setData}) {
 
     return (
         <div className={`${styles.editRecipe} ${styles.modal}`}>
-            <h1>Edit Recipe</h1>
+            <h2>Edit Recipe</h2>
             <form className={styles.bookForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="recipe-name" placeholder="Recipe Name" defaultValue={recipe.recipeName} />
@@ -197,7 +197,7 @@ function AddIngredientModal({onClose, data, setData}) {
 
     return (
         <div className={`${styles.addIngr} ${styles.modal}`}>
-            <h1>Add Ingredient</h1>
+            <h2>Add Ingredient</h2>
             <form className={styles.ingrForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="ingr-name" placeholder="New Ingredient" />
@@ -239,7 +239,7 @@ function EditIngredientModal({onClose, data, setData}) {
 
     return (
         <div className={`${styles.editIngr} ${styles.modal}`}>
-            <h1>Edit Ingredient</h1>
+            <h2>Edit Ingredient</h2>
             <form className={styles.ingrForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="ingr-name" placeholder="Ingredient" defaultValue={ingredient.ingredientName} />
@@ -278,7 +278,7 @@ function AddListModal({onClose, data, setData}) {
     };
     return (
         <div className={`${styles.addList} ${styles.modal}`}>
-            Add Shopping List
+            <h2>Add Shopping List</h2>
             <form className={styles.listForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="list-name" placeholder="List Name" />
@@ -319,7 +319,7 @@ function EditListModal({onClose, data, setData}) {
     };
     return (
         <div className={`${styles.editList} ${styles.modal}`}>
-            <h1>Edit Shopping List</h1>
+            <h2>Edit Shopping List</h2>
             <form className={styles.listForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="list-name" placeholder="List Name" defaultValue={list.listName} />

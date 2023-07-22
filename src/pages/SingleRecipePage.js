@@ -18,7 +18,7 @@ function SingleRecipePage() {
     const recipeName = recipeParams.get("name");
     const description = recipeParams.get("desc");
 
-    // useScrollIntoView("#app-nav", "start", "smooth");
+    useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     useFetch(`http://localhost:8080/api/recipes/${recipeId}/items/multiple`, 
     {setData: setItems, setErr: setError, setLoad: setIsLoading});
         

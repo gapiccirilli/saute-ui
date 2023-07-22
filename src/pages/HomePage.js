@@ -4,6 +4,7 @@ import styles from "./PageStyles/HomePage.module.css";
 import { Link } from "react-router-dom";
 import LoginPage from "./LoginPage";
 import { useState } from "react";
+import CreateUserPage from "./CreateUserPage";
 
 function HomePage() {
     const createClasses = `${styles.createBtn} button-site-theme`;
@@ -17,14 +18,23 @@ function HomePage() {
 
     const handleOpenLogin = () => {
         setStyle({...style,
-        logInStyle: {display: "flex"}});
+            logInStyle: {display: "flex"},
+            createStyle: {display: "none"}
+        });
+    };
+
+    const handleOpenCreateUser = () => {
+        setStyle({...style,
+            createStyle: {display: "flex"},
+            logInStyle: {display: "none"}
+        });
     };
 
     return (
         <div className={styles.home}>
             <nav className={styles.nav}>
                 <ul className={styles.btns}>
-                    <li><button className={createClasses}>Create Account</button></li>
+                    <li><button onClick={handleOpenCreateUser} className={createClasses}>Create Account</button></li>
                     <li><button onClick={handleOpenLogin} className={logInClasses}>Log in</button></li>
                 </ul>
             </nav>
@@ -40,6 +50,7 @@ function HomePage() {
                     </section>
                 </div>
                 <LoginPage style={logInStyle} />
+                <CreateUserPage style={createStyle} />
             </main>
             <footer className={styles.footer}>
                 <Link to="saute">GO TO APP</Link>

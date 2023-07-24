@@ -28,6 +28,11 @@
     align-items: center;
 }
 
+.headCenter h1 {
+    margin: 0;
+    font-family: var(--main-font);
+}
+
 .headRight {
     width: 33%;
     display: flex;

@@ -29,7 +29,7 @@ function RecipeRow({ recipeId, recipeName}) {
 
     return (
          <tbody className={styles.recipe}>
-            {!error && <tr><td className={styles.recTitle} colSpan="2">{recipeName}</td></tr>}
+            {!error && <tr><th className={styles.recTitle} colSpan="3">{recipeName}</th></tr>}
             {!error && items.map((item) => <tr><Item item={item} basic={true} showButtons={false} key={item.id} /></tr>)}
          </tbody>
     );

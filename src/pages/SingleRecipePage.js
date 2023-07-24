@@ -25,7 +25,7 @@ function SingleRecipePage() {
     return (
         <div className={styles.recipePage}>
             {isLoading && <Load />}
-            <header className={styles.header}>
+            {!error && <header className={styles.header}>
                 <div className={styles.headLeft}>
                     <BackButton className={styles.backBtn} />
                 </div>
@@ -34,20 +34,20 @@ function SingleRecipePage() {
                     <p className={styles.desc}>{description}</p>
                 </div>
                 <div className={styles.headRight}></div>
-            </header>
-                <table className={styles.itemTable}>
-                    <tr className={styles.tableHeader}>
-                        <th>Amount</th>
-                        <th>Measurement Type</th>
-                        <th>Ingredient</th>
-                        <th>Description</th>
-                        <th>Time</th>
-                    </tr>
-                    {items.map((item) => <tr className={styles.item}><Item item={item} key={item.id} basic={false} 
-                    showButtons={true}/></tr>)}
-                </table>
-                <button className={`${styles.addItemBtn} button-site-theme`}>Add New Item</button>
+            </header>}
+            {!error && <table className={styles.itemTable}>
+                <tr className={styles.tableHeader}>
+                    <th>Amount</th>
+                    <th>Measurement Type</th>
+                    <th>Ingredient</th>
+                    <th>Description</th>
+                    <th>Time</th>
+                </tr>
+                {items.map((item) => <tr className={styles.item}><Item item={item} key={item.id} basic={false} 
+                showButtons={true}/></tr>)}
+            </table>}
             {error && <ErrorMessage message={error}/>}
+            <button className={`${styles.addItemBtn} button-site-theme`}>Add New Item</button>
         </div>
     );
 }

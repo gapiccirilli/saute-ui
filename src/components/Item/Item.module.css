@@ -2,12 +2,24 @@
     width: 5%;
 }
 
+.basicAmount {
+    width: 15%;
+}
+
 .type {
     width: 10%;
 }
 
+.basicType {
+    width: 35%;
+}
+
 .name {
     width: 20%;
+}
+
+.basicName {
+    width: 35%;
 }
 
 .desc {

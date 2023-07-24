@@ -26,14 +26,12 @@ body {
 }
 
 .button-site-theme {
-    border: .1em solid rgb(15, 85, 51);
     border: .1em solid var(--button-site-theme);
-    background-color: var(--main-bg-color);
     background-color: var(--button-site-theme);
     color: rgb(237, 235, 235);
+    font-size: 1rem;
     border-radius: .3rem;
     padding: .5rem 1rem .5rem;
-    box-shadow: -0.1rem 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
     box-shadow: -0.1rem 0.1rem 1px 0 rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: row;
@@ -46,6 +44,7 @@ body {
     border: .1rem solid var(--button-back-color);
     background-color: var(--button-back-color);
     color: black;
+    font-size: 1rem;
     border-radius: .3rem;
     padding: .5rem 1rem .5rem;
     box-shadow: -0.1rem 0.1rem 1px 0 rgba(0, 0, 0, 0.5);
@@ -88,4 +87,9 @@ body {
     width: 23em;
     height: 11em;
     z-index: 2;
+}
+
+.errorMessage {
+    text-align: center;
+    font-family: var(--secondary-font);
 }

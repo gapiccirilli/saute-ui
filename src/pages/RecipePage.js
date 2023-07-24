@@ -52,7 +52,7 @@ function RecipePage() {
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
             <nav className={styles.gridNav}>
                 <BackButton className={styles.backBtn} />
-                {!error && !isLoading && <AddButton className="button-site-theme flex-add" onAdd={handleAddRecipe}>
+                {!isLoading && <AddButton className="button-site-theme flex-add" onAdd={handleAddRecipe}>
                     Add Recipe
                 </AddButton>}
             </nav>

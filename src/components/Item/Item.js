@@ -23,15 +23,15 @@ function Item({item, basic, showButtons}) {
 
     return (
         <Fragment>
-            <td className={`${styles.amount} ${styles.itemData}`}>
+            <td className={`${!basic ? styles.amount : styles.basicAmount} ${styles.itemData}`}>
                 {editMode ? <input className={styles.inAmt} type="number" defaultValue={amount} /> : amount}
             </td>
 
-            <td className={`${styles.type} ${styles.itemData}`}>
+            <td className={`${!basic ? styles.type : styles.basicType} ${styles.itemData}`}>
                 {editMode ? <input className={styles.inType} type="text" defaultValue={measurementType} /> : measurementType}
                 </td>
 
-            <td className={`${styles.name} ${styles.itemData}`}>
+            <td className={`${!basic ? styles.name : styles.basicName} ${styles.itemData}`}>
                 {editMode ? <select className={styles.inName}>
                     {/* placeholder until ingredient fetch is implemented */}
                     <option>{ingredientName}</option>

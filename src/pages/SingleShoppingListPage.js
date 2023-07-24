@@ -1,7 +1,7 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import ErrorMessage from "../components/Error/ErrorMessage";
 import BackButton from "../components/Buttons/BackButton";
-import styles from "./PageStyles/SingleRecipePage.module.css";
+import styles from "./PageStyles/SingleShoppingListPage.module.css";
 import ShoppingListTable from "../components/ShoppingListTable.js/ShoppingListTable";
 import Load from "../loaders/Load";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
@@ -13,9 +13,17 @@ function SingleShoppingListPage() {
 
     // useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     return (
-        <div>
-            <BackButton className={styles.backBtn} />
-            <ShoppingListTable listId={listId} listName={listName} />
+        <div className={styles.shoppingListPage}>
+            <header className={styles.header}>
+                <div className={styles.headLeft}>
+                    <BackButton className={styles.backBtn} />
+                </div>
+                <div className={styles.headCenter}>
+                    <h1>{listName}</h1>
+                </div>
+                <div className={styles.headRight}></div>
+            </header>
+            <ShoppingListTable listId={listId} />
         </div>
     );
 }

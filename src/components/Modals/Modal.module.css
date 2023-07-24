@@ -128,4 +128,5 @@
 
 .submit {
     background-color: var(--button-submit-color);
+    border: .1em solid var(--button-submit-color);
 }

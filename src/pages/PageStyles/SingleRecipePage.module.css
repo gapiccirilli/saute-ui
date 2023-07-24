@@ -57,7 +57,8 @@
 }
 
 .backBtn {
-    background-color: rgb(200, 200, 200);
+    background-color: var(--button-back-color);
+    border: .1em solid var(--button-back-color);
     color: black;
 }
 

@@ -50,10 +50,12 @@ function RecipePage() {
         <div className={styles.page}>
             {isLoading && <Load />}
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
-            {!error && !isLoading && <nav className={styles.gridNav}>
+            <nav className={styles.gridNav}>
                 <BackButton className={styles.backBtn} />
-                <AddButton className="button-site-theme flex-add" onAdd={handleAddRecipe}>Add Recipe</AddButton>
-                </nav>}
+                {!error && !isLoading && <AddButton className="button-site-theme flex-add" onAdd={handleAddRecipe}>
+                    Add Recipe
+                </AddButton>}
+            </nav>
             {!error && !isLoading && <div className={styles.gridContent}>
                 {recipes.map((recipe) => <RecipeCard recipe={recipe} key={recipe.id} onDeleteRecipe={handleRecipeDelete}
             onEditRecipe={handleEditRecipe}/>)}</div>}

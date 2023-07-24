@@ -28,15 +28,18 @@
 
 .edit {
     background-color: var(--button-edit-color);
+    border: .1em solid var(--button-edit-color);
     color: black;
 }
 
 .delete {
     background-color: var(--button-delete-color);
+    border: .1em solid var(--button-delete-color);
 }
 
 .submit {
     background-color: var(--button-submit-color);
+    border: .1em solid var(--button-submit-color);
 }
 
 .itemData {

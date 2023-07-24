@@ -27,7 +27,7 @@ function errorReducer(state, action) {
     }
 }
 
-function ShoppingListTable({ listId, listName }) {
+function ShoppingListTable({ listId }) {
     const [listItems, dispatch] = useReducer(shoppingListReducer, { recipes: [], items: [] });
     const [errors, errDispatch] = useReducer(errorReducer, { recErr: false, itemErr: false });
 

@@ -27,15 +27,17 @@ function SingleShoppingListPage() {
     // useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     return (
         <div className={styles.shoppingListPage}>
-            {!error && <header className={styles.header}>
+            <header className={styles.header}>
                 <div className={styles.headLeft}>
                     <BackButton className={styles.backBtn} />
                 </div>
-                <div className={styles.headCenter}>
+                {!error && <div className={styles.headCenter}>
                     <h1>{listName}</h1>
+                </div>}
+                <div className={styles.headRight}>
+                    <button className={`${styles.addItemBtn} button-site-theme`}>Add New Item</button>
                 </div>
-                <div className={styles.headRight}></div>
-            </header>}
+            </header>
             {!error && <table className={styles.listTable}>
                 <tbody>
                     {!error && !isLoading && 
@@ -43,7 +45,6 @@ function SingleShoppingListPage() {
                 </tbody>
             </table>}
             {error && !isLoading && <ErrorMessage message={errorStr} />}
-            <button className={`${styles.addItemBtn} button-site-theme`}>Add New Item</button>
         </div>
     );
 }

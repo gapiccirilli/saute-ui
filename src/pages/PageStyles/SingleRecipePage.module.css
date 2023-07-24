@@ -43,11 +43,15 @@
 
 .headRight {
     width: 33%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .itemTable {
     table-layout: fixed;
-    width: 60%;
+    width: 70%;
 }
 
 .tableHeader th{
@@ -60,4 +64,11 @@
     background-color: var(--button-back-color);
     border: .1em solid var(--button-back-color);
     color: black;
+}
+
+.addStyles {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

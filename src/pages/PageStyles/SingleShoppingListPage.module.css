@@ -50,3 +50,9 @@
     width: 60%;
     /* border: .1em solid black; */
 }
+
+.backBtn {
+    background-color: var(--button-back-color);
+    border: .1em solid var(--button-back-color);
+    color: black;
+}

@@ -7,13 +7,16 @@ import styles from "./PageStyles/SingleRecipePage.module.css";
 import { useFetch } from "../hooks/useFetch";
 import Load from "../loaders/Load";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
+import CloseButton from "../components/Buttons/CloseButton";
 
 function SingleRecipePage() {
     const { recipeId } = useParams();
     const [recipeParams, setRecipeParams] = useSearchParams();
+
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
+    const [showAddItem, setShowAddItem] = useState(false);
 
     const recipeName = recipeParams.get("name");
     const description = recipeParams.get("desc");
@@ -21,20 +24,26 @@ function SingleRecipePage() {
     // useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     useFetch(`http://localhost:8080/api/recipes/${recipeId}/items/multiple`, 
     {setData: setItems, setErr: setError, setLoad: setIsLoading});
+
+    const handleOpenAddItem = () => {
+        setShowAddItem(true);
+    };
         
     return (
         <div className={styles.recipePage}>
             {isLoading && <Load />}
-            {!error && <header className={styles.header}>
+            <header className={styles.header}>
                 <div className={styles.headLeft}>
                     <BackButton className={styles.backBtn} />
                 </div>
-                <div className={styles.headCenter}>
+                {!error && <div className={styles.headCenter}>
                     <h1 className={styles.heading}>{recipeName}</h1>
                     <p className={styles.desc}>{description}</p>
+                </div>}
+                <div className={styles.headRight}>
+                    <button className={`${styles.addItemBtn} button-site-theme`} onClick={handleOpenAddItem}>Add New Item</button>
                 </div>
-                <div className={styles.headRight}></div>
-            </header>}
+            </header>
             {!error && <table className={styles.itemTable}>
                 <tr className={styles.tableHeader}>
                     <th>Amount</th>
@@ -47,7 +56,6 @@ function SingleRecipePage() {
                 showButtons={true}/></tr>)}
             </table>}
             {error && <ErrorMessage message={error}/>}
-            <button className={`${styles.addItemBtn} button-site-theme`}>Add New Item</button>
         </div>
     );
 }

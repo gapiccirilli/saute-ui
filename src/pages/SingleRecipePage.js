@@ -8,6 +8,7 @@ import { useFetch } from "../hooks/useFetch";
 import Load from "../loaders/Load";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
 import CloseButton from "../components/Buttons/CloseButton";
+import DynamicForm from "../components/DynamicForm/DynamicForm";
 
 function SingleRecipePage() {
     const { recipeId } = useParams();
@@ -55,6 +56,16 @@ function SingleRecipePage() {
                 {items.map((item) => <tr className={styles.item}><Item item={item} key={item.id} basic={false} 
                 showButtons={true}/></tr>)}
             </table>}
+            {showAddItem && <DynamicForm formData={{
+                amount: "1",
+                type: "",
+                ingredient: "",
+                description: "",
+                hour: "0",
+                minute: "0",
+                second: "0"
+            }} setShowForm={setShowAddItem}/>}
+            {!showAddItem && <button className="button-site-theme" onClick={() => setShowAddItem(true)}>Add Items</button>}
             {error && <ErrorMessage message={error}/>}
         </div>
     );

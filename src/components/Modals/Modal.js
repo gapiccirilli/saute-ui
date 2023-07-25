@@ -23,6 +23,7 @@ function AddBookModal({onClose, data, setData}) {
 
         if (response.id) {
             setBooks([...recipeBooks, response]);
+            setErr("");
         } else {
             setErr(response);
         }
@@ -105,6 +106,7 @@ function AddRecipeModal({onClose, data, setData}) {
 
         if (response.id) {
             setRecs([...recipes, response]);
+            setErr("");
         } else {
             setErr(response);
         }
@@ -188,6 +190,7 @@ function AddIngredientModal({onClose, data, setData}) {
 
         if (response.id) {
             setIng([...ingredients, response]);
+            setErr("");
         } else {
             setErr(response);
         }
@@ -270,6 +273,7 @@ function AddListModal({onClose, data, setData}) {
 
         if (response.id) {
             setLists([...lists, response]);
+            setErr("");
         } else {
             setErr(response);
         }

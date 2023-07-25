@@ -108,3 +108,7 @@
     padding-bottom: .3em;
     font-family: var(--main-font);
 }
+
+.tableForm {
+    display: none;
+}

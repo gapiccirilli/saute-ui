@@ -63,7 +63,7 @@ function SingleShoppingListPage() {
             </table>}
             {error && <ErrorMessage message={error}/>}
 
-            {showAddItem && <DynamicForm ingredients={ingredientState} setShowForm={setShowAddItem}
+            {showAddItem && <DynamicForm basic={true} ingredients={ingredientState} setShowForm={setShowAddItem}
            setData={{setData: setItems, setErr: setError, setDataAndError: setItemsAndError, data: items}}
            resourceData={{
                     type: "POST",

@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./DynamicForm.module.css";
 import { fetchData } from "../../hooks/fetch";
 
-function DynamicForm({ingredients, setShowForm, setData, resourceData}) {
+function DynamicForm({basic, ingredients, setShowForm, setData, resourceData}) {
     const formData = {
         id: 1,
         ingredientId: 12,
@@ -39,6 +39,7 @@ function DynamicForm({ingredients, setShowForm, setData, resourceData}) {
         } else {
             setData.setErr(response.message)
         }
+        setShowForm(false);
     };
 
     const handleAddForm = () => {
@@ -80,18 +81,18 @@ function DynamicForm({ingredients, setShowForm, setData, resourceData}) {
                                 </option>)}
                             </select>
                             </div>
-                            <div className={styles.desc}>
+                            {!basic && <div className={styles.desc}>
                                 <input type="text" name="description" 
                                 onChange={event => handleFormChange(event, index)} value={form.description} placeholder="Description" />
-                            </div>
-                            <div className={styles.time}>
+                            </div>}
+                            {!basic && <div className={styles.time}>
                                 <input type="number" name="hours" 
                                 onChange={event => handleFormChange(event, index)} value={form.hours} min="0" /> hrs 
                                 <input type="number" name="minutes" 
                                 onChange={event => handleFormChange(event, index)} value={form.minutes} min="0" /> mins 
                                 <input type="number" name="seconds" 
                                 onChange={event => handleFormChange(event, index)} value={form.seconds} min="0" /> secs 
-                            </div>
+                            </div>}
                         </div>)
             })}
             <div className={styles.btns}>

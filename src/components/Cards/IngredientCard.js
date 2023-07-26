@@ -35,7 +35,7 @@ function IngredientCard({ ingredient, onDeleteIngredient, onEditIngredient }) {
             </div>
             <div className={styles.cardDesc}>
                 <p className={styles.name}>{ingredientName}</p>
-                <p className={styles.recipeNums}>{numberOfRecipes}</p>
+                <p className={styles.recipeNums}>Recipes: {numberOfRecipes}</p>
             </div>
         </Card>
     );

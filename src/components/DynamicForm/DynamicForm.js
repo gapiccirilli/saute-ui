@@ -32,8 +32,12 @@ function DynamicForm({ingredients, setShowForm, setData, resourceData}) {
             resourceData["payload"] = formFields;
         }
         const response = await fetchData(resourceData);
-        if (response.id !== undefined) {
-            setData.setData([...setData.data, response], "");
+        if (response.length > 1) {
+            setData.setDataAndError([...setData.data, ...response]);
+        } else if (response.length === undefined) {
+            setData.setDataAndError([...setData.data, response], null);
+        } else {
+            setData.setErr(response.message)
         }
     };
 

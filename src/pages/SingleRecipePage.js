@@ -64,12 +64,13 @@ function SingleRecipePage() {
                     <th>Time</th>
                 </tr>
                 {items.map((item) => <tr className={styles.item}><Item item={item} items={items} key={item.id} basic={false} 
-                showButtons={true} setters={{setLoad: setIsLoading, setData: setItemsAndError}} ingredients={ingredientState} /></tr>)}
+                showButtons={true} setters={{setLoad: setIsLoading, setData: setItems, setDataAndError: setItemsAndError}} 
+                ingredients={ingredientState} /></tr>)}
             </table>}
             {error && <ErrorMessage message={error}/>}
 
             {showAddItem && <DynamicForm ingredients={ingredientState} setShowForm={setShowAddItem}
-           setData={{setData: setItemsAndError, data: items}}
+           setData={{setData: setItems, setErr: setError, setDataAndError: setItemsAndError, data: items}}
            resourceData={{
                     type: "POST",
                     url: [`http://localhost:8080/api/recipes/${recipeId}/items`,

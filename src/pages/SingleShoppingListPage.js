@@ -7,6 +7,9 @@ import Load from "../loaders/Load";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
 import { useState } from "react";
 import { useFetch} from "../hooks/useFetch";
+import { useItems } from "../hooks/useItems";
+import { useIngredients } from "../hooks/useIngredients";
+import DynamicForm from "../components/DynamicForm/DynamicForm";
  
 function SingleShoppingListPage() {
     const { listId } = useParams();
@@ -14,8 +17,16 @@ function SingleShoppingListPage() {
     const listName = listParams.get("name");
     const errorStr = "No Items Found"
 
-    const [items, setItems] = useState([]);
-    const [error, setError] = useState("");
+    const {itemState, setters} = useItems();
+    const {items, error} = itemState;
+    const {setItems, setError, setItemsAndError} = setters;
+
+    const {ingredientState, dispatchers} = useIngredients();
+
+    const [showAddItem, setShowAddItem] = useState(false);
+
+    // const [items, setItems] = useState([]);
+    // const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState("");
     useFetch(`http://localhost:8080/api/shopping-lists/${listId}/items/multiple`,
     {
@@ -24,6 +35,9 @@ function SingleShoppingListPage() {
         setLoad: setIsLoading
     });
 
+    useFetch("http://localhost:8080/api/ingredients", 
+    {setData: dispatchers.setIngredients, setErr: dispatchers.setError, setLoad: setIsLoading});
+
     // useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     return (
         <div className={styles.shoppingListPage}>
@@ -31,20 +45,32 @@ function SingleShoppingListPage() {
                 <div className={styles.headLeft}>
                     <BackButton className={styles.backBtn} />
                 </div>
-                {!error && <div className={styles.headCenter}>
+                <div className={styles.headCenter}>
                     <h1>{listName}</h1>
-                </div>}
+                </div>
                 <div className={styles.headRight}>
-                    <button className={`${styles.addItemBtn} button-site-theme`}>Add New Item</button>
+                    <button className={`${styles.addItemBtn} button-site-theme`} 
+                    onClick={() => setShowAddItem(true)}>Add New Items</button>
                 </div>
             </header>
             {!error && <table className={styles.listTable}>
-                <tbody>
-                    {!error && !isLoading && 
-                    items.map((item) => <tr><Item item={item} basic={true} showButtons={true} /></tr>)}
+                <tbody> 
+                    {items.map((item) => <tr><Item item={item} items={items} key={item.id} basic={true} showButtons={true} 
+                    setters={{setLoad: setIsLoading, setData: setItems, setDataAndError: setItemsAndError}} 
+                    ingredients={ingredientState} /></tr>)}
                 </tbody>
             </table>}
-            {error && !isLoading && <ErrorMessage message={errorStr} />}
+            {error && <ErrorMessage message={error}/>}
+
+            {showAddItem && <DynamicForm ingredients={ingredientState} setShowForm={setShowAddItem}
+           setData={{setData: setItems, setErr: setError, setDataAndError: setItemsAndError, data: items}}
+           resourceData={{
+                    type: "POST",
+                    url: [`http://localhost:8080/api/shopping-lists/${listId}/items`,
+                          `http://localhost:8080/api/shopping-lists/${listId}/items/multiple`],
+                    payload: [],
+                    setIsLoading: setIsLoading
+                }} />}
         </div>
     );
 }

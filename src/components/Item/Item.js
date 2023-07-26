@@ -28,9 +28,11 @@ function Item({item, items, basic, showButtons, setters, ingredients}) {
             url: `http://localhost:8080/api/items/${id}`,
             setIsLoading: setters.setLoad
         });
-        if (items > 1) {
-            setters.setData(items.filter(item => item.id !== id), "");
-        } else setters.setData(items.filter(item => item.id !== id), "No items found");
+        if (items.length > 1) {
+            setters.setData(items.filter(item => item.id !== id));
+        } else {
+            setters.setDataAndError(items.filter(item => item.id !== id), "No items found");
+        }
     };
 
     const onSubmit = async (e) => {

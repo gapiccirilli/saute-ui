@@ -43,12 +43,12 @@ function Item({item, items, basic, showButtons, setters, ingredients}) {
             payload: {id: id,
                  ingredientName: "",
                  ingredientId: ingrNameInput.current.value,
-                 description: descInput.current.value,
+                 description: basic ? "" : descInput.current.value,
                  amount: amtInput.current.value,
                  measurementType: typeInput.current.value,
-                 hours: hrInput.current.value,
-                 minutes: minInput.current.value,
-                 seconds: secInput.current.value},
+                 hours: basic ? 0 : hrInput.current.value,
+                 minutes: basic ? 0 : minInput.current.value,
+                 seconds: basic ? 0 : secInput.current.value},
             setIsLoading: setters.setLoad
         });
         setters.setData([...items.filter(item => item.id !== id), response]);

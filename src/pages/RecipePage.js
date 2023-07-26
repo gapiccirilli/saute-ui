@@ -10,11 +10,13 @@ import Modal from "../components/Modals/Modal";
 import Load from "../loaders/Load";
 import { useFetch } from "../hooks/useFetch";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
+import { useRecipes } from "../hooks/useRecipes";
 
 function RecipePage() {
     const { bookId } = useParams();
-    const [recipes, setRecipes] = useState([]);
-    const [error, setError] = useState("");
+    const {recipeState, dispatchers} = useRecipes();
+    const {recipes, error} = recipeState;
+    const {setRecipes, setError, setRecipesAndError} = dispatchers;
     const [isLoading, setIsLoading] = useState(false);
     const [modalState, dispatch] = useModal();
 
@@ -31,9 +33,7 @@ function RecipePage() {
     };
 
     const handleRecipeDelete = (recipeId) => {
-        setRecipes((prev) => {
-            return prev.filter((recipe) => recipe.id !== recipeId);
-        });
+        setRecipes(recipes.filter((recipe) => recipe.id !== recipeId));
     };
 
     const handleCloseModal = () => {

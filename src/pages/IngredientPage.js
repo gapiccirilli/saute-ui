@@ -8,10 +8,12 @@ import { useModal } from "../hooks/useModal";
 import Load from "../loaders/Load";
 import { useFetch } from "../hooks/useFetch";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
+import { useIngredients } from "../hooks/useIngredients";
 
 function IngredientPage() {
-    const [ingredients, setIngredients] = useState([]);
-    const [error, setError] = useState("");
+    const {ingredientState, dispatchers} = useIngredients();
+    const {ingredients, error} = ingredientState;
+    const {setIngredients, setError, setIngredientsAndError} = dispatchers;
     const [isLoading, setIsLoading] = useState(false);
     const [modalState, dispatch] = useModal();
 
@@ -27,9 +29,7 @@ function IngredientPage() {
     };
 
     const handleIngredientDelete = (ingredientId) => {
-        setIngredients((prev) => {
-            return prev.filter((ingredient) => ingredient.id !== ingredientId);
-        });
+        setIngredients(ingredients.filter((ingredient) => ingredient.id !== ingredientId));
     };
 
     const handleCloseModal = () => {

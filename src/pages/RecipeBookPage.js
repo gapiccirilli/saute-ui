@@ -10,10 +10,12 @@ import { useFetch } from "../hooks/useFetch";
 
 import { testRecipeBooks } from "../test-data/Data";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
+import { useRecipeBooks } from "../hooks/useRecipeBooks";
 
 function RecipeBookPage() {
-    const [recipeBooks, setRecipeBooks] = useState([]);
-    const [error, setError] = useState("");
+    const {bookState, dispatchers} = useRecipeBooks();
+    const {recipeBooks, error} = bookState;
+    const {setRecipeBooks, setError, setRecipeBooksAndError} = dispatchers;
     const [modalState, dispatch] = useModal();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -29,9 +31,7 @@ function RecipeBookPage() {
     };
 
     const handleBookDelete = (bookId) => {
-        setRecipeBooks((prev) => {
-            return prev.filter((book) => book.id !== bookId);
-        });
+        setRecipeBooks(recipeBooks.filter((book) => book.id !== bookId));
     };
 
     const handleCloseModal = () => {

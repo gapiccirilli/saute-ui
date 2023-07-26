@@ -2,7 +2,18 @@ import { useState } from "react";
 import styles from "./DynamicForm.module.css";
 import { fetchData } from "../../hooks/fetch";
 
-function DynamicForm({formData, setShowForm, setData, resourceData}) {
+function DynamicForm({ingredients, setShowForm, setData, resourceData}) {
+    const formData = {
+        id: 1,
+        ingredientId: 12,
+        ingredientName: "",
+        description: "",
+        amount: 1,
+        measurementType: "",
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+};
     const [formFields, setFormFields] = useState([formData]);
 
     const handleFormChange = (event, index) => {
@@ -57,9 +68,13 @@ function DynamicForm({formData, setShowForm, setData, resourceData}) {
                                 onChange={event => handleFormChange(event, index)} value={form.measurementType} 
                                 placeholder="Measurement Type" />
                             </div>
-                            <div className={styles.ingredient}><select name="ingredientName" 
-                            onChange={event => handleFormChange(event, index)} value={form.ingredientName}>
-                                <option>Tomato</option></select>
+                            <div className={styles.ingredient}><select name="ingredientId" 
+                            onChange={event => handleFormChange(event, index)} value={form.ingredientId}>
+                                {ingredients.ingredients.map((ingredient) => 
+                                <option value={ingredient.id}>
+                                    {ingredient.ingredientName}
+                                </option>)}
+                            </select>
                             </div>
                             <div className={styles.desc}>
                                 <input type="text" name="description" 

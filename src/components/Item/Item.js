@@ -5,8 +5,8 @@ import EditButton from "../Buttons/EditButton";
 import CloseButton from "../Buttons/CloseButton";
 import { fetchData } from "../../hooks/fetch";
 
-function Item({item, items, basic, showButtons, setters}) {
-    const {id, ingredientName, description, amount, measurementType, hours, minutes, seconds} = item;
+function Item({item, items, basic, showButtons, setters, ingredients}) {
+    const {id, ingredientId, ingredientName, description, amount, measurementType, hours, minutes, seconds} = item;
     const [editMode, setEditMode] = useState(false);
 
     const amtInput = useRef(null);
@@ -34,13 +34,13 @@ function Item({item, items, basic, showButtons, setters}) {
     };
 
     const onSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const response = await fetchData({
             type: "PUT",
             url: `http://localhost:8080/api/items/${id}`,
             payload: {id: id,
-                 ingredientName: ingrNameInput.current.value,
-                 ingredientId: 12,
+                 ingredientName: "",
+                 ingredientId: ingrNameInput.current.value,
                  description: descInput.current.value,
                  amount: amtInput.current.value,
                  measurementType: typeInput.current.value,
@@ -72,8 +72,10 @@ function Item({item, items, basic, showButtons, setters}) {
 
             <td className={`${!basic ? styles.name : styles.basicName} ${styles.itemData}`}>
                 {editMode ? <select className={styles.inName} name="name" ref={ingrNameInput}>
-                    {/* placeholder until ingredient fetch is implemented */}
-                    <option>{ingredientName}</option>
+                    {ingredients.ingredients.map((ingredient) => 
+                    <option value={ingredient.id} selected={ingredient.id == ingredientId ? true : false}>
+                        {ingredient.ingredientName}
+                    </option>)}
                 </select> : ingredientName}
                 </td>
 

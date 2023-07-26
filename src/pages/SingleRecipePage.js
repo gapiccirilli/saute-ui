@@ -9,6 +9,7 @@ import Load from "../loaders/Load";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
 import CloseButton from "../components/Buttons/CloseButton";
 import DynamicForm from "../components/DynamicForm/DynamicForm";
+import { useIngredients } from "../hooks/useIngredients";
 import { useItems } from "../hooks/useItems";
 
 function SingleRecipePage() {
@@ -21,6 +22,10 @@ function SingleRecipePage() {
     const {items, error} = itemState;
     const {setItems, setError, setItemsAndError} = setters;
 
+    const {ingredientState, dispatchers} = useIngredients();
+    // const {ingredients, error} = ingredientState;
+    // const {setIngredients, setError, setIngredientsAndError} = dispatchers;
+
     const [isLoading, setIsLoading] = useState(false);
     const [showAddItem, setShowAddItem] = useState(false);
 
@@ -30,6 +35,9 @@ function SingleRecipePage() {
     // useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     useFetch(`http://localhost:8080/api/recipes/${recipeId}/items/multiple`, 
     {setData: setItems, setErr: setError, setLoad: setIsLoading});
+
+    useFetch("http://localhost:8080/api/ingredients", 
+    {setData: dispatchers.setIngredients, setErr: dispatchers.setError, setLoad: setIsLoading});
         
     return (
         <div className={styles.recipePage}>
@@ -56,25 +64,13 @@ function SingleRecipePage() {
                     <th>Time</th>
                 </tr>
                 {items.map((item) => <tr className={styles.item}><Item item={item} items={items} key={item.id} basic={false} 
-                showButtons={true} setters={{setLoad: setIsLoading, setData: setItemsAndError}} /></tr>)}
+                showButtons={true} setters={{setLoad: setIsLoading, setData: setItemsAndError}} ingredients={ingredientState} /></tr>)}
             </table>}
             {error && <ErrorMessage message={error}/>}
-            {showAddItem && <DynamicForm formData={{
-                id: 1,
-                ingredientId: 12,
-                ingredientName: "",
-                description: "",
-                amount: 1,
-                measurementType: "",
-                hours: 0,
-                minutes: 0,
-                seconds: 0
-        }} setShowForm={setShowAddItem}
-           setData={{
-            setData: setItemsAndError,
-            data: items
-           }}
-               resourceData={{
+
+            {showAddItem && <DynamicForm ingredients={ingredientState} setShowForm={setShowAddItem}
+           setData={{setData: setItemsAndError, data: items}}
+           resourceData={{
                     type: "POST",
                     url: [`http://localhost:8080/api/recipes/${recipeId}/items`,
                           `http://localhost:8080/api/recipes/${recipeId}/items/multiple`],

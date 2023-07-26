@@ -55,7 +55,7 @@ function SingleRecipePage() {
                     onClick={() => setShowAddItem(true)}>Add New Items</button>
                 </div>
             </header>
-            {!error && <table className={styles.itemTable}>
+            {!error && !isLoading && <table className={styles.itemTable}>
                 <tr className={styles.tableHeader}>
                     <th>Amount</th>
                     <th>Measurement Type</th>

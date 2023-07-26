@@ -41,7 +41,8 @@ function SingleShoppingListPage() {
     // useScrollIntoView("#app-nav", {block: "start", behavior: "smooth"});
     return (
         <div className={styles.shoppingListPage}>
-            <header className={styles.header}>
+            {isLoading && <Load />}
+            {!isLoading && <header className={styles.header}>
                 <div className={styles.headLeft}>
                     <BackButton className={styles.backBtn} />
                 </div>
@@ -52,8 +53,8 @@ function SingleShoppingListPage() {
                     <button className={`${styles.addItemBtn} button-site-theme`} 
                     onClick={() => setShowAddItem(true)}>Add New Items</button>
                 </div>
-            </header>
-            {!error && <table className={styles.listTable}>
+            </header>}
+            {!error && !isLoading && <table className={styles.listTable}>
                 <tbody> 
                     {items.map((item) => <tr><Item item={item} items={items} key={item.id} basic={true} showButtons={true} 
                     setters={{setLoad: setIsLoading, setData: setItems, setDataAndError: setItemsAndError}} 

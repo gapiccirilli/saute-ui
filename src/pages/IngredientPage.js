@@ -29,7 +29,11 @@ function IngredientPage() {
     };
 
     const handleIngredientDelete = (ingredientId) => {
-        setIngredients(ingredients.filter((ingredient) => ingredient.id !== ingredientId));
+        if (ingredients.length === 1) {
+            setIngredientsAndError(ingredients.filter((ingredient) => ingredient.id !== ingredientId), "No ingredients found");
+        } else {
+            setIngredients(ingredients.filter((ingredient) => ingredient.id !== ingredientId));
+        }
     };
 
     const handleCloseModal = () => {
@@ -39,7 +43,8 @@ function IngredientPage() {
     const setters = {
         setIng: setIngredients,
         setLoad: setIsLoading,
-        setErr: setError
+        setErr: setError,
+        setIngrAndErr: setIngredientsAndError
     };
 
     return (

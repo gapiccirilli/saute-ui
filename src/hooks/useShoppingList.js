@@ -1,63 +1,43 @@
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 
-function shoppingListReducer(state, action) {
-
-    switch (action.type) {
-        case "setRecipes":
-            return {...state, recipes: action.payload};
-        case "setItems":
-            return {...state, items: action.payload};
-        case "setRecErr":
-            return {...state, recErr: action.payload};
-        case "setItemErr":
-            return {...state, itemErr: action.payload};
+function reducer(state, action) {
+    switch(action.type) {
+        case "setShoppingLists":
+            return {...state, shoppingLists: action.payload};
+        case "setError":
+            return {...state, error: action.payload};
+        case "setBoth":
+            return {...state, shoppingLists: action.payload.shoppingLists, error: action.payload.err};
         default:
-            break;
+            throw new Error(`Action "${action.type}" is unknown`);
     }
 }
 
-export function useShoppingList(urls) {
-    const [listItems, dispatch] = useReducer(shoppingListReducer, { recipes: [], items: [], recErr: false, itemErr: false });
+export function useShoppingList() {
+    const initialState = {
+        shoppingLists: [],
+        error: ""
+    };
+    const [shoppingListState, dispatch] = useReducer(reducer, initialState);
 
-    useEffect(() => {
-        async function getRecipes() {
-            try {
-                const response = await fetch(urls.getRecipes);
+    function setLists(lists) {
+        dispatch({type: "setShoppingLists", payload: lists});
+    }
 
-                if (!response.ok) {
-                    const errorMessage = await response.json();
-                    throw new Error(errorMessage.message);
-                }
+    function setErr(error) {
+        dispatch({type: "setError", payload: error});
+    }
 
-                const recipeData = await response.json(); 
-                dispatch({ type: "setRecipes", payload: recipeData });
-            } catch(err) {
-                console.log(err.message);
-                dispatch({ type: "setRecErr", payload: true});
-            }
+    function setBoth(lists, error) {
+        dispatch({type: "setBoth", payload: {shoppingLists: lists, err: error}});
+    }
+
+    return {
+        shoppingListState,
+        dispatchers: {
+            setShoppingLists: setLists,
+            setError: setErr,
+            setShoppingListsAndError: setBoth
         }
-        getRecipes();
-
-        async function getItems() {
-            try {
-                const response = await fetch(urls.getItems);
-                
-                if (!response.ok) {
-                    const errorMessage = await response.json();
-                    throw new Error(errorMessage.message);
-                }
-                
-                const itemData = await response.json();
-                dispatch({ type: "setItems", payload: itemData });
-            } catch(err) {
-                console.log(err.message);
-                dispatch({ type: "setItemErr", payload: true});
-            }
-        }
-        getItems();
-
-        
-    }, [urls]);
-
-    return [listItems, dispatch];
+    };
 }

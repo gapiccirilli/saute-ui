@@ -14,9 +14,11 @@ import { useRecipes } from "../hooks/useRecipes";
 
 function RecipePage() {
     const { bookId } = useParams();
+
     const {recipeState, dispatchers} = useRecipes();
     const {recipes, error} = recipeState;
     const {setRecipes, setError, setRecipesAndError} = dispatchers;
+    
     const [isLoading, setIsLoading] = useState(false);
     const [modalState, dispatch] = useModal();
 
@@ -33,7 +35,11 @@ function RecipePage() {
     };
 
     const handleRecipeDelete = (recipeId) => {
-        setRecipes(recipes.filter((recipe) => recipe.id !== recipeId));
+        if (recipes.length === 1) {
+            setRecipesAndError(recipes.filter((recipe) => recipe.id !== recipeId), "No recipes found");
+        } else {
+            setRecipes(recipes.filter((recipe) => recipe.id !== recipeId));
+        }
     };
 
     const handleCloseModal = () => {
@@ -43,7 +49,8 @@ function RecipePage() {
     const setters = {
         setRecs: setRecipes,
         setLoad: setIsLoading,
-        setErr: setError
+        setErr: setError,
+        setRecsAndErr: setRecipesAndError
     };
     
     return (

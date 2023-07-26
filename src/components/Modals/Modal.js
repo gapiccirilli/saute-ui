@@ -1,14 +1,12 @@
-import { useRef, useState } from "react";
 import { fetchData } from "../../hooks/fetch";
 import CloseButton from "../Buttons/CloseButton";
-import SubmitButton from "../Buttons/SubmitButton";
 import styles from "./Modal.module.css";
 import { createPortal } from "react-dom";
 import { useParams } from "react-router-dom";
 
 function AddBookModal({onClose, data, setData}) {
     const {recipeBooks} = data;
-    const {setBooks, setLoad, setErr} = setData;
+    const {setBooks, setLoad, setErr, setBooksAndErr} = setData;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,8 +20,9 @@ function AddBookModal({onClose, data, setData}) {
         });
 
         if (response.id) {
-            setBooks([...recipeBooks, response]);
-            setErr("");
+            // setBooks([...recipeBooks, response]);
+            // setErr("");
+            setBooksAndErr([...recipeBooks, response], null);
         } else {
             setErr(response);
         }
@@ -91,7 +90,7 @@ function EditBookModal({onClose, data, setData}) {
 function AddRecipeModal({onClose, data, setData}) {
     const { bookId } = useParams();
     const {recipes} = data;
-    const {setRecs, setLoad, setErr} = setData;
+    const {setRecs, setLoad, setErr, setRecsAndErr} = setData;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -105,8 +104,9 @@ function AddRecipeModal({onClose, data, setData}) {
         });
 
         if (response.id) {
-            setRecs([...recipes, response]);
-            setErr("");
+            // setRecs([...recipes, response]);
+            // setErr("");
+            setRecsAndErr([...recipes, response], null);
         } else {
             setErr(response);
         }
@@ -174,7 +174,7 @@ function EditRecipeModal({onClose, data, setData}) {
 
 function AddIngredientModal({onClose, data, setData}) {
     const {ingredients} = data;
-    const {setIng, setLoad, setErr} = setData;
+    const {setIng, setLoad, setErr, setIngrAndErr} = setData;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -189,8 +189,9 @@ function AddIngredientModal({onClose, data, setData}) {
         });
 
         if (response.id) {
-            setIng([...ingredients, response]);
-            setErr("");
+            // setIng([...ingredients, response]);
+            // setErr("");
+            setIngrAndErr([...ingredients, response], null);
         } else {
             setErr(response);
         }
@@ -258,7 +259,7 @@ function EditIngredientModal({onClose, data, setData}) {
 
 function AddListModal({onClose, data, setData}) {
     const {lists} = data;
-    const {setLists, setLoad, setErr} = setData;
+    const {setLists, setLoad, setErr, setListsAndErr} = setData;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -272,8 +273,9 @@ function AddListModal({onClose, data, setData}) {
         });
 
         if (response.id) {
-            setLists([...lists, response]);
-            setErr("");
+            // setLists([...lists, response]);
+            // setErr("");
+            setListsAndErr([...lists, response], null);
         } else {
             setErr(response);
         }

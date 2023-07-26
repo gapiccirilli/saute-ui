@@ -31,7 +31,11 @@ function RecipeBookPage() {
     };
 
     const handleBookDelete = (bookId) => {
-        setRecipeBooks(recipeBooks.filter((book) => book.id !== bookId));
+        if (recipeBooks.length === 1) {
+            setRecipeBooksAndError(recipeBooks.filter((book) => book.id !== bookId), "No recipe books found");
+        } else {
+            setRecipeBooks(recipeBooks.filter((book) => book.id !== bookId));
+        }
     };
 
     const handleCloseModal = () => {
@@ -41,7 +45,8 @@ function RecipeBookPage() {
     const setters = {
         setBooks: setRecipeBooks,
         setLoad: setIsLoading,
-        setErr: setError
+        setErr: setError,
+        setBooksAndErr: setRecipeBooksAndError
     };
 
     return (

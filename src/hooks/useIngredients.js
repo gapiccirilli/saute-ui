@@ -29,7 +29,7 @@ export function useIngredients() {
     }
 
     function setBoth(ingredients, error) {
-        dispatch({type: "setBoth", payload: {ingredient: ingredients, err: error}});
+        dispatch({type: "setBoth", payload: {ingredients: ingredients, err: error}});
     }
 
     return {

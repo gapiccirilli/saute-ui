@@ -14,6 +14,7 @@ function IngredientPage() {
     const {ingredientState, dispatchers} = useIngredients();
     const {ingredients, error} = ingredientState;
     const {setIngredients, setError, setIngredientsAndError} = dispatchers;
+    
     const [isLoading, setIsLoading] = useState(false);
     const [modalState, dispatch] = useModal();
 

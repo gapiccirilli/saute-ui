@@ -8,6 +8,16 @@
     gap: 1.5rem;
 }
 
+.formBasic {
+    width: 61%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--main-font);
+    gap: 1.5rem;
+}
+
 .formInstance {
     width: 100%;
     display: flex;
@@ -16,12 +26,25 @@
     align-items: center;
 }
 
+
 .amt {
     width: 16%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.amtBasic {
+    width: 16%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.amtBasic input {
+    width: 20%;
 }
 
 .amt input {
@@ -37,6 +60,18 @@
     align-items: center;
 }
 
+.typeBasic {
+    width: 33%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.typeBasic input {
+    width: 90%
+}
+
 .type input {
     width: 90%;
     font-family: var(--main-font);
@@ -50,7 +85,19 @@
     align-items: center;
 }
 
-ingredient input {
+.ingredientBasic {
+    width: 33%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.ingredientBasic select {
+    width: 85%;
+}
+
+.ingredient input {
     font-family: var(--main-font);
 }
 

@@ -61,19 +61,19 @@ function DynamicForm({basic, ingredients, setShowForm, setData, resourceData}) {
     };
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={basic ? styles.formBasic : styles.form} onSubmit={handleSubmit}>
             {formFields.map((form, index) => {
                 return (<div className={styles.formInstance} key={index}>
-                            <div className={styles.amt}>
+                            <div className={basic ? styles.amtBasic : styles.amt}>
                                 <input type="number" name="amount" 
                                 onChange={event => handleFormChange(event, index)} value={form.amount} min="1" />
                             </div>
-                            <div className={styles.type}>
+                            <div className={basic ? styles.typeBasic : styles.type}>
                                 <input type="text" name="measurementType" 
                                 onChange={event => handleFormChange(event, index)} value={form.measurementType} 
                                 placeholder="Measurement Type" />
                             </div>
-                            <div className={styles.ingredient}><select name="ingredientId" 
+                            <div className={basic ? styles.ingredientBasic : styles.ingredient}><select name="ingredientId" 
                             onChange={event => handleFormChange(event, index)} value={form.ingredientId}>
                                 {ingredients.ingredients.map((ingredient) => 
                                 <option value={ingredient.id}>

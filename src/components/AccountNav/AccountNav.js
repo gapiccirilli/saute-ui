@@ -4,7 +4,7 @@ import LogoutButton from "../Buttons/LogoutButton";
 import profile from "../../assets/profile-pic.jpg";
 import Logo from "../Logo/Logo";
 import SearchBar from "../SearchBar.js/SearchBar";
-
+import DropDown from "../SearchBar.js/DropDown";
 
 function AccountNav() {
     return (

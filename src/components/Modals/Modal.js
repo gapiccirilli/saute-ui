@@ -1,12 +1,15 @@
+import { useRef, useState } from "react";
 import { fetchData } from "../../hooks/fetch";
 import CloseButton from "../Buttons/CloseButton";
 import styles from "./Modal.module.css";
 import { createPortal } from "react-dom";
 import { useParams } from "react-router-dom";
+import ModalError from "../Error/ModalError";
 
 function AddBookModal({onClose, data, setData}) {
     const {recipeBooks} = data;
     const {setBooks, setLoad, setErr, setBooksAndErr} = setData;
+    const modalError = useRef("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,10 +26,14 @@ function AddBookModal({onClose, data, setData}) {
             // setBooks([...recipeBooks, response]);
             // setErr("");
             setBooksAndErr([...recipeBooks, response], null);
+            modalError.current = "";
         } else {
-            setErr(response);
+            modalError.current = response.message;
         }
-        onClose();
+
+        if (modalError.current === "") {
+            onClose();
+        }
     };
 
     return (
@@ -35,6 +42,7 @@ function AddBookModal({onClose, data, setData}) {
             <form className={styles.bookForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="book-name" placeholder="New Recipe Book" />
+                    {modalError.current && <ModalError message={modalError.current} />}
                 </div>
                 <div>
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
@@ -48,6 +56,7 @@ function AddBookModal({onClose, data, setData}) {
 function EditBookModal({onClose, data, setData}) {
     const {recipeBooks, recipeBook} = data;
     const {setBooks, setLoad, setErr} = setData;
+    const modalError = useRef("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -64,11 +73,14 @@ function EditBookModal({onClose, data, setData}) {
 
         if (response.id) {
             setBooks(bookList);
+            modalError.current = "";
         } else {
-            setErr(response.message);
+            modalError.current = response.message;
         }
         
-        onClose();
+        if (modalError.current === "") {
+            onClose();
+        }
     };
     
     return (
@@ -77,6 +89,7 @@ function EditBookModal({onClose, data, setData}) {
             <form className={styles.bookForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="book-name" placeholder="Recipe Book" defaultValue={recipeBook.recipeBookName} />
+                    {modalError.current && <ModalError message={modalError.current} />}
                 </div>
                 <div>
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
@@ -91,6 +104,7 @@ function AddRecipeModal({onClose, data, setData}) {
     const { bookId } = useParams();
     const {recipes} = data;
     const {setRecs, setLoad, setErr, setRecsAndErr} = setData;
+    const modalError = useRef("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -107,10 +121,14 @@ function AddRecipeModal({onClose, data, setData}) {
             // setRecs([...recipes, response]);
             // setErr("");
             setRecsAndErr([...recipes, response], null);
+            modalError.current = "";
         } else {
-            setErr(response);
+            modalError.current = response.message;
         }
-        onClose();
+
+        if (modalError.current === "") {
+            onClose();
+        }
     };
     return (
         <div className={`${styles.addRecipe} ${styles.modal}`}>
@@ -119,6 +137,7 @@ function AddRecipeModal({onClose, data, setData}) {
                 <div>
                     <input type="text" id="recipe-name" placeholder="Recipe Name" />
                     <input type="text" id="recipe-desc" placeholder="Description" />
+                    {modalError.current && <ModalError message={modalError.current} />}
                 </div>
                 <div>
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
@@ -132,6 +151,7 @@ function AddRecipeModal({onClose, data, setData}) {
 function EditRecipeModal({onClose, data, setData}) {
     const {recipes, recipe} = data;
     const {setRecs, setLoad, setErr} = setData;
+    const modalError = useRef("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -148,11 +168,14 @@ function EditRecipeModal({onClose, data, setData}) {
         if (response.id) {
             const recipeList = recipes.map((recipe) => recipe.id === response.id ? response : recipe);
             setRecs(recipeList);
+            modalError.current = "";
         } else {
-            setErr(response);
+            modalError.current = response.message;
         }
         
-        onClose();
+        if (modalError.current === "") {
+            onClose();
+        }
     };
 
     return (
@@ -162,6 +185,7 @@ function EditRecipeModal({onClose, data, setData}) {
                 <div>
                     <input type="text" id="recipe-name" placeholder="Recipe Name" defaultValue={recipe.recipeName} />
                     <input type="text" id="recipe-desc" placeholder="Description" defaultValue={recipe.description} />
+                    {modalError.current && <ModalError message={modalError.current} />}
                 </div>
                 <div>
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
@@ -175,6 +199,7 @@ function EditRecipeModal({onClose, data, setData}) {
 function AddIngredientModal({onClose, data, setData}) {
     const {ingredients} = data;
     const {setIng, setLoad, setErr, setIngrAndErr} = setData;
+    const modalError = useRef("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -192,11 +217,14 @@ function AddIngredientModal({onClose, data, setData}) {
             // setIng([...ingredients, response]);
             // setErr("");
             setIngrAndErr([...ingredients, response], null);
+            modalError.current = "";
         } else {
-            setErr(response);
+            modalError.current = response.message;
         }
 
-        onClose();
+        if (modalError.current === "") {
+            onClose();
+        }
     };
 
     return (
@@ -205,6 +233,7 @@ function AddIngredientModal({onClose, data, setData}) {
             <form className={styles.ingrForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="ingr-name" placeholder="New Ingredient" />
+                    {modalError.current && <ModalError message={modalError.current} />}
                 </div>
                 <div>
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
@@ -218,6 +247,7 @@ function AddIngredientModal({onClose, data, setData}) {
 function EditIngredientModal({onClose, data, setData}) {
     const {ingredient, ingredients} = data;
     const {setIng, setLoad, setErr} = setData;
+    const modalError = useRef("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -234,11 +264,14 @@ function EditIngredientModal({onClose, data, setData}) {
 
         if (response.id) {
             setIng(ingredientList);
+            modalError.current = "";
         } else {
-            setErr(response);
+            modalError.current = response.message;
         }
         
-        onClose();
+        if (modalError.current === "") {
+            onClose();
+        }
     };
 
     return (
@@ -247,6 +280,7 @@ function EditIngredientModal({onClose, data, setData}) {
             <form className={styles.ingrForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="ingr-name" placeholder="Ingredient" defaultValue={ingredient.ingredientName} />
+                    {modalError.current && <ModalError message={modalError.current} />}
                 </div>
                 <div>
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
@@ -259,7 +293,8 @@ function EditIngredientModal({onClose, data, setData}) {
 
 function AddListModal({onClose, data, setData}) {
     const {lists} = data;
-    const {setLists, setLoad, setErr, setListsAndErr} = setData;
+    const {setLists, setLoad, setListsAndErr} = setData;
+    const modalError = useRef("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -276,11 +311,14 @@ function AddListModal({onClose, data, setData}) {
             // setLists([...lists, response]);
             // setErr("");
             setListsAndErr([...lists, response], null);
+            modalError.current = "";
         } else {
-            setErr(response);
+            modalError.current = response.message;
         }
 
-        onClose();
+        if (modalError.current === "") {
+            onClose();
+        }
     };
     return (
         <div className={`${styles.addList} ${styles.modal}`}>
@@ -288,6 +326,7 @@ function AddListModal({onClose, data, setData}) {
             <form className={styles.listForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="list-name" placeholder="List Name" />
+                    {modalError.current && <ModalError message={modalError.current} />}
                 </div>
                 <div>
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
@@ -301,6 +340,7 @@ function AddListModal({onClose, data, setData}) {
 function EditListModal({onClose, data, setData}) {
     const {list, lists} = data;
     const {setLists, setLoad, setErr} = setData;
+    const modalError = useRef("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -317,11 +357,14 @@ function EditListModal({onClose, data, setData}) {
 
         if (response.id) {
             setLists(listList);
+            modalError.current = "";
         } else {
-            setErr(response);
+            modalError.current = response.message;
         }
         
-        onClose();
+        if (modalError.current === "") {
+            onClose();
+        }
     };
     return (
         <div className={`${styles.editList} ${styles.modal}`}>
@@ -329,6 +372,7 @@ function EditListModal({onClose, data, setData}) {
             <form className={styles.listForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="list-name" placeholder="List Name" defaultValue={list.listName} />
+                    {modalError.current && <ModalError message={modalError.current} />}
                 </div>
                 <div>
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>

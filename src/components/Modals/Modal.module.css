@@ -19,6 +19,8 @@
     height: 100vh;
     background-color: rgb(128, 128, 128, 0.7);
     z-index: 100;
+    opacity: 0;
+    animation: fade-in-modal .3s forwards;
 }
 
 .addBook {
@@ -85,6 +87,7 @@
 }
 
 .modal form {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -130,4 +133,10 @@
 .submit {
     background-color: var(--button-submit-color);
     border: .1em solid var(--button-submit-color);
+}
+
+@keyframes fade-in-modal {
+    100% {
+        opacity: 1;
+    }
 }

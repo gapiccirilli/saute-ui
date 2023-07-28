@@ -93,3 +93,20 @@ body {
     text-align: center;
     font-family: var(--secondary-font);
 }
+
+.modal-error {
+    position: absolute;
+    bottom: 25%;
+    min-width: 100%;
+    padding: .5rem;
+    background-color: rgba(255, 0, 0, 0.769);
+    border-radius: .5rem;
+    opacity: 0;
+    animation: fade-error .3s forwards;
+}
+
+@keyframes fade-error {
+    100% {
+        opacity: 1;
+    }
+}

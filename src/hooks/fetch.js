@@ -9,9 +9,10 @@
             setIsLoading(true);
             const response = await fetch(url, {method: type, headers: {"Content-Type": "application/json"}, 
             body: JSON.stringify(payload)});
+
             if (!response.ok) {
                 const errorMessage = await response.json();
-                throw new Error(errorMessage);
+                throw new Error(errorMessage.message);
             }
 
             const responseData = await response.json();
@@ -19,9 +20,8 @@
             setIsLoading(false);
             return responseData;
         } catch (err) {
-            const {message} = err;
             setIsLoading(false);
-            return message;
+            return err;
         }
 
     }

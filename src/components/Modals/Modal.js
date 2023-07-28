@@ -65,7 +65,7 @@ function EditBookModal({onClose, data, setData}) {
         if (response.id) {
             setBooks(bookList);
         } else {
-            setErr(response);
+            setErr(response.message);
         }
         
         onClose();

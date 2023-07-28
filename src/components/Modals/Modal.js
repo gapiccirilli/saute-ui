@@ -136,7 +136,7 @@ function EditRecipeModal({onClose, data, setData}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newRecipe = {...recipe, recipeName: e.target.elements[0].value}
+        const newRecipe = {...recipe, recipeName: e.target.elements[0].value, description: e.target.elements[1].value};
         const response = await fetchData({
             type: "PUT",
             url: `http://localhost:8080/api/recipes/${recipe.id}`,

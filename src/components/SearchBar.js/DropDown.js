@@ -16,13 +16,15 @@ function DropDown({ active, items, loadState }) {
                         break;
                     case "Recipe Book":
                         name = item.recipeBookName;
+                        url = `books/${item.id}`;
                         break;
                     case "Recipe":
                         name = item.recipeName;
-                        url = `recipes/${item.id}?name=${name}&desc=${item.description}`;
+                        url = `books/${item.recipeBookId}/recipes/${item.id}?name=${name}&desc=${item.description}`;
                         break;
                     case "Shopping List":
                         name = item.listName;
+                        url = `lists/${item.id}`;
                         break;
                     default:
                         name = "Unknown";

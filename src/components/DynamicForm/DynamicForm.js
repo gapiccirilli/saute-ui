@@ -4,15 +4,15 @@ import { fetchData } from "../../hooks/fetch";
 
 function DynamicForm({basic, ingredients, setShowForm, setData, resourceData}) {
     const formData = {
-        id: 1,
-        ingredientId: 12,
+        id: "0",
+        ingredientId: "",
         ingredientName: "",
         description: "",
         amount: 1,
         measurementType: "",
-        hours: 0,
-        minutes: 0,
-        seconds: 0
+        hours: "0",
+        minutes: "0",
+        seconds: "0"
 };
     const [formFields, setFormFields] = useState([formData]);
 
@@ -45,7 +45,7 @@ function DynamicForm({basic, ingredients, setShowForm, setData, resourceData}) {
     const handleAddForm = () => {
         setFormFields([...formFields, {
             id: "1",
-            ingredientId: "12",
+            ingredientId: "",
             ingredientName: "",
             description: "",
             amount: "1",

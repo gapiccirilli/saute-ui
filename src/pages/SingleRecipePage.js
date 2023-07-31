@@ -8,7 +8,7 @@ import { useFetch } from "../hooks/useFetch";
 import Load from "../loaders/Load";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
 import CloseButton from "../components/Buttons/CloseButton";
-import DynamicForm from "../components/DynamicForm/DynamicForm";
+import AddForm from "../components/AddForm/AddForm";
 import { useIngredients } from "../hooks/useIngredients";
 import { useItems } from "../hooks/useItems";
 
@@ -16,15 +16,11 @@ function SingleRecipePage() {
     const { recipeId } = useParams();
     const [recipeParams, setRecipeParams] = useSearchParams();
 
-    // const [items, setItems] = useState([]);
-    // const [error, setError] = useState("");
     const {itemState, setters} = useItems();
     const {items, error} = itemState;
     const {setItems, setError, setItemsAndError} = setters;
 
     const {ingredientState, dispatchers} = useIngredients();
-    // const {ingredients, error} = ingredientState;
-    // const {setIngredients, setError, setIngredientsAndError} = dispatchers;
 
     const [isLoading, setIsLoading] = useState(false);
     const [showAddItem, setShowAddItem] = useState(false);
@@ -69,13 +65,12 @@ function SingleRecipePage() {
             </table>}
             {error && <ErrorMessage message={error}/>}
 
-            {showAddItem && <DynamicForm basic={false} ingredients={ingredientState} setShowForm={setShowAddItem}
+            {showAddItem && <AddForm basic={false} ingredients={ingredientState} setShowForm={setShowAddItem}
            setData={{setData: setItems, setErr: setError, setDataAndError: setItemsAndError, data: items}}
            resourceData={{
                     type: "POST",
-                    url: [`http://localhost:8080/api/recipes/${recipeId}/items`,
-                          `http://localhost:8080/api/recipes/${recipeId}/items/multiple`],
-                    payload: [],
+                    url: `http://localhost:8080/api/recipes/${recipeId}/items`,
+                    payload: {},
                     setIsLoading: setIsLoading
                 }} />}
         </div>

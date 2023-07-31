@@ -43,7 +43,6 @@ function IngredientPage() {
 
     const setters = {
         setIng: setIngredients,
-        setLoad: setIsLoading,
         setErr: setError,
         setIngrAndErr: setIngredientsAndError
     };

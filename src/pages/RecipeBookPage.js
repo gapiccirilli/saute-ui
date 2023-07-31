@@ -7,8 +7,6 @@ import { useModal } from "../hooks/useModal";
 import Modal from "../components/Modals/Modal";
 import Load from "../loaders/Load";
 import { useFetch } from "../hooks/useFetch";
-
-import { testRecipeBooks } from "../test-data/Data";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
 import { useRecipeBooks } from "../hooks/useRecipeBooks";
 
@@ -44,7 +42,6 @@ function RecipeBookPage() {
 
     const setters = {
         setBooks: setRecipeBooks,
-        setLoad: setIsLoading,
         setErr: setError,
         setBooksAndErr: setRecipeBooksAndError
     };

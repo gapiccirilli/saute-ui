@@ -45,7 +45,6 @@ function ShoppingListPage() {
 
     const setters = {
         setLists: setShoppingLists,
-        setLoad: setIsLoading,
         setErr: setError,
         setListsAndErr: setShoppingListsAndError
     };

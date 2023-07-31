@@ -7,8 +7,11 @@ import { useParams } from "react-router-dom";
 import ModalError from "../Error/ModalError";
 
 function AddBookModal({onClose, data, setData}) {
+    const [isLoading, setIsLoading] = useState(false);
+
     const {recipeBooks} = data;
-    const {setBooks, setLoad, setErr, setBooksAndErr} = setData;
+    const {setBooks, setErr, setBooksAndErr} = setData;
+
     const modalError = useRef("");
 
     const handleSubmit = async (e) => {
@@ -19,12 +22,10 @@ function AddBookModal({onClose, data, setData}) {
             type: "POST",
             url: "http://localhost:8080/api/recipe-books",
             payload: newBook,
-            setIsLoading: setLoad
+            setIsLoading: setIsLoading
         });
 
         if (response.id) {
-            // setBooks([...recipeBooks, response]);
-            // setErr("");
             setBooksAndErr([...recipeBooks, response], null);
             modalError.current = "";
         } else {
@@ -38,8 +39,8 @@ function AddBookModal({onClose, data, setData}) {
 
     return (
         <div className={`${styles.addBook} ${styles.modal}`}>
-            <h2>Add RecipeBook</h2>
-            <form className={styles.bookForm} onSubmit={handleSubmit}>
+            {!isLoading && <h2>Add RecipeBook</h2>}
+            {!isLoading && <form className={styles.bookForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="book-name" placeholder="New Recipe Book" />
                     {modalError.current && <ModalError message={modalError.current} />}
@@ -48,12 +49,13 @@ function AddBookModal({onClose, data, setData}) {
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
-            </form>
+            </form>}
         </div>
     );
 }
 
 function EditBookModal({onClose, data, setData}) {
+    const [isLoading, setIsLoading] = useState(false);
     const {recipeBooks, recipeBook} = data;
     const {setBooks, setLoad, setErr} = setData;
     const modalError = useRef("");
@@ -66,7 +68,7 @@ function EditBookModal({onClose, data, setData}) {
             type: "PUT",
             url: `http://localhost:8080/api/recipe-books/${recipeBook.id}`,
             payload: newBook,
-            setIsLoading: setLoad
+            setIsLoading: setIsLoading
         });
 
         const bookList = recipeBooks.map((book) => book.id === response.id ? response : book);
@@ -85,8 +87,8 @@ function EditBookModal({onClose, data, setData}) {
     
     return (
         <div className={`${styles.editBook} ${styles.modal}`}>
-            <h2>Edit RecipeBook</h2>
-            <form className={styles.bookForm} onSubmit={handleSubmit}>
+            {!isLoading && <h2>Edit RecipeBook</h2>}
+            {!isLoading && <form className={styles.bookForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="book-name" placeholder="Recipe Book" defaultValue={recipeBook.recipeBookName} />
                     {modalError.current && <ModalError message={modalError.current} />}
@@ -95,12 +97,13 @@ function EditBookModal({onClose, data, setData}) {
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
-            </form>
+            </form>}
         </div>
     );
 }
 
 function AddRecipeModal({onClose, data, setData}) {
+    const [isLoading, setIsLoading] = useState(false);
     const { bookId } = useParams();
     const {recipes} = data;
     const {setRecs, setLoad, setErr, setRecsAndErr} = setData;
@@ -114,7 +117,7 @@ function AddRecipeModal({onClose, data, setData}) {
             type: "POST",
             url: `http://localhost:8080/api/recipe-books/${bookId}/recipes`,
             payload: newRecipe,
-            setIsLoading: setLoad
+            setIsLoading: setIsLoading
         });
 
         if (response.id) {
@@ -132,8 +135,8 @@ function AddRecipeModal({onClose, data, setData}) {
     };
     return (
         <div className={`${styles.addRecipe} ${styles.modal}`}>
-            <h2>Add Recipe</h2>
-            <form className={styles.recipeForm} onSubmit={handleSubmit}>
+            {!isLoading && <h2>Add Recipe</h2>}
+            {!isLoading && <form className={styles.recipeForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="recipe-name" placeholder="Recipe Name" />
                     <input type="text" id="recipe-desc" placeholder="Description" />
@@ -143,12 +146,13 @@ function AddRecipeModal({onClose, data, setData}) {
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
-            </form>
+            </form>}
         </div>
     );
 }
 
 function EditRecipeModal({onClose, data, setData}) {
+    const [isLoading, setIsLoading] = useState(false);
     const {recipes, recipe} = data;
     const {setRecs, setLoad, setErr} = setData;
     const modalError = useRef("");
@@ -161,7 +165,7 @@ function EditRecipeModal({onClose, data, setData}) {
             type: "PUT",
             url: `http://localhost:8080/api/recipes/${recipe.id}`,
             payload: newRecipe,
-            setIsLoading: setLoad
+            setIsLoading: setIsLoading
         });
 
         
@@ -180,8 +184,8 @@ function EditRecipeModal({onClose, data, setData}) {
 
     return (
         <div className={`${styles.editRecipe} ${styles.modal}`}>
-            <h2>Edit Recipe</h2>
-            <form className={styles.bookForm} onSubmit={handleSubmit}>
+            {!isLoading && <h2>Edit Recipe</h2>}
+            {!isLoading && <form className={styles.bookForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="recipe-name" placeholder="Recipe Name" defaultValue={recipe.recipeName} />
                     <input type="text" id="recipe-desc" placeholder="Description" defaultValue={recipe.description} />
@@ -191,12 +195,13 @@ function EditRecipeModal({onClose, data, setData}) {
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
-            </form>
+            </form>}
         </div>
     );
 }
 
 function AddIngredientModal({onClose, data, setData}) {
+    const [isLoading, setIsLoading] = useState(false);
     const {ingredients} = data;
     const {setIng, setLoad, setErr, setIngrAndErr} = setData;
     const modalError = useRef("");
@@ -210,7 +215,7 @@ function AddIngredientModal({onClose, data, setData}) {
             type: "POST",
             url: "http://localhost:8080/api/ingredients",
             payload: newIngredient,
-            setIsLoading: setLoad
+            setIsLoading: setIsLoading
         });
 
         if (response.id) {
@@ -229,8 +234,8 @@ function AddIngredientModal({onClose, data, setData}) {
 
     return (
         <div className={`${styles.addIngr} ${styles.modal}`}>
-            <h2>Add Ingredient</h2>
-            <form className={styles.ingrForm} onSubmit={handleSubmit}>
+            {!isLoading && <h2>Add Ingredient</h2>}
+            {!isLoading && <form className={styles.ingrForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="ingr-name" placeholder="New Ingredient" />
                     {modalError.current && <ModalError message={modalError.current} />}
@@ -239,12 +244,13 @@ function AddIngredientModal({onClose, data, setData}) {
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
-            </form>
+            </form>}
         </div>
     );
 }
 
 function EditIngredientModal({onClose, data, setData}) {
+    const [isLoading, setIsLoading] = useState(false);
     const {ingredient, ingredients} = data;
     const {setIng, setLoad, setErr} = setData;
     const modalError = useRef("");
@@ -257,7 +263,7 @@ function EditIngredientModal({onClose, data, setData}) {
             type: "PUT",
             url: `http://localhost:8080/api/ingredients/${ingredient.id}`,
             payload: newIngredient,
-            setIsLoading: setLoad
+            setIsLoading: setIsLoading
         });
 
         const ingredientList = ingredients.map((item) => item.id === response.id ? response : item);
@@ -276,8 +282,8 @@ function EditIngredientModal({onClose, data, setData}) {
 
     return (
         <div className={`${styles.editIngr} ${styles.modal}`}>
-            <h2>Edit Ingredient</h2>
-            <form className={styles.ingrForm} onSubmit={handleSubmit}>
+            {!isLoading && <h2>Edit Ingredient</h2>}
+            {!isLoading && <form className={styles.ingrForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="ingr-name" placeholder="Ingredient" defaultValue={ingredient.ingredientName} />
                     {modalError.current && <ModalError message={modalError.current} />}
@@ -286,12 +292,13 @@ function EditIngredientModal({onClose, data, setData}) {
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
-            </form>
+            </form>}
         </div>
     );
 }
 
 function AddListModal({onClose, data, setData}) {
+    const [isLoading, setIsLoading] = useState(false);
     const {lists} = data;
     const {setLists, setLoad, setListsAndErr} = setData;
     const modalError = useRef("");
@@ -304,7 +311,7 @@ function AddListModal({onClose, data, setData}) {
             type: "POST",
             url: "http://localhost:8080/api/shopping-lists",
             payload: newList,
-            setIsLoading: setLoad
+            setIsLoading: setIsLoading
         });
 
         if (response.id) {
@@ -322,8 +329,8 @@ function AddListModal({onClose, data, setData}) {
     };
     return (
         <div className={`${styles.addList} ${styles.modal}`}>
-            <h2>Add Shopping List</h2>
-            <form className={styles.listForm} onSubmit={handleSubmit}>
+            {!isLoading && <h2>Add Shopping List</h2>}
+            {!isLoading && <form className={styles.listForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="list-name" placeholder="List Name" />
                     {modalError.current && <ModalError message={modalError.current} />}
@@ -332,12 +339,13 @@ function AddListModal({onClose, data, setData}) {
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
-            </form>
+            </form>}
         </div>
     );
 }
 
 function EditListModal({onClose, data, setData}) {
+    const [isLoading, setIsLoading] = useState(false);
     const {list, lists} = data;
     const {setLists, setLoad, setErr} = setData;
     const modalError = useRef("");
@@ -350,7 +358,7 @@ function EditListModal({onClose, data, setData}) {
             type: "PUT",
             url: `http://localhost:8080/api/shopping-lists/${list.id}`,
             payload: newList,
-            setIsLoading: setLoad
+            setIsLoading: setIsLoading
         });
 
         const listList = lists.map((item) => item.id === response.id ? response : item);
@@ -368,8 +376,8 @@ function EditListModal({onClose, data, setData}) {
     };
     return (
         <div className={`${styles.editList} ${styles.modal}`}>
-            <h2>Edit Shopping List</h2>
-            <form className={styles.listForm} onSubmit={handleSubmit}>
+            {!isLoading && <h2>Edit Shopping List</h2>}
+            {!isLoading && <form className={styles.listForm} onSubmit={handleSubmit}>
                 <div>
                     <input type="text" id="list-name" placeholder="List Name" defaultValue={list.listName} />
                     {modalError.current && <ModalError message={modalError.current} />}
@@ -378,7 +386,7 @@ function EditListModal({onClose, data, setData}) {
                     <button className={`${styles.submit} button-site-theme`} type="submit">Submit</button>
                     <CloseButton className="button-close-theme" onClose={onClose} />
                 </div>
-            </form>
+            </form>}
         </div>
     );
 }

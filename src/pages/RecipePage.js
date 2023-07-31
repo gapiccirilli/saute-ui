@@ -48,7 +48,6 @@ function RecipePage() {
     
     const setters = {
         setRecs: setRecipes,
-        setLoad: setIsLoading,
         setErr: setError,
         setRecsAndErr: setRecipesAndError
     };

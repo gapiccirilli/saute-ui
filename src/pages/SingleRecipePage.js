@@ -15,16 +15,12 @@ import { useItems } from "../hooks/useItems";
 function SingleRecipePage() {
     const { recipeId } = useParams();
     const [recipeParams, setRecipeParams] = useSearchParams();
-
     const {itemState, setters} = useItems();
     const {items, error} = itemState;
     const {setItems, setError, setItemsAndError} = setters;
-
     const {ingredientState, dispatchers} = useIngredients();
-
     const [isLoading, setIsLoading] = useState(false);
     const [showAddItem, setShowAddItem] = useState(false);
-
     const recipeName = recipeParams.get("name");
     const description = recipeParams.get("desc");
 

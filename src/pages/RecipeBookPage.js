@@ -9,6 +9,7 @@ import Load from "../loaders/Load";
 import { useFetch } from "../hooks/useFetch";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
 import { useRecipeBooks } from "../hooks/useRecipeBooks";
+import { useSelector } from "react-redux";
 
 function RecipeBookPage() {
     const {bookState, dispatchers} = useRecipeBooks();

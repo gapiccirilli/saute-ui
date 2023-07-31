@@ -1,83 +1,86 @@
-import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialUserState = {
     firstName: null,
     lastName: null,
     email: null,
     phoneNumber: null,
     gender: null,
-    profilePicture: null
+    profilePicture: null,
+    isAuthenticated: false,
+    isLoading: false,
+    authError: null
 };
 
-const userSlice = createSlice({
-    name: "user",
-    initialState,
-    reducers: {
-        login: {
-            prepare(email, password) {
-                return {
-                    payload: { email, password }
-                };
-            },
+export default function userReducer(state = initialUserState, action) {
+    switch (action.type) {
+        case "user/login":
+            return {...state, firstName: action.payload.firstName, lastName: action.payload.lastName, 
+                email: action.payload.email, phoneNumber: action.payload.phoneNumber, gender: action.payload.gender,
+                profilePicture: action.payload.profilePicture, isAuthenticated: action.payload.isAuthenticated, 
+                isLoading: false, authError: null};
+        case "user/create":
+            return {...state, firstName: action.payload.firstName, lastName: action.payload.lastName, 
+                email: action.payload.email, phoneNumber: action.payload.phoneNumber, gender: action.payload.gender,
+                profilePicture: action.payload.profilePicture, isAuthenticated: action.payload.isAuthenticated,
+                isLoading: false, authError: null};
+        case "user/logout":
+            return {...state, firstName: null, lastName: null, 
+                email: null, phoneNumber: null, gender: null,
+                profilePicture: null, isAuthenticated: false,
+                isLoading: false, authError: null};
+        case "user/authFail":
+            return {...state, authError: action.payload};
+        case "user/loading":
+            return {...state, isLoading: true};
+        default:
+            return state;
+    }   
+}
 
-            reducer(state, action) {
-            state.firstName = action.payload.firstName;
-            state.lastName = action.payload.lastName;
-            state.email = action.payload.email;
-            state.phoneNumber = action.payload.phoneNumber;
-            state.gender = action.payload.gender;
-            state.profilePicture = action.payload.profilePicture;
-        }},
-        create: {
-            prepare(user) {
-                return {
-                    payload: {
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    email: user.email,
-                    phoneNumber: user.phoneNumber,
-                    gender: user.gender,
-                    profilePicture: user.profilePicture
-                }
+export function login(email, password) {
+
+
+    return async function(dispatch, getState) {
+        // API CALL
+        try {
+            dispatch({ type: "user/loading" });
+            const response = await fetch("url", {method: "POST", headers: {"Content-Type": "application/json"}, 
+            body: JSON.stringify(payload)});
+
+            if (!response.ok) {
+                const errorMessage = await response.json();
+                throw new Error(errorMessage.message);
             }
-            },
 
-            reducer(state, action) {
-            state.firstName = action.payload.firstName;
-            state.lastName = action.payload.lastName;
-            state.email = action.payload.email;
-            state.phoneNumber = action.payload.phoneNumber;
-            state.gender = action.payload.gender;
-            state.profilePicture = action.payload.profilePicture;
-        }},
-        logout(state, action) {
-            state.firstName = null;
-            state.lastName = null;
-            state.email = null;
-            state.phoneNumber = null;
-            state.gender = null;
-            state.profilePicture = null;
+            const data = await response.json();
+            dispatch({ type: "user/login", payload: { ...data, isAuthenticated: true } });
+        } catch(err) {
+            dispatch({ type: "user/authFail", payload: "Email or password is incorrect"});
         }
-    },
-});
+    };
+}
 
-export const { login, create, logout } = userSlice.actions;
+export function create(user) {
+    
+    return async function(dispatch, getState) {
+        try {
+            dispatch({ type: "user/loading" });
+            const response = await fetch("url", {method: "POST", headers: {"Content-Type": "application/json"}, 
+            body: JSON.stringify(user)});
 
-export default userSlice.reducer;
+            if (!response.ok) {
+                const errorMessage = await response.json();
+                throw new Error(errorMessage.message);
+            }
 
-// export default function userReducer(state = initialUserState, action) {
-//     switch (action.type) {
-//         case "user/login":
-//             return {...state, firstName: action.payload.firstName, lastName: action.payload.lastName, 
-//                 email: action.payload.email, phoneNumber: action.payload.phoneNumber, gender: action.payload.gender,
-//                 profilePicture: action.payload.profilePicture};
-//         case "user/create":
-//             return {...state, firstName: action.payload.firstName, lastName: action.payload.lastName, 
-//                 email: action.payload.email, phoneNumber: action.payload.phoneNumber, gender: action.payload.gender,
-//                 profilePicture: action.payload.profilePicture};
-//         case "user/logout":
-//             return {...state, firstName: null, lastName: null, 
-//                 email: null, phoneNumber: null, gender: null,
-//                 profilePicture: null};
-//     }   
-// }
+            const data = await response.json();
+            dispatch({ type: "user/create", payload: { ...data } });
+        } catch(err) {
+            dispatch({ type: "user/authFail", payload: err.message});
+        }
+    }
+}
+
+export function logout() {
+    return { type: "user/logout" };
+}

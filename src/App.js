@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import { createContext } from 'react';
 import HomePage from "./pages/HomePage";
 import IngredientPage from "./pages/IngredientPage";
 import ShoppingListPage from "./pages/ShoppingListPage";

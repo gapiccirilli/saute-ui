@@ -1,18 +1,27 @@
 import Logo from "../components/Logo/Logo";
 import bgImg from "../assets/home-bg.jpg";
 import styles from "./PageStyles/HomePage.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginPage from "./LoginPage";
 import { useState } from "react";
 import CreateUserPage from "./CreateUserPage";
+import { useRedirect } from "../hooks/useRedirect";
+import { useSelector } from "react-redux";
 
 function HomePage() {
+    const navigate = useNavigate();
     const createClasses = `${styles.createBtn} button-site-theme`;
     const logInClasses = `${styles.logInBtn} button-site-theme`;
     const [style, setStyle] = useState({
         createStyle: {display:"none"},
         logInStyle: {display:"none"}
     });
+
+    const isAuthenticated = useSelector(store => store.user.isAuthenticated);
+    if (isAuthenticated) {
+        navigate("saute");
+    }
+
     const {createStyle, logInStyle} = style;
 
     const handleOpenLogin = () => {
@@ -49,10 +58,9 @@ function HomePage() {
                     </section>
                 </div>
                 <LoginPage style={logInStyle} />
-                <CreateUserPage style={createStyle} />
+                <CreateUserPage style={createStyle} navigate={setStyle} />
             </main>
             <footer className={styles.footer}>
-                <Link to="saute">GO TO APP</Link>
             </footer>
         </div>
     );

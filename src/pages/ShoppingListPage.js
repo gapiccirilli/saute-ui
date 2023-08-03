@@ -53,7 +53,7 @@ function ShoppingListPage() {
         <div className={styles.page}>
             {isLoading && <Load />}
             {modalState.isOpen && <Modal modalState={modalState} onClose={handleCloseModal} setData={setters} />}
-            {!isLoading && <nav className={styles.gridNav}>
+            {!error && !isLoading && <nav className={styles.gridNav}>
                 <AddButton className="button-site-theme flex-add" onAdd={handleAddList}>Add List</AddButton>
                 </nav>}
             {!error && !isLoading && <div className={styles.gridContent}>

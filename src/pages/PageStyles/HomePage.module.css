@@ -91,12 +91,12 @@
 
 .create {
     position: absolute;
-    bottom: calc(50% - 85%/2);
+    bottom: calc(50% - 95%/2);
     left: 75%;
     background-color: white;
     border-radius: 1rem;
     width: 20%;
-    height: 85%;
+    height: 95%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -127,6 +127,7 @@
 }
 
 .form {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -139,17 +140,52 @@
     font-family: var(--secondary-font);
 }
 
+.form .error {
+    position: absolute;
+    font-size: .8rem;
+    width: 100%;
+    color: red;
+    top: 8%;
+    text-align: center;
+    margin  : 0;
+}
 
+.form .loginError {
+    position: absolute;
+    font-size: .8rem;
+    width: 100%;
+    color: red;
+    top: 14%;
+    text-align: center;
+    margin  : 0;
+}
+
+.form div:nth-of-type(1) .name {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+}
 
 .form div:nth-of-type(1) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2em;
+    gap: 1.5em;
 }
 
 .user, .pass {
+    padding: 1em 1em;
+    border-radius: 0.5em;
+    border: none;
+    box-shadow: 0.03em -0.03em 0.3em 0 rgba(0, 0, 0, 0.5);
+}
+
+.first, .last {
+    width: 50%;
     padding: 1em 1em;
     border-radius: 0.5em;
     border: none;

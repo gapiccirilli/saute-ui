@@ -53,9 +53,14 @@ export async function login(email, password) {
                 const errorMessage = await response.json();
                 throw new Error(errorMessage.message);
             }
-
+            const authToken = response.headers.get("Authorization");
             const data = await response.json();
-            dispatch({ type: "user/login", payload: { ...data, isAuthenticated: true } });
+            if (authToken !== null || authToken.length > 0) {
+                localStorage.setItem("auth", authToken);
+                dispatch({ type: "user/login", payload: { ...data, isAuthenticated: true } });
+            } else {
+                dispatch({ type: "user/loginAuthFail", payload: "User could not be authenticated"});
+            }
         } catch(err) {
             dispatch({ type: "user/loginAuthFail", payload: "Email or password is incorrect"});
         }

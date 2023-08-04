@@ -17,7 +17,10 @@ function ShoppingListCard({ list, onDeleteList, onEditList }) {
     const onDelete = async () => {
         try {
             const response = await fetch(`http://localhost:8080/api/shopping-lists/${id}`, 
-            {method: "DELETE", headers: {"Content-Type": "application/json"}});
+            {method: "DELETE", headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("auth")
+            }});
             
             if (!response.ok) {
                 const errorMessage = await response.json();

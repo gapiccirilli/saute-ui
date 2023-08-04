@@ -6,7 +6,11 @@ export function useFetch(url, stateFunctions) {
         async function get() {
             setLoad(true);
             try {
-                const response = await fetch(url);
+                const response = await fetch(url, {
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("auth")
+                    }
+                });
 
             if (!response.ok) {
                 const errorMessage = await response.json();

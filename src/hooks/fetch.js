@@ -1,13 +1,14 @@
 
 
     export async function fetchData(fetchData) {
-        // if (fetchType != "POST" || fetchType != "PUT") {
-        //         console.error("Only 'POST' and 'PUT' may be used in 'useFetchOnDemand' hook");
-        //     }
+
         const {type, url, payload, setIsLoading} = fetchData;
         try {
             setIsLoading(true);
-            const response = await fetch(url, {method: type, headers: {"Content-Type": "application/json"}, 
+            const response = await fetch(url, {method: type, headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("auth")
+            }, 
             body: JSON.stringify(payload)});
 
             if (!response.ok) {

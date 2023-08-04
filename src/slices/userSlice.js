@@ -29,9 +29,9 @@ export default function userReducer(state = initialUserState, action) {
                 profilePicture: null, isAuthenticated: false,
                 isLoading: false, createAuthError: null, loginAuthError: null};
         case "user/createAuthFail":
-            return {...state, createAuthError: action.payload};
+            return {...state, createAuthError: action.payload, isLoading: false};
         case "user/loginAuthFail":
-            return {...state, loginAuthError: action.payload};
+            return {...state, loginAuthError: action.payload, isLoading: false};
         case "user/loading":
             return {...state, isLoading: true};
         default:
